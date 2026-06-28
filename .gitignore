@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build cache (the committed deliverable dist/index.html is NOT ignored)
+*.tsbuildinfo
+.cache/
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Local env
+.env
+.env*.local
+
+# Logs
+npm-debug.*
+*.log

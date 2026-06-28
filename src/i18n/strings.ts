@@ -1,0 +1,316 @@
+// Lightweight i18n. English + Arabic, with full RTL handled at the app root.
+import type { Language, Pattern } from '../data/types';
+
+type Dict = Record<string, string>;
+
+const en: Dict = {
+  app_name: 'Infinite',
+  tagline: 'Train each pattern until it stalls. Then evolve.',
+  // tabs
+  tab_hub: 'Patterns',
+  tab_today: 'Today',
+  tab_library: 'Library',
+  tab_analytics: 'Stats',
+  tab_settings: 'Settings',
+  // hub
+  hub_main: 'Movement patterns',
+  hub_iso: 'Isolation',
+  level: 'Level',
+  week: 'Week',
+  deload: 'Deload',
+  block: 'Block',
+  // status
+  status_alive: 'Progressing',
+  status_slowing: 'Slowing',
+  status_ended: 'Cycle ended',
+  // today
+  today_title: 'Today',
+  rest_day: 'Rest day',
+  rest_day_sub: 'Recover. Eat. Sleep. Grow.',
+  start_workout: 'Start workout',
+  resume_workout: 'Resume workout',
+  review_workout: 'Review workout',
+  pick_day: 'Pick a day',
+  exercises: 'exercises',
+  // logger
+  warmup: 'Warm-up',
+  working_set: 'Set',
+  weight: 'Weight',
+  reps: 'Reps',
+  beat: 'Beat',
+  add_set: 'Add set',
+  rest_timer: 'Rest',
+  finish: 'Finish',
+  finish_workout: 'Finish workout',
+  done: 'Done',
+  ghost_hint: 'Last time',
+  warmup_guidance: 'Warm-up guidance',
+  // swap
+  swap: 'Swap',
+  swap_title: 'Evolve this lift',
+  swap_where: 'Where do you usually fail?',
+  swap_recs: 'Recommended next',
+  targets: 'Targets',
+  carry_load: 'Start at',
+  accept_swap: 'Use this variation',
+  watch: 'Watch',
+  // detail
+  history: 'History',
+  life_cycle: 'Life cycle',
+  strength_gained: 'Strength gained',
+  duration: 'Duration',
+  weeks: 'weeks',
+  e1rm: 'e1RM',
+  no_history: 'No sets logged yet.',
+  // pattern detail
+  roster: 'Variation roster',
+  effectiveness: 'Effectiveness',
+  best_variations: 'Your best variations',
+  no_roster: 'Run a variation to build your roster.',
+  // volume
+  volume_title: 'Weekly volume',
+  sets_per_week: 'sets / week',
+  under_mev: 'Below MEV',
+  optimal: 'In range',
+  over_mrv: 'Above MRV',
+  landmark_hint: 'Green band = MAV (productive). Below MEV under-stimulates; above MRV is junk volume.',
+  // analytics
+  analytics_title: 'Progress',
+  pattern_progress: 'Pattern progress',
+  completed_cycles: 'Completed life cycles',
+  // library
+  library_title: 'Exercise library',
+  search: 'Search exercises',
+  all_patterns: 'All',
+  variations: 'variations',
+  // mesocycle
+  meso_title: 'Mesocycle',
+  meso_overview: 'Overview',
+  next_block: 'Generate next block',
+  deload_prompt: 'You have reached the deload week. Recover, then start a fresh block.',
+  // settings
+  settings_title: 'Settings',
+  units: 'Units',
+  language: 'Language',
+  notifications: 'Rest timer sound',
+  backup: 'Backup',
+  export_data: 'Export data',
+  import_data: 'Import data',
+  reset: 'Reset all data',
+  reset_confirm: 'Erase all logged data and start over?',
+  about: 'About the program',
+  // about
+  about_credit: 'Program by Mohammad Almarzouq',
+  disclaimer:
+    'This app provides general fitness information, not medical advice. Train within your limits and consult a qualified professional before starting any program. Expect realistic, evidence-based progress — not overnight transformations.',
+  ip_method: 'The IP Method',
+  // onboarding
+  onb_welcome: 'Welcome to Infinite',
+  onb_get_started: 'Get started',
+  onb_next: 'Next',
+  onb_done: 'Start training',
+  onb_units_q: 'Which units do you use?',
+  onb_lang_q: 'Language',
+  // misc
+  cancel: 'Cancel',
+  close: 'Close',
+  save: 'Save',
+  kg: 'kg',
+  lb: 'lb',
+};
+
+const ar: Dict = {
+  app_name: 'إنفينيت',
+  tagline: 'درّب كل نمط حتى يتوقف تقدمه، ثم طوّره.',
+  tab_hub: 'الأنماط',
+  tab_today: 'اليوم',
+  tab_library: 'المكتبة',
+  tab_analytics: 'الإحصائيات',
+  tab_settings: 'الإعدادات',
+  hub_main: 'أنماط الحركة',
+  hub_iso: 'العزل',
+  level: 'المستوى',
+  week: 'الأسبوع',
+  deload: 'الدّيلود',
+  block: 'البلوك',
+  status_alive: 'يتقدم',
+  status_slowing: 'يتباطأ',
+  status_ended: 'انتهت الدورة',
+  today_title: 'اليوم',
+  rest_day: 'يوم راحة',
+  rest_day_sub: 'استرخِ، كُل، نَم، وانمُ.',
+  start_workout: 'ابدأ التمرين',
+  resume_workout: 'أكمل التمرين',
+  review_workout: 'مراجعة التمرين',
+  pick_day: 'اختر يومًا',
+  exercises: 'تمارين',
+  warmup: 'إحماء',
+  working_set: 'جولة',
+  weight: 'الوزن',
+  reps: 'التكرارات',
+  beat: 'تجاوز',
+  add_set: 'أضف جولة',
+  rest_timer: 'راحة',
+  finish: 'إنهاء',
+  finish_workout: 'إنهاء التمرين',
+  done: 'تم',
+  ghost_hint: 'آخر مرة',
+  warmup_guidance: 'إرشادات الإحماء',
+  swap: 'تبديل',
+  swap_title: 'طوّر هذا التمرين',
+  swap_where: 'أين تفشل عادةً؟',
+  swap_recs: 'المقترح التالي',
+  targets: 'يستهدف',
+  carry_load: 'ابدأ بـ',
+  accept_swap: 'استخدم هذا التمرين',
+  watch: 'شاهد',
+  history: 'السجل',
+  life_cycle: 'دورة الحياة',
+  strength_gained: 'القوة المكتسبة',
+  duration: 'المدة',
+  weeks: 'أسابيع',
+  e1rm: 'أقصى تكرار تقديري',
+  no_history: 'لا توجد جولات مسجلة بعد.',
+  roster: 'قائمة التمارين',
+  effectiveness: 'الفعالية',
+  best_variations: 'أفضل تمارينك',
+  no_roster: 'درّب تمرينًا لبناء قائمتك.',
+  volume_title: 'الحجم الأسبوعي',
+  sets_per_week: 'جولة / أسبوع',
+  under_mev: 'أقل من الحد الأدنى',
+  optimal: 'ضمن النطاق',
+  over_mrv: 'أعلى من الحد الأقصى',
+  landmark_hint: 'الشريط الأخضر = النطاق المثمر. أقل منه غير محفّز، وأعلى منه حجم زائد.',
+  analytics_title: 'التقدم',
+  pattern_progress: 'تقدم الأنماط',
+  completed_cycles: 'الدورات المكتملة',
+  library_title: 'مكتبة التمارين',
+  search: 'ابحث عن تمرين',
+  all_patterns: 'الكل',
+  variations: 'تمارين',
+  meso_title: 'الميزوسايكل',
+  meso_overview: 'نظرة عامة',
+  next_block: 'إنشاء البلوك التالي',
+  deload_prompt: 'وصلت إلى أسبوع الدّيلود. استعد، ثم ابدأ بلوكًا جديدًا.',
+  settings_title: 'الإعدادات',
+  units: 'الوحدات',
+  language: 'اللغة',
+  notifications: 'صوت مؤقّت الراحة',
+  backup: 'النسخ الاحتياطي',
+  export_data: 'تصدير البيانات',
+  import_data: 'استيراد البيانات',
+  reset: 'إعادة تعيين كل البيانات',
+  reset_confirm: 'محو جميع البيانات والبدء من جديد؟',
+  about: 'عن البرنامج',
+  about_credit: 'البرنامج من إعداد محمد المرزوق',
+  disclaimer:
+    'يقدّم هذا التطبيق معلومات لياقة عامة وليست نصيحة طبية. تدرّب ضمن حدودك واستشر مختصًا قبل البدء بأي برنامج. توقّع تقدمًا واقعيًا قائمًا على الأدلة.',
+  ip_method: 'طريقة IP',
+  onb_welcome: 'مرحبًا بك في إنفينيت',
+  onb_get_started: 'ابدأ',
+  onb_next: 'التالي',
+  onb_done: 'ابدأ التدريب',
+  onb_units_q: 'ما الوحدات التي تستخدمها؟',
+  onb_lang_q: 'اللغة',
+  cancel: 'إلغاء',
+  close: 'إغلاق',
+  save: 'حفظ',
+  kg: 'كجم',
+  lb: 'رطل',
+};
+
+const DICTS: Record<Language, Dict> = { en, ar };
+
+export function translate(lang: Language, key: string, params?: Record<string, string | number>): string {
+  let s = DICTS[lang][key] ?? en[key] ?? key;
+  if (params) for (const [k, v] of Object.entries(params)) s = s.replace(`{${k}}`, String(v));
+  return s;
+}
+
+// Pattern display names
+const PATTERN_EN: Record<Pattern, string> = {
+  horizontal_press: 'Horizontal press',
+  horizontal_pull: 'Horizontal pull',
+  vertical_press: 'Vertical press',
+  vertical_pull: 'Vertical pull',
+  squat: 'Squat',
+  hinge: 'Hinge',
+  side_delts: 'Side delts',
+  rear_delts: 'Rear delts',
+  biceps: 'Biceps',
+  triceps: 'Triceps',
+  calves: 'Calves',
+  abs: 'Abs',
+  traps: 'Traps',
+  forearms: 'Forearms',
+};
+const PATTERN_AR: Record<Pattern, string> = {
+  horizontal_press: 'دفع أفقي',
+  horizontal_pull: 'سحب أفقي',
+  vertical_press: 'دفع رأسي',
+  vertical_pull: 'سحب رأسي',
+  squat: 'سكوات',
+  hinge: 'مفصلة الورك',
+  side_delts: 'الكتف الجانبي',
+  rear_delts: 'الكتف الخلفي',
+  biceps: 'البايسبس',
+  triceps: 'الترايسبس',
+  calves: 'السمانة',
+  abs: 'البطن',
+  traps: 'الترابيس',
+  forearms: 'الساعد',
+};
+
+export function patternName(lang: Language, p: Pattern): string {
+  return (lang === 'ar' ? PATTERN_AR : PATTERN_EN)[p] ?? p;
+}
+
+// Failure-mode labels
+const FAILURE_EN: Dict = {
+  off_chest: 'Off the chest / bottom',
+  midrange: 'Sticking point (mid)',
+  lockout: 'Lockout / top',
+  bottom: 'In the hole / bottom',
+  stretch: 'Stretched / bottom',
+  contraction: 'Squeeze / top',
+  off_floor: 'Off the floor',
+  general: 'Not sure',
+};
+const FAILURE_AR: Dict = {
+  off_chest: 'من الصدر / الأسفل',
+  midrange: 'نقطة التعثر (المنتصف)',
+  lockout: 'الإغلاق / الأعلى',
+  bottom: 'في القاع / الأسفل',
+  stretch: 'التمدد / الأسفل',
+  contraction: 'الانقباض / الأعلى',
+  off_floor: 'من الأرض',
+  general: 'غير متأكد',
+};
+export function failureLabel(lang: Language, id: string): string {
+  return (lang === 'ar' ? FAILURE_AR : FAILURE_EN)[id] ?? id;
+}
+
+// Muscle bucket labels (English keys -> Arabic)
+const MUSCLE_AR: Dict = {
+  Chest: 'الصدر',
+  Back: 'الظهر',
+  'Front delts': 'الكتف الأمامي',
+  'Side delts': 'الكتف الجانبي',
+  'Rear delts': 'الكتف الخلفي',
+  Biceps: 'البايسبس',
+  Triceps: 'الترايسبس',
+  Quads: 'الفخذ الأمامي',
+  Hamstring: 'الفخذ الخلفي',
+  Glutes: 'الأرداف',
+  Calves: 'السمانة',
+  Forearms: 'الساعد',
+  Abs: 'البطن',
+  Traps: 'الترابيس',
+};
+export function muscleLabel(lang: Language, key: string): string {
+  return lang === 'ar' ? MUSCLE_AR[key] ?? key : key;
+}
+
+export function dayName(lang: Language, nameEn: string, nameAr: string): string {
+  return lang === 'ar' ? nameAr : nameEn;
+}
