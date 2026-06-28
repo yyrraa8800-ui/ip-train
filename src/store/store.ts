@@ -15,6 +15,7 @@ import type {
   WorkoutSession,
 } from '../data/types';
 import {
+  carryForwardLoad,
   evaluateLifeCycle,
   lifePointFromSets,
   rosterEntryFromLifeCycle,
@@ -359,25 +360,39 @@ export const actions = {
     }
   },
 
-  /** End the 6-week+ ramp: archive active cycles, start a new block at week 1. */
+  /** End the ramp: archive cycles, then start a new block at week 1, rotating in
+   *  the highest-effectiveness variation for any slot whose cycle ended. */
   generateNextBlock() {
-    // Archive any active (non-ended) cycles into the roster.
+    const now = new Date().toISOString();
     const archived: VariationRosterEntry[] = [];
+    const overrides = { ...state.overrides };
+    const carryWeights = { ...state.carryWeights };
+    const units = state.settings.units;
+
     for (const day of seed.program.days) {
       if (day.isRest) continue;
       for (const base of day.exercises) {
         const slot = slotKey(day.index, base.order);
         const lc = lifecycleForSlot(slot);
-        if (lc && lc.series.length > 0) {
-          archived.push(rosterEntryFromLifeCycle({ ...lc, endDate: new Date().toISOString() }));
+        if (lc && lc.series.length > 0) archived.push(rosterEntryFromLifeCycle({ ...lc, endDate: now }));
+        // Rotate ended slots toward your best proven variation for the pattern.
+        if (lc && lc.status === 'ended') {
+          const next = bestRotationFor(base.pattern, lc.exerciseName);
+          if (next) {
+            overrides[slot] = next;
+            carryWeights[slot] = carryForwardLoad(lc.currentTopSetE1RM || lc.startTopSetE1RM, units).weight;
+          }
         }
       }
     }
+
     commit({
       blockNumber: state.blockNumber + 1,
-      blockStartDate: new Date().toISOString(),
+      blockStartDate: now,
       weekIndex: 1,
       roster: [...state.roster.map((r) => ({ ...r, active: false })), ...archived],
+      overrides,
+      carryWeights,
       cycleStartWeek: {},
     });
   },
@@ -447,6 +462,24 @@ export function lifecycleForSlot(slot: string): ExerciseLifeCycle | undefined {
 // ---------------------------------------------------------------------------
 // small utils
 // ---------------------------------------------------------------------------
+
+/** Pick the best replacement variation for a pattern when starting a new block:
+ *  the user's highest-effectiveness proven variation, else a fresh library
+ *  variation not currently in use. */
+function bestRotationFor(pattern: Pattern, currentName: string): string | undefined {
+  const inUse = new Set(Object.values(state.overrides));
+  const proven = state.roster
+    .filter((r) => r.pattern === pattern && r.exerciseName !== currentName)
+    .sort((a, b) => b.effectiveness - a.effectiveness);
+  if (proven.length) return proven[0].exerciseName;
+  for (const g of seed.variationLibrary) {
+    if (g.pattern !== pattern) continue;
+    for (const e of g.exercises) {
+      if (e.nameEn !== currentName && !inUse.has(e.nameEn)) return e.nameEn;
+    }
+  }
+  return undefined;
+}
 
 function topWorkingWeight(ex: LoggedExercise | undefined): number | undefined {
   if (!ex) return undefined;

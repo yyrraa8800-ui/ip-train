@@ -23,6 +23,13 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   const day = seed.program.days.find((d) => d.index === dayIndex)!;
   const inc = Tuning.increments[state.settings.units];
   const [rest, setRest] = useState<{ seconds: number } | null>(null);
+  const [rirOn, setRirOn] = useState<Set<number>>(new Set());
+  const toggleRir = (order: number) =>
+    setRirOn((prev) => {
+      const next = new Set(prev);
+      next.has(order) ? next.delete(order) : next.add(order);
+      return next;
+    });
 
   // Ensure the session exists.
   useEffect(() => {
@@ -117,51 +124,79 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
 
               <div className="col gap6 mt8">
                 {ex.sets.map((s, i) => (
-                  <div key={i} className="row" style={{ gap: 8 }}>
-                    <button
-                      className="chip"
-                      style={{ width: 32, justifyContent: 'center', padding: '6px 0', flex: 'none' }}
-                      onClick={() => updateSet(ex.order, i, { isWarmup: !s.isWarmup })}
-                      title="toggle warm-up"
-                    >
-                      {s.isWarmup ? 'W' : i + 1 - ex.sets.slice(0, i).filter((x) => x.isWarmup).length}
-                    </button>
-                    <div className="col" style={{ flex: 1 }}>
-                      <div className="label" style={{ fontSize: 9 }}>
-                        {t('weight')}
+                  <div key={i}>
+                    <div className="row" style={{ gap: 8 }}>
+                      <button
+                        className="chip"
+                        style={{ width: 32, justifyContent: 'center', padding: '6px 0', flex: 'none' }}
+                        onClick={() => updateSet(ex.order, i, { isWarmup: !s.isWarmup })}
+                        title="toggle warm-up"
+                      >
+                        {s.isWarmup ? 'W' : i + 1 - ex.sets.slice(0, i).filter((x) => x.isWarmup).length}
+                      </button>
+                      <div className="col" style={{ flex: 1 }}>
+                        <div className="label" style={{ fontSize: 9 }}>
+                          {t('weight')}
+                        </div>
+                        <Stepper value={s.weight} step={inc} onChange={(v) => updateSet(ex.order, i, { weight: v })} />
                       </div>
-                      <Stepper value={s.weight} step={inc} onChange={(v) => updateSet(ex.order, i, { weight: v })} />
-                    </div>
-                    <div className="col" style={{ flex: 1 }}>
-                      <div className="label" style={{ fontSize: 9 }}>
-                        {t('reps')}
+                      <div className="col" style={{ flex: 1 }}>
+                        <div className="label" style={{ fontSize: 9 }}>
+                          {t('reps')}
+                        </div>
+                        <Stepper value={s.reps} step={1} onChange={(v) => updateSet(ex.order, i, { reps: v })} />
                       </div>
-                      <Stepper value={s.reps} step={1} onChange={(v) => updateSet(ex.order, i, { reps: v })} />
+                      <button
+                        className="chip"
+                        style={{
+                          width: 42,
+                          height: 52,
+                          flex: 'none',
+                          justifyContent: 'center',
+                          background: s.done ? color.alive : undefined,
+                          color: s.done ? '#0b1206' : undefined,
+                          borderColor: s.done ? color.alive : undefined,
+                          fontSize: 20,
+                        }}
+                        onClick={() => markDone(ex.order, i, restSeconds)}
+                      >
+                        ✓
+                      </button>
                     </div>
-                    <button
-                      className="chip"
-                      style={{
-                        width: 42,
-                        height: 52,
-                        flex: 'none',
-                        justifyContent: 'center',
-                        background: s.done ? color.alive : undefined,
-                        color: s.done ? '#0b1206' : undefined,
-                        borderColor: s.done ? color.alive : undefined,
-                        fontSize: 20,
-                      }}
-                      onClick={() => markDone(ex.order, i, restSeconds)}
-                    >
-                      ✓
-                    </button>
+                    {rirOn.has(ex.order) && !s.isWarmup && (
+                      <div className="row gap6" style={{ marginTop: 4, paddingInlineStart: 40 }}>
+                        <span className="label" style={{ fontSize: 9 }}>RIR</span>
+                        {[null, 0, 1, 2, 3].map((v) => {
+                          const sel = v === null ? s.rir == null : s.rir === v;
+                          return (
+                            <button
+                              key={String(v)}
+                              className={`chip ${sel ? 'chip-on' : ''}`}
+                              style={{ padding: '2px 9px', fontSize: 12 }}
+                              onClick={() => updateSet(ex.order, i, { rir: v === null ? undefined : v })}
+                            >
+                              {v === null ? '—' : v}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
 
               <div className="row-between mt8">
-                <button className="chip" onClick={() => addSet(ex.order)}>
-                  ＋ {t('add_set')}
-                </button>
+                <div className="row gap6">
+                  <button className="chip" onClick={() => addSet(ex.order)}>
+                    ＋ {t('add_set')}
+                  </button>
+                  <button
+                    className={`chip ${rirOn.has(ex.order) ? 'chip-on' : ''}`}
+                    onClick={() => toggleRir(ex.order)}
+                  >
+                    RIR
+                  </button>
+                </div>
                 <RatingChip
                   rating={ex.rating}
                   onToggle={() =>
