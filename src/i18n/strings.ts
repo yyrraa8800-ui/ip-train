@@ -98,7 +98,11 @@ const en: Dict = {
   import_data: 'Import data',
   reset: 'Reset all data',
   reset_confirm: 'Erase all logged data and start over?',
-  about: 'About the program',
+  about: 'About',
+  guide: 'How it works',
+  read_guide: 'How it works — full guide',
+  app_by: 'App by',
+  program_by: 'Training program by',
   // about
   about_credit: 'Program by Mohammad Almarzouq',
   disclaimer:
@@ -201,7 +205,11 @@ const ar: Dict = {
   import_data: 'استيراد البيانات',
   reset: 'إعادة تعيين كل البيانات',
   reset_confirm: 'محو جميع البيانات والبدء من جديد؟',
-  about: 'عن البرنامج',
+  about: 'حول',
+  guide: 'كيف يعمل',
+  read_guide: 'كيف يعمل — الدليل الكامل',
+  app_by: 'التطبيق من تطوير',
+  program_by: 'البرنامج التدريبي من إعداد',
   about_credit: 'البرنامج من إعداد محمد المرزوق',
   disclaimer:
     'يقدّم هذا التطبيق معلومات لياقة عامة وليست نصيحة طبية. تدرّب ضمن حدودك واستشر مختصًا قبل البدء بأي برنامج. توقّع تقدمًا واقعيًا قائمًا على الأدلة.',
@@ -218,6 +226,10 @@ const ar: Dict = {
   kg: 'كجم',
   lb: 'رطل',
 };
+
+/** The app itself was built by Yaqoub Alhadad. (The bundled training program —
+ *  Mesocycle 1 — is authored by Mohammad Almarzouq; see the seed data.) */
+export const APP_AUTHOR = 'Yaqoub Alhadad';
 
 const DICTS: Record<Language, Dict> = { en, ar };
 

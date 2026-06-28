@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { actions } from '../../store/store';
 import { useI18n } from '../../i18n';
+import { APP_AUTHOR } from '../../i18n/strings';
 import type { Language, Units } from '../../data/types';
 import { Chip, Ring } from '../components';
 import { color } from '../theme';
-import { seed } from '../../data/seed';
 
 export function Onboarding() {
   const { t } = useI18n();
@@ -77,7 +77,8 @@ export function Onboarding() {
   return (
     <div className="screen">
       <div className="h1">{t('app_name')}</div>
-      <div className="dim">{seed.program.name} · {seed.program.author}</div>
+      <div className="dim">{t('app_by')} {APP_AUTHOR}</div>
+      <div className="faint" style={{ fontSize: 12 }}>{t('program_by')} Mohammad Almarzouq</div>
 
       <div className="h2">{t('onb_lang_q')}</div>
       <div className="row gap12">

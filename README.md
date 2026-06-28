@@ -145,7 +145,13 @@ roster scoring → deload / next-block generation.
 
 ## Credits & disclaimer
 
-Program: **Mohammad Almarzouq (@M_almarzouq7)**. Method: the IP Method
-(Jon Walland). This app presents realistic, evidence-based expectations and is
-**not medical advice** — train within your limits and consult a professional.
-See `RESEARCH.md` for sources.
+- **App:** Yaqoub Alhadad.
+- **Training program** (Mesocycle 1, the bundled spreadsheet): **Mohammad
+  Almarzouq (@M_almarzouq7)**.
+- **Method:** the IP Method (Jon Walland).
+
+An in-app **“How it works”** guide (Settings → How it works) explains the IP
+Method, the evidence behind it, and how to apply it week to week. This app
+presents realistic, evidence-based expectations and is **not medical advice** —
+train within your limits and consult a professional. See `RESEARCH.md` for
+sources.

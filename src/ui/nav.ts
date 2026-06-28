@@ -11,7 +11,8 @@ export type Route =
   | { name: 'swap'; slot: string }
   | { name: 'volume' }
   | { name: 'mesocycle' }
-  | { name: 'about' };
+  | { name: 'about' }
+  | { name: 'guide' };
 
 interface NavState {
   tab: Tab;

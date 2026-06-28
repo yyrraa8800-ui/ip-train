@@ -15,6 +15,7 @@ import { SwapFlow } from './screens/Swap';
 import { Volume } from './screens/Volume';
 import { Mesocycle } from './screens/Mesocycle';
 import { About } from './screens/About';
+import { Guide } from './screens/Guide';
 
 const TABS: { id: Tab; icon: string; key: string }[] = [
   { id: 'hub', icon: '⬡', key: 'tab_hub' },
@@ -63,6 +64,9 @@ export function App() {
         break;
       case 'about':
         content = <About />;
+        break;
+      case 'guide':
+        content = <Guide />;
         break;
     }
   } else {

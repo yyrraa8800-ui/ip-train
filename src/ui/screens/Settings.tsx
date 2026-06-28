@@ -49,6 +49,10 @@ export function Settings() {
       </div>
 
       <div className="card mt16">
+        <button className="btn btn-block btn-ghost" onClick={() => navActions.push({ name: 'guide' })}>
+          📖 {t('guide')}
+        </button>
+        <div className="divider" />
         <button className="btn btn-block btn-ghost" onClick={() => navActions.push({ name: 'about' })}>
           ℹ {t('about')}
         </button>

@@ -1,5 +1,6 @@
 import { seed } from '../../data/seed';
 import { useI18n } from '../../i18n';
+import { APP_AUTHOR } from '../../i18n/strings';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { color } from '../theme';
@@ -11,7 +12,11 @@ export function About() {
       <Header title={t('about')} onBack={() => navActions.pop()} />
       <div style={{ padding: '0 16px' }}>
         <div className="card">
-          <div style={{ fontWeight: 800, fontSize: 18 }}>{t('about_credit')}</div>
+          <div className="label">{t('app_by')}</div>
+          <div style={{ fontWeight: 800, fontSize: 20 }}>{APP_AUTHOR}</div>
+          <div className="divider" />
+          <div className="label">{t('program_by')}</div>
+          <div style={{ fontWeight: 700, fontSize: 15 }}>Mohammad Almarzouq</div>
           <a href="https://instagram.com/m_almarzouq7" target="_blank" rel="noreferrer" style={{ color: color.alive }}>
             @M_almarzouq7
           </a>
@@ -19,6 +24,10 @@ export function About() {
             {seed.program.name} — a {seed.program.weeks}-week mesocycle (+ deload) of {seed.program.days.filter((d) => !d.isRest).length} training days.
           </div>
         </div>
+
+        <button className="btn btn-primary btn-block mt16" onClick={() => navActions.push({ name: 'guide' })}>
+          📖 {t('read_guide')}
+        </button>
 
         <div className="h2">{t('ip_method')}</div>
         <div className="card2" style={{ lineHeight: 1.6, fontSize: 14 }}>
