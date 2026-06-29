@@ -24,6 +24,9 @@ export function Volume() {
     <div className="screen">
       <Header title={t('volume_title')} onBack={() => navActions.pop()} />
       <div style={{ padding: '0 16px' }}>
+        <div className="dim" style={{ fontSize: 13, marginBottom: 10 }}>
+          {t('volume_planned')}
+        </div>
         <div className="row wrap gap6">
           {Array.from({ length: TOTAL_WEEKS }, (_, i) => i + 1).map((w) => (
             <Chip

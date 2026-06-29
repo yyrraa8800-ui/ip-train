@@ -74,6 +74,7 @@ const en: Dict = {
   optimal: 'In range',
   over_mrv: 'Above MRV',
   landmark_hint: 'Green band = MAV (productive). Below MEV under-stimulates; above MRV is junk volume.',
+  volume_planned: "This is the program's plan for this week — not what you've logged. Sets ramp up across the weeks by design, then drop on the deload.",
   // analytics
   analytics_title: 'Progress',
   pattern_progress: 'Pattern progress',
@@ -218,6 +219,7 @@ const ar: Dict = {
   optimal: 'ضمن النطاق',
   over_mrv: 'أعلى من الحد الأقصى',
   landmark_hint: 'الشريط الأخضر = النطاق المثمر. أقل منه غير محفّز، وأعلى منه حجم زائد.',
+  volume_planned: 'هذه خطة البرنامج لهذا الأسبوع — وليست ما سجّلته. ترتفع الجولات عبر الأسابيع عمدًا، ثم تنخفض في الدّيلود.',
   analytics_title: 'التقدم',
   pattern_progress: 'تقدم الأنماط',
   completed_cycles: 'الدورات المكتملة',
