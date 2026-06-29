@@ -14,6 +14,8 @@ import {
   setsForWeek,
   volumeStatus,
 } from './index';
+import { levelFromXp, cumXpToReach, rankTitle, BADGES, earnedBadges } from './game';
+import type { GameStats } from './game';
 import type { LifePoint, SeedProgram, SeedVariation, VariationRosterEntry } from '../data/types';
 import { seed } from '../data/seed';
 
@@ -238,6 +240,53 @@ describe('weekly volume', () => {
     expect(volumeStatus('Chest', 4)).toBe('under');
     expect(volumeStatus('Chest', 16)).toBe('optimal');
     expect(volumeStatus('Chest', 30)).toBe('over');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Gamification
+// ---------------------------------------------------------------------------
+describe('levels & xp', () => {
+  it('starts at level 1 with no xp', () => {
+    expect(levelFromXp(0).level).toBe(1);
+  });
+  it('level increases with xp and is monotonic', () => {
+    let prev = 0;
+    for (let xp = 0; xp < 5000; xp += 137) {
+      const l = levelFromXp(xp).level;
+      expect(l).toBeGreaterThanOrEqual(prev);
+      prev = l;
+    }
+  });
+  it('progress stays within 0..1', () => {
+    for (const xp of [0, 50, 119, 120, 360, 1000, 4321]) {
+      const p = levelFromXp(xp).progress;
+      expect(p).toBeGreaterThanOrEqual(0);
+      expect(p).toBeLessThanOrEqual(1);
+    }
+  });
+  it('reaching the cumulative threshold advances the level', () => {
+    const need = cumXpToReach(5);
+    expect(levelFromXp(need).level).toBe(5);
+    expect(levelFromXp(need - 1).level).toBe(4);
+  });
+  it('rank title scales with level', () => {
+    expect(rankTitle(1)).toBe('Beginner');
+    expect(rankTitle(10)).toBe('Advanced');
+    expect(rankTitle(30)).toBe('Legend');
+  });
+  it('badges unlock from stats', () => {
+    const stats: GameStats = {
+      xp: 0, level: 6, xpInLevel: 0, xpForLevel: 1, progress: 0, rank: 'Committed',
+      workouts: 12, prs: 1, swaps: 1, streak: 3, weeksCompleted: 1, blocks: 1,
+    };
+    const ids = new Set(earnedBadges(stats).map((b) => b.id));
+    expect(ids.has('first_workout')).toBe(true);
+    expect(ids.has('workouts_10')).toBe(true);
+    expect(ids.has('streak_3')).toBe(true);
+    expect(ids.has('level_5')).toBe(true);
+    expect(ids.has('level_10')).toBe(false);
+    expect(BADGES.length).toBeGreaterThan(8);
   });
 });
 

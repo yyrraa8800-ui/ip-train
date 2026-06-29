@@ -44,7 +44,17 @@ export function Onboarding() {
     {
       art: <div style={{ fontSize: 64 }}>🔁</div>,
       title: 'Evolve on stall — not on a whim',
-      body: 'When a lift stalls, swap to a same-pattern variation that fixes the weak point it exposed. Strength carries forward; your best variations get cycled back in.',
+      body: 'When a lift stalls, the app hands you a same-pattern variation that fixes the weak point it exposed. Your strength carries forward to the new one.',
+    },
+    {
+      art: <div style={{ fontSize: 64 }}>🎮</div>,
+      title: 'Level up as you train',
+      body: 'Finish workouts, beat your last numbers, and set records to earn XP, raise your level, keep a streak, and unlock achievements. Consistency turns into progress.',
+    },
+    {
+      art: <div style={{ fontSize: 56 }}>▶️✅</div>,
+      title: 'How to use it',
+      body: '1) Today → Start workout.  2) Enter weight & reps, tap the green ✓ (rest timer starts).  3) Beat last time’s faint numbers.  4) When a bar turns red, tap it and pick your next exercise. That’s it. Re-read anytime in Settings → How it works.',
     },
   ];
 

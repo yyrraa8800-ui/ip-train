@@ -71,6 +71,29 @@ Running log of how Infinite was built, in phases.
   (inlined JS/CSS/seed + procedurally generated PNG app icon).
 - `README.md` with plain-language Koder + Safari run instructions and a dev guide.
 
+## Phase 7 — Easier + game-like (post-launch round) ✅
+
+- **Gamification** (`engine/game.ts` + `gameProgress()` selector, all derived from
+  logged sessions): XP, levels + rank titles, a workout streak, PR counting, and
+  12 unlockable achievements. New game-style **Hub** (level ring + XP bar +
+  streak/workouts/records) and a **Progress** profile on the Stats tab. A
+  **celebration** modal fires on level-up / records when you finish a workout.
+- **Clear cycle-ended flow**: prominent red “Cycle ended — choose a new
+  exercise” banners on Hub (“Needs your pick”), Today and the logger; the swap
+  screen now explains why, makes the failure question optional (“Just show me
+  good picks”), and uses plain “Use this one” wording.
+- **No jargon**: “e1RM” renamed to **Strength score** everywhere, with tappable
+  **“?” explainers** (strength score, life cycle, patterns, volume, RIR,
+  levels/XP) in plain language (EN/AR).
+- **Reset made obvious**: Settings “Danger zone” with **Restart program (keep
+  settings)** and **Start over (erase everything)**; plus **Clear this workout**
+  in the logger.
+- **First-run how-to**: onboarding now includes practical “Level up as you
+  train” and step-by-step “How to use it” cards (re-openable via Settings → How
+  it works).
+- **Attribution**: app credited to **Yaqoub Alhadad**; program stays credited to
+  Mohammad Almarzouq. Tests now **37 passing**.
+
 ## Possible next steps
 
 - Per-set RIR entry UI; richer next-block rotation (auto-pick highest-effectiveness

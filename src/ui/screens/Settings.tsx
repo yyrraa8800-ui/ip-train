@@ -58,14 +58,30 @@ export function Settings() {
         </button>
       </div>
 
-      <button
-        className="btn btn-block btn-danger mt16"
-        onClick={() => {
-          if (confirm(t('reset_confirm'))) actions.resetAll();
-        }}
-      >
-        {t('reset')}
-      </button>
+      <div className="h2" style={{ color: color.ended }}>
+        {t('danger_zone')}
+      </div>
+      <div className="card">
+        <button
+          className="btn btn-block btn-ghost"
+          style={{ color: color.slowing }}
+          onClick={() => {
+            if (confirm(t('restart_confirm'))) actions.restartProgram();
+          }}
+        >
+          ↺ {t('restart_program')}
+        </button>
+        <div className="divider" />
+        <button
+          className="btn btn-block btn-ghost"
+          style={{ color: color.ended }}
+          onClick={() => {
+            if (confirm(t('reset_confirm'))) actions.resetAll();
+          }}
+        >
+          🗑 {t('start_over')}
+        </button>
+      </div>
 
       <div className="faint center mt16" style={{ fontSize: 11 }}>
         {seed.program.author} · {seed.meta.source}

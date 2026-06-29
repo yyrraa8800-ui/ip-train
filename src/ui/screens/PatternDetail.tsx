@@ -53,7 +53,7 @@ export function PatternDetail({ pattern }: { pattern: Pattern }) {
                   <span className="dot" style={{ background: statusColor[status] }} />
                 </div>
                 <div className="dim" style={{ fontSize: 12, margin: '2px 0 8px' }}>
-                  +{(lc?.strengthGained ?? 0).toFixed(1)} e1RM · {(lc?.durationWeeks ?? 0).toFixed(1)} {t('weeks')}
+                  +{(lc?.strengthGained ?? 0).toFixed(1)} pts · {(lc?.durationWeeks ?? 0).toFixed(1)} {t('weeks')}
                 </div>
                 <LifeCycleBar runway={runway} status={status} height={6} />
               </button>
@@ -87,7 +87,7 @@ export function PatternDetail({ pattern }: { pattern: Pattern }) {
                   />
                 </div>
                 <div className="faint mt8" style={{ fontSize: 11 }}>
-                  +{r.strengthGained.toFixed(1)} e1RM / {r.durationWeeks.toFixed(1)} {t('weeks')} = {t('effectiveness')}
+                  +{r.strengthGained.toFixed(1)} pts / {r.durationWeeks.toFixed(1)} {t('weeks')} = {t('effectiveness')}
                 </div>
               </div>
             ))}

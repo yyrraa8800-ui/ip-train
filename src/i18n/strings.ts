@@ -60,7 +60,7 @@ const en: Dict = {
   strength_gained: 'Strength gained',
   duration: 'Duration',
   weeks: 'weeks',
-  e1rm: 'e1RM',
+  e1rm: 'Strength score',
   no_history: 'No sets logged yet.',
   // pattern detail
   roster: 'Variation roster',
@@ -121,6 +121,39 @@ const en: Dict = {
   save: 'Save',
   kg: 'kg',
   lb: 'lb',
+  // game
+  xp: 'XP',
+  rank: 'Rank',
+  streak: 'Streak',
+  day_streak: 'day streak',
+  workouts: 'Workouts',
+  records: 'Records',
+  to_level: 'to level',
+  badges: 'Achievements',
+  locked: 'Locked',
+  level_up: 'Level up!',
+  reached_level: 'You reached level',
+  new_record: 'New record!',
+  xp_earned: 'XP earned',
+  keep_going: 'Keep going!',
+  todays_mission: "Today's mission",
+  // cycle ended / choose
+  needs_pick: 'Needs your pick',
+  cycle_ended_choose: 'Cycle ended — choose a new exercise',
+  choose_new: 'Choose a new exercise',
+  why_swap: 'This lift stopped progressing. Pick a fresh variation to keep growing — your strength carries over.',
+  where_fail_opt: 'Where do you usually fail? (optional — helps us pick)',
+  show_best: 'Just show me good picks',
+  use_this: 'Use this one',
+  // explain
+  whats_this: "What's this?",
+  // reset
+  start_over: 'Start over (erase everything)',
+  restart_program: 'Restart program (keep settings)',
+  restart_confirm: 'Reset all progress and start the program from week 1? Your units and language stay. This cannot be undone.',
+  clear_workout: 'Clear this workout',
+  clear_workout_confirm: 'Clear every set logged for this workout?',
+  danger_zone: 'Danger zone',
 };
 
 const ar: Dict = {
@@ -173,7 +206,7 @@ const ar: Dict = {
   strength_gained: 'القوة المكتسبة',
   duration: 'المدة',
   weeks: 'أسابيع',
-  e1rm: 'أقصى تكرار تقديري',
+  e1rm: 'مؤشر القوة',
   no_history: 'لا توجد جولات مسجلة بعد.',
   roster: 'قائمة التمارين',
   effectiveness: 'الفعالية',
@@ -225,6 +258,39 @@ const ar: Dict = {
   save: 'حفظ',
   kg: 'كجم',
   lb: 'رطل',
+  // game
+  xp: 'نقاط',
+  rank: 'الرتبة',
+  streak: 'السلسلة',
+  day_streak: 'يوم متتالٍ',
+  workouts: 'التمارين',
+  records: 'الأرقام',
+  to_level: 'للمستوى',
+  badges: 'الإنجازات',
+  locked: 'مقفل',
+  level_up: 'ترقية مستوى!',
+  reached_level: 'وصلت إلى المستوى',
+  new_record: 'رقم قياسي جديد!',
+  xp_earned: 'النقاط المكتسبة',
+  keep_going: 'واصل!',
+  todays_mission: 'مهمة اليوم',
+  // cycle ended / choose
+  needs_pick: 'يحتاج اختيارك',
+  cycle_ended_choose: 'انتهت الدورة — اختر تمرينًا جديدًا',
+  choose_new: 'اختر تمرينًا جديدًا',
+  why_swap: 'توقف هذا التمرين عن التقدم. اختر تمرينًا جديدًا لتواصل النمو — وتنتقل قوتك معك.',
+  where_fail_opt: 'أين تفشل عادةً؟ (اختياري — يساعدنا على الاختيار)',
+  show_best: 'فقط أرني خيارات جيدة',
+  use_this: 'استخدم هذا',
+  // explain
+  whats_this: 'ما هذا؟',
+  // reset
+  start_over: 'البدء من جديد (محو كل شيء)',
+  restart_program: 'إعادة البرنامج (مع الإبقاء على الإعدادات)',
+  restart_confirm: 'إعادة كل التقدم والبدء من الأسبوع الأول؟ تبقى الوحدات واللغة. لا يمكن التراجع.',
+  clear_workout: 'مسح هذا التمرين',
+  clear_workout_confirm: 'مسح كل الجولات المسجلة لهذا التمرين؟',
+  danger_zone: 'منطقة الخطر',
 };
 
 /** The app itself was built by Yaqoub Alhadad. (The bundled training program —

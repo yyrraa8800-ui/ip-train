@@ -1,49 +1,106 @@
-import { useStore, TOTAL_WEEKS, DELOAD_WEEK } from '../../store/store';
-import { allMainSummaries, patternSummary } from '../../store/selectors';
+import { useStore, TOTAL_WEEKS, DELOAD_WEEK, lifecycleForSlot } from '../../store/store';
+import { allMainSummaries, patternSummary, gameProgress, endedSlots } from '../../store/selectors';
+import { slotsForPattern } from '../../store/selectors';
 import { ISOLATION_PATTERNS } from '../../data/types';
 import { useI18n } from '../../i18n';
 import { navActions } from '../nav';
 import { Ring, LifeCycleBar } from '../components';
+import { InfoButton } from '../InfoButton';
 import { color, statusColor, statusKey } from '../theme';
-import { lifecycleForSlot } from '../../store/store';
-import { slotsForPattern } from '../../store/selectors';
 
 export function Hub() {
   const state = useStore();
   const { t, pn, rtl } = useI18n();
   const mains = allMainSummaries();
+  const g = gameProgress();
+  const ended = endedSlots();
   const isWeekDeload = state.weekIndex === DELOAD_WEEK;
 
   return (
     <div className="screen">
       <div className="row-between">
-        <div>
-          <div className="h1">{t('app_name')}</div>
-          <div className="dim" style={{ fontSize: 14 }}>
-            {t('tagline')}
-          </div>
+        <div className="h1" style={{ marginBottom: 0 }}>
+          {t('app_name')}
         </div>
-        <button
-          className="card2 tappable"
-          style={{ textAlign: rtl ? 'right' : 'left', padding: '8px 12px' }}
-          onClick={() => navActions.push({ name: 'mesocycle' })}
-        >
-          <div className="label" style={{ fontSize: 10 }}>
-            {t('block')} {state.blockNumber}
-          </div>
-          <div className="bignum" style={{ fontSize: 20, color: isWeekDeload ? color.slowing : color.text }}>
-            {isWeekDeload ? t('deload') : `${t('week')} ${state.weekIndex}`}
-          </div>
-          <div className="faint" style={{ fontSize: 11 }}>
-            / {TOTAL_WEEKS}
-          </div>
+        <button className="chip tappable" onClick={() => navActions.push({ name: 'mesocycle' })}>
+          {t('block')} {state.blockNumber} · {isWeekDeload ? t('deload') : `${t('week')} ${state.weekIndex}/${TOTAL_WEEKS}`}
         </button>
       </div>
 
-      <div className="h2">{t('hub_main')}</div>
+      {/* Game header */}
+      <div className="card mt8">
+        <div className="row" style={{ gap: 14 }}>
+          <Ring size={72} stroke={8} progress={g.progress} ringColor={color.alive}>
+            <div className="col" style={{ alignItems: 'center', lineHeight: 1 }}>
+              <span className="faint" style={{ fontSize: 8 }}>
+                {t('level').toUpperCase()}
+              </span>
+              <span className="bignum" style={{ fontSize: 22 }}>
+                {g.level}
+              </span>
+            </div>
+          </Ring>
+          <div className="grow">
+            <div className="row gap6" style={{ alignItems: 'center' }}>
+              <span style={{ fontWeight: 800, fontSize: 18 }}>{g.rank}</span>
+              <InfoButton topic="level" />
+            </div>
+            <div className="faint" style={{ fontSize: 11, marginBottom: 6 }}>
+              {g.xpInLevel}/{g.xpForLevel} {t('xp')}
+            </div>
+            <div style={{ height: 8, borderRadius: 6, background: color.surface3, overflow: 'hidden' }}>
+              <div style={{ width: `${g.progress * 100}%`, height: '100%', background: color.alive, transition: 'width .5s' }} />
+            </div>
+          </div>
+        </div>
+        <div className="row" style={{ gap: 8, marginTop: 14 }}>
+          <MiniStat icon="🔥" value={g.streak} label={t('streak')} />
+          <MiniStat icon="🏋️" value={g.workouts} label={t('workouts')} />
+          <MiniStat icon="🥇" value={g.prs} label={t('records')} />
+        </div>
+      </div>
+
+      {/* Today's mission */}
+      <button className="btn btn-primary btn-block mt16" onClick={() => navActions.setTab('today')}>
+        ▶ {t('todays_mission')}
+      </button>
+
+      {/* Needs your pick — ended cycles */}
+      {ended.length > 0 && (
+        <>
+          <div className="h2" style={{ color: color.ended }}>
+            🔴 {t('needs_pick')}
+          </div>
+          <div className="col gap12">
+            {ended.map(({ ref, lc }) => (
+              <button
+                key={ref.slot}
+                className="tappable"
+                style={{
+                  background: '#241114',
+                  border: `1px solid ${color.ended}`,
+                  borderRadius: 14,
+                  padding: 14,
+                  textAlign: rtl ? 'right' : 'left',
+                }}
+                onClick={() => navActions.push({ name: 'swap', slot: ref.slot })}
+              >
+                <div style={{ fontWeight: 700 }}>{lc.exerciseName}</div>
+                <div style={{ color: color.ended, fontSize: 13, marginTop: 2 }}>
+                  {t('cycle_ended_choose')} ›
+                </div>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="row-between" style={{ alignItems: 'baseline' }}>
+        <div className="h2">{t('hub_main')}</div>
+        <InfoButton topic="pattern" />
+      </div>
       <div className="col gap12">
         {mains.map((s) => {
-          // representative active runway for this pattern (worst slot)
           const slots = slotsForPattern(s.pattern);
           let worstRunway = 0;
           for (const sl of slots) {
@@ -84,11 +141,7 @@ export function Hub() {
         {ISOLATION_PATTERNS.map((p) => {
           const s = patternSummary(p);
           return (
-            <button
-              key={p}
-              className="chip tappable"
-              onClick={() => navActions.push({ name: 'pattern', pattern: p })}
-            >
+            <button key={p} className="chip tappable" onClick={() => navActions.push({ name: 'pattern', pattern: p })}>
               <span className="dot" style={{ background: statusColor[s.status] }} />
               {pn(p)}
               <span className="faint num" style={{ fontSize: 11 }}>
@@ -97,6 +150,20 @@ export function Hub() {
             </button>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function MiniStat({ icon, value, label }: { icon: string; value: number; label: string }) {
+  return (
+    <div className="card2 grow center" style={{ padding: '10px 6px' }}>
+      <div style={{ fontSize: 18 }}>{icon}</div>
+      <div className="bignum" style={{ fontSize: 20 }}>
+        {value}
+      </div>
+      <div className="label" style={{ fontSize: 9 }}>
+        {label}
       </div>
     </div>
   );

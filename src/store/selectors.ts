@@ -14,6 +14,11 @@ import {
   rankRoster,
   rosterEntryFromLifeCycle,
   weeklyVolume,
+  topSetE1RM,
+  levelFromXp,
+  rankTitle,
+  XP,
+  type GameStats,
 } from '../engine';
 import {
   getState,
@@ -124,6 +129,88 @@ export function slotsForPattern(pattern: Pattern): SlotRef[] {
     const r = resolveExercise(s.dayIndex, s.order);
     return r?.pattern === pattern;
   });
+}
+
+// ---------------------------------------------------------------------------
+// Gamification — all derived from completed sessions, so it always matches data.
+// ---------------------------------------------------------------------------
+
+export function gameProgress(): GameStats {
+  const state = getState();
+  const completed = state.sessions
+    .filter((s) => s.status === 'completed')
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  let xp = 0;
+  let prs = 0;
+  const bestByExercise = new Map<string, number>();
+
+  for (const s of completed) {
+    xp += XP.perWorkout;
+    for (const ex of s.exercises) {
+      const working = ex.sets.filter((set) => !set.isWarmup && set.weight > 0 && set.reps > 0);
+      if (!working.length) continue;
+      xp += XP.perWorkingSet * working.length;
+      if (ex.rating === 1) xp += XP.perProgression;
+      const e1 = topSetE1RM(ex.sets);
+      const prev = bestByExercise.get(ex.exerciseName);
+      if (prev != null && e1 > prev + 0.01) {
+        prs += 1;
+        xp += XP.perPR;
+      }
+      if (prev == null || e1 > prev) bestByExercise.set(ex.exerciseName, e1);
+    }
+  }
+
+  const swaps = state.swapLog.length;
+  xp += XP.perSwap * swaps;
+
+  // weeks fully completed (all training days done in a given block+week)
+  const trainingDays = seed.program.days.filter((d) => !d.isRest).length;
+  const byWeek = new Map<string, Set<number>>();
+  for (const s of completed) {
+    const k = `${s.id.split('-d')[0]}`; // bN-wW
+    if (!byWeek.has(k)) byWeek.set(k, new Set());
+    byWeek.get(k)!.add(s.dayIndex);
+  }
+  let weeksCompleted = 0;
+  for (const set of byWeek.values()) if (set.size >= trainingDays) weeksCompleted += 1;
+  xp += XP.perWeek * weeksCompleted;
+
+  const streak = computeStreak(completed.map((s) => s.date));
+  const li = levelFromXp(xp);
+
+  return {
+    xp,
+    level: li.level,
+    xpInLevel: li.xpInLevel,
+    xpForLevel: li.xpForLevel,
+    progress: li.progress,
+    rank: rankTitle(li.level),
+    workouts: completed.length,
+    prs,
+    swaps,
+    streak,
+    weeksCompleted,
+    blocks: state.blockNumber,
+  };
+}
+
+/** Current streak of completed workouts; a gap > 4 days (or none in the last 8)
+ *  resets it — so stepping away cleanly resets the streak. */
+function computeStreak(datesIso: string[]): number {
+  if (!datesIso.length) return 0;
+  const days = [...new Set(datesIso.map((d) => Math.floor(new Date(d).getTime() / 86400000)))].sort(
+    (a, b) => a - b,
+  );
+  const today = Math.floor(Date.now() / 86400000);
+  if (today - days[days.length - 1] > 8) return 0;
+  let streak = 1;
+  for (let i = days.length - 1; i > 0; i--) {
+    if (days[i] - days[i - 1] <= 4) streak += 1;
+    else break;
+  }
+  return streak;
 }
 
 /** Slots whose current variation has an ended life cycle (swap suggested). */

@@ -8,6 +8,7 @@ import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { LifeCycleBar, Sparkline, StatusPill } from '../components';
+import { InfoButton } from '../InfoButton';
 import { color, statusColor } from '../theme';
 
 export function ExerciseDetail({ slot }: { slot: string }) {
@@ -37,15 +38,21 @@ export function ExerciseDetail({ slot }: { slot: string }) {
         )}
 
         <div className="card mt16">
-          <div className="label">{t('life_cycle')}</div>
+          <div className="row gap6" style={{ alignItems: 'center' }}>
+            <div className="label">{t('life_cycle')}</div>
+            <InfoButton topic="life_cycle" />
+          </div>
           <div className="mt8">
             <LifeCycleBar runway={runway} status={status} height={10} />
           </div>
           <div className="row-between mt16">
-            <Metric label={t('strength_gained')} value={`+${(lc?.strengthGained ?? 0).toFixed(1)}`} unit="e1RM" color={statusColor.alive} />
+            <Metric label={t('strength_gained')} value={`+${(lc?.strengthGained ?? 0).toFixed(1)}`} unit="pts" color={statusColor.alive} />
             <Metric label={t('duration')} value={`${(lc?.durationWeeks ?? 0).toFixed(1)}`} unit={t('weeks')} />
             <div className="col" style={{ alignItems: rtl ? 'flex-start' : 'flex-end' }}>
-              <div className="label">{t('e1rm')}</div>
+              <div className="row gap6" style={{ alignItems: 'center' }}>
+                <div className="label">{t('e1rm')}</div>
+                <InfoButton topic="strength_score" />
+              </div>
               <Sparkline values={series.map((p) => p.e1rm)} width={110} height={36} stroke={statusColor[status]} />
             </div>
           </div>

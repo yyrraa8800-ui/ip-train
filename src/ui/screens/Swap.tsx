@@ -30,10 +30,13 @@ export function SwapFlow({ slot }: { slot: string }) {
   if (!failure) {
     return (
       <div className="screen">
-        <Header title={t('swap_title')} onBack={() => navActions.pop()} />
+        <Header title={t('choose_new')} onBack={() => navActions.pop()} />
         <div style={{ padding: '0 16px' }}>
           <div className="dim">{resolved.name} · {pn(resolved.pattern)}</div>
-          <div className="h2">{t('swap_where')}</div>
+          <div className="muted-banner mt8" style={{ lineHeight: 1.5 }}>
+            {t('why_swap')}
+          </div>
+          <div className="h2">{t('where_fail_opt')}</div>
           <div className="col gap12">
             {modes.map((m) => (
               <button
@@ -47,6 +50,12 @@ export function SwapFlow({ slot }: { slot: string }) {
               </button>
             ))}
           </div>
+          <button
+            className="btn btn-primary btn-block mt16"
+            onClick={() => setFailure(modes[0]?.weakPoint ?? 'general')}
+          >
+            {t('show_best')}
+          </button>
         </div>
       </div>
     );
@@ -66,7 +75,7 @@ export function SwapFlow({ slot }: { slot: string }) {
 
   return (
     <div className="screen">
-      <Header title={t('swap_recs')} onBack={() => setFailure(null)} />
+      <Header title={t('choose_new')} onBack={() => setFailure(null)} />
       <div style={{ padding: '0 16px' }}>
         <div className="dim" style={{ marginBottom: 6 }}>
           {t('targets')}: {fl(failure)}
@@ -106,10 +115,10 @@ export function SwapFlow({ slot }: { slot: string }) {
                   className="btn btn-primary"
                   onClick={() => {
                     actions.acceptSwap(slot, r.exercise.nameEn, carry.weight);
-                    navActions.pop();
+                    navActions.popToRoot();
                   }}
                 >
-                  {t('accept_swap')}
+                  {t('use_this')}
                 </button>
               </div>
             </div>

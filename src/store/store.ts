@@ -397,10 +397,24 @@ export const actions = {
     });
   },
 
+  /** Wipe everything and return to the first-run flow. */
   resetAll() {
     state = { ...freshState(), hydrated: true, onboarded: false };
     persist();
     listeners.forEach((l) => l());
+  },
+
+  /** Erase all progress but keep settings (units/language) and stay signed-in. */
+  restartProgram() {
+    const settings = state.settings;
+    state = { ...freshState(), hydrated: true, onboarded: true, settings };
+    persist();
+    listeners.forEach((l) => l());
+  },
+
+  /** Clear a single logged workout so it can be redone from scratch. */
+  clearSession(sessionIdStr: string) {
+    commit({ sessions: state.sessions.filter((s) => s.id !== sessionIdStr) });
   },
 };
 

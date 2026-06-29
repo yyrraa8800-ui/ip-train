@@ -14,6 +14,9 @@ import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { Stepper, RestTimer, haptic, LifeCycleBar } from '../components';
+import { InfoButton } from '../InfoButton';
+import { Celebrate, type Celebration } from '../Celebrate';
+import { gameProgress } from '../../store/selectors';
 import { color, statusColor } from '../theme';
 import { Tuning } from '../../engine';
 
@@ -24,6 +27,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   const inc = Tuning.increments[state.settings.units];
   const [rest, setRest] = useState<{ seconds: number } | null>(null);
   const [rirOn, setRirOn] = useState<Set<number>>(new Set());
+  const [celebrate, setCelebrate] = useState<Celebration | null>(null);
   const toggleRir = (order: number) =>
     setRirOn((prev) => {
       const next = new Set(prev);
@@ -71,8 +75,22 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   return (
     <div className="screen">
       <Header title={dn(day.nameEn, day.nameAr)} onBack={() => navActions.pop()} />
-      <div className="dim" style={{ padding: '0 16px 8px' }}>
-        {t('week')} {state.weekIndex} · {session.exercises.length} {t('exercises')}
+      <div className="row-between" style={{ padding: '0 16px 8px' }}>
+        <div className="dim">
+          {t('week')} {state.weekIndex} · {session.exercises.length} {t('exercises')}
+        </div>
+        <button
+          className="chip"
+          style={{ color: color.ended, borderColor: '#4a2630' }}
+          onClick={() => {
+            if (confirm(t('clear_workout_confirm'))) {
+              actions.clearSession(session.id);
+              actions.startSession(dayIndex);
+            }
+          }}
+        >
+          ↺ {t('clear_workout')}
+        </button>
       </div>
 
       <div className="col gap12" style={{ padding: '0 16px' }}>
@@ -102,11 +120,20 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
 
               {lc && lc.status === 'ended' && (
                 <button
-                  className="muted-banner tappable mt8"
-                  style={{ borderColor: '#4a2630', color: color.ended, width: '100%', textAlign: rtl ? 'right' : 'left' }}
+                  className="tappable mt8"
+                  style={{
+                    width: '100%',
+                    textAlign: rtl ? 'right' : 'left',
+                    background: '#241114',
+                    border: `1px solid ${color.ended}`,
+                    borderRadius: 12,
+                    padding: '12px 14px',
+                    color: color.ended,
+                    fontWeight: 700,
+                  }}
                   onClick={() => navActions.push({ name: 'swap', slot })}
                 >
-                  ⚠ {t('status_ended')} — {t('swap_title')} ›
+                  🔴 {t('cycle_ended_choose')} ›
                 </button>
               )}
 
@@ -196,6 +223,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
                   >
                     RIR
                   </button>
+                  <InfoButton topic="rir" />
                 </div>
                 <RatingChip
                   rating={ex.rating}
@@ -220,13 +248,30 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
           className="btn btn-primary btn-block"
           disabled={!allLogged}
           onClick={() => {
+            const before = gameProgress();
             actions.completeSession(session.id);
-            navActions.pop();
+            const after = gameProgress();
+            setCelebrate({
+              xpGained: Math.max(0, after.xp - before.xp),
+              leveledTo: after.level > before.level ? after.level : undefined,
+              prs: Math.max(0, after.prs - before.prs),
+              rank: after.rank,
+            });
           }}
         >
           {t('finish_workout')}
         </button>
       </div>
+
+      {celebrate && (
+        <Celebrate
+          data={celebrate}
+          onClose={() => {
+            setCelebrate(null);
+            navActions.pop();
+          }}
+        />
+      )}
 
       {rest && (
         <RestTimer
