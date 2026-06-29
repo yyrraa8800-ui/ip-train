@@ -5,6 +5,7 @@ import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { VolumeBar, Chip } from '../components';
+import { InfoButton } from '../InfoButton';
 import { color, volumeColor } from '../theme';
 
 export function Volume() {
@@ -35,7 +36,10 @@ export function Volume() {
         </div>
 
         <div className="card mt16 row-between">
-          <div className="label">{isDeload ? t('deload') : `${t('week')} ${state.weekIndex}`}</div>
+          <div className="row gap6" style={{ alignItems: 'center' }}>
+            <div className="label">{isDeload ? t('deload') : `${t('week')} ${state.weekIndex}`}</div>
+            <InfoButton topic="volume" />
+          </div>
           <div className="bignum" style={{ fontSize: 22 }}>
             {totalSets(vol)} <span className="faint" style={{ fontSize: 12 }}>{t('sets_per_week')}</span>
           </div>

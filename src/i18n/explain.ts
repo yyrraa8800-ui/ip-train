@@ -21,7 +21,7 @@ const EN: Record<string, Explain> = {
   },
   volume: {
     title: 'Weekly sets (volume)',
-    body: 'How many hard sets you do for a muscle each week. Too few and it barely grows (below MEV); a sweet spot grows it best (the green band); too many is wasted and hard to recover from (above MRV). Stay in the green band.',
+    body: 'This screen just checks how many hard sets each muscle gets per week (the count of sets, not the weight). The numbers MEV / MAV / MRV are targets: MEV = the minimum to grow, MAV = the productive sweet spot (the green band), MRV = the ceiling (above it is wasted). Green "In range" = good; amber "Below MEV" = a bit light. You usually do not need to change anything — the program is already balanced. Only if you really want more for a muscle that is below MEV, add a set or two to one of its exercises.',
   },
   rir: {
     title: 'RIR (reps in reserve)',
@@ -48,7 +48,7 @@ const AR: Record<string, Explain> = {
   },
   volume: {
     title: 'الجولات الأسبوعية (الحجم)',
-    body: 'عدد الجولات الجادة لكل عضلة أسبوعيًا. القليل جدًا لا ينمّي (أقل من MEV)؛ والنطاق المثالي ينمّي أفضل (الشريط الأخضر)؛ والكثير مهدر وصعب التعافي منه (فوق MRV). ابقَ في النطاق الأخضر.',
+    body: 'تتحقق هذه الشاشة فقط من عدد الجولات الجادة لكل عضلة أسبوعيًا (عدد الجولات لا الوزن). الأرقام MEV / MAV / MRV أهداف: MEV = الحد الأدنى للنمو، MAV = النطاق المثمر (الشريط الأخضر)، MRV = الحد الأقصى (فوقه مهدر). الأخضر «ضمن النطاق» = جيد؛ والكهرماني «أقل من الحد الأدنى» = خفيف قليلًا. غالبًا لا تحتاج لتغيير شيء — البرنامج متوازن أصلًا. وإن أردت مزيدًا لعضلة أقل من الحد الأدنى، أضف جولة أو اثنتين لأحد تمارينها.',
   },
   rir: {
     title: 'RIR (التكرارات المتبقية)',
