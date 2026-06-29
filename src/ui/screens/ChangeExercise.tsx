@@ -1,27 +1,33 @@
 import { useMemo, useState } from 'react';
-import { resolveExercise, actions } from '../../store/store';
-import { libraryForPattern } from '../../store/selectors';
+import { resolveExercise, seedExerciseFor, actions } from '../../store/store';
+import { libraryForPatternDetailed } from '../../store/selectors';
 import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { color } from '../theme';
 
 /** Freely replace a slot's exercise with any same-pattern alternative
- *  (e.g. when a machine isn't available at the gym). */
+ *  (e.g. when a machine isn't available at the gym). Only exercises of the SAME
+ *  movement pattern are shown; the closest matches (same muscle/category) lead. */
 export function ChangeExercise({ slot }: { slot: string }) {
   const { t, pn, rtl } = useI18n();
   const [query, setQuery] = useState('');
   const [dayIndex, order] = slot.split('.').map(Number);
   const resolved = resolveExercise(dayIndex, order);
-  const options = useMemo(
-    () =>
-      resolved
-        ? libraryForPattern(resolved.pattern)
-            .filter((e) => e.nameEn !== resolved.name)
-            .sort((a, b) => a.nameEn.localeCompare(b.nameEn))
-        : [],
-    [resolved?.pattern, resolved?.name],
-  );
+  const base = seedExerciseFor(dayIndex, order);
+  const options = useMemo(() => {
+    if (!resolved) return [];
+    const cat = base?.category;
+    const musc = resolved.muscleKey;
+    return libraryForPatternDetailed(resolved.pattern)
+      .filter((e) => e.nameEn !== resolved.name)
+      .sort((a, b) => {
+        const score = (x: { categoryKey: string; muscleKey: string }) =>
+          (x.categoryKey === cat ? 0 : 2) + (x.muscleKey === musc ? 0 : 1);
+        const d = score(a) - score(b);
+        return d !== 0 ? d : a.nameEn.localeCompare(b.nameEn);
+      });
+  }, [resolved?.pattern, resolved?.name, resolved?.muscleKey, base?.category]);
   if (!resolved) return null;
 
   const filtered = options.filter((e) =>
@@ -32,8 +38,12 @@ export function ChangeExercise({ slot }: { slot: string }) {
     <div className="screen">
       <Header title={t('change_exercise')} onBack={() => navActions.pop()} />
       <div style={{ padding: '0 16px' }}>
-        <div className="dim">
-          {resolved.name} · {pn(resolved.pattern)}
+        <div className="dim">{resolved.name}</div>
+        <div className="row gap6 mt8" style={{ alignItems: 'center' }}>
+          <span className="chip chip-on">{pn(resolved.pattern)}</span>
+          <span className="dim" style={{ fontSize: 12 }}>
+            {t('only_pattern', { p: pn(resolved.pattern) })}
+          </span>
         </div>
         <div className="muted-banner mt8" style={{ lineHeight: 1.5 }}>
           {t('change_hint')}

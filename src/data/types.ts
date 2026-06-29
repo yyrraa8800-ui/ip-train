@@ -79,6 +79,7 @@ export interface SeedProgram {
 export interface SeedVariation {
   nameEn: string;
   videoUrl: string | null;
+  pattern?: Pattern; // per-exercise pattern (refined from the group's category)
   weakPoints: string[];
 }
 

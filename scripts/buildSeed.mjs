@@ -141,6 +141,22 @@ function inferWeakPoints(nameEn, pattern) {
   return [...tags];
 }
 
+/**
+ * The variation library is grouped by muscle category, but a few exercises in a
+ * "back" group are really hinges (deadlifts) and some "row" groups contain
+ * pull-ups (vertical). Refine each exercise's pattern from its name so the
+ * Change-exercise list only ever shows true same-pattern movements.
+ */
+function refineExercisePattern(groupPattern, nameEn) {
+  const n = String(nameEn ?? '').toLowerCase();
+  if (/deadlift|good ?morning|stiff.?leg|romanian|\brdl\b|back raise|hyperext|hip thrust|pull.?through|glute|kickback|nordic/.test(n))
+    return PATTERNS.HINGE;
+  if (/pulldown|pull.?ups?|pullups?|chin.?ups?/.test(n)) return PATTERNS.VERTICAL_PULL;
+  if (/\brows?\b|bent.?over|t-?bar|seal row|chest supported|inverted row/.test(n))
+    return PATTERNS.HORIZONTAL_PULL;
+  return groupPattern;
+}
+
 // ----------------------------------------------------------------------------
 // Spreadsheet access helpers (1-based row/col, like the inspection above)
 // ----------------------------------------------------------------------------
@@ -296,11 +312,15 @@ function parseVariationLibrary(wb) {
     if (pattern === 'unknown') continue;
     const exercises = [...set]
       .map((s) => JSON.parse(s))
-      .map((e) => ({
-        nameEn: e.nameEn,
-        videoUrl: e.videoUrl,
-        weakPoints: inferWeakPoints(e.nameEn, pattern),
-      }));
+      .map((e) => {
+        const exPattern = refineExercisePattern(pattern, e.nameEn);
+        return {
+          nameEn: e.nameEn,
+          videoUrl: e.videoUrl,
+          pattern: exPattern,
+          weakPoints: inferWeakPoints(e.nameEn, exPattern),
+        };
+      });
     // Deduplicate by name within a category.
     const seen = new Set();
     const unique = exercises.filter((e) => {

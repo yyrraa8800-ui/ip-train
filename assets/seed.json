@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-06-28T01:43:25.415Z",
+    "generatedAt": "2026-06-29T22:56:50.845Z",
     "source": "M_B_GY_5_M1_SN_FULL.xlsx",
     "author": "Mohammad Almarzouq (@M_almarzouq7)",
     "note": "Weekly volume is recomputed in-app; broken #REF! cells are ignored."
@@ -1094,6 +1094,7 @@
         {
           "nameEn": "Leg press",
           "videoUrl": "https://www.youtube.com/watch?v=yZmx_Ac3880&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW&index=7",
+          "pattern": "squat",
           "weakPoints": [
             "midrange"
           ]
@@ -1101,6 +1102,7 @@
         {
           "nameEn": "Leg extensions",
           "videoUrl": "https://www.youtube.com/watch?v=m0FOpMEgero&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW&index=6",
+          "pattern": "squat",
           "weakPoints": [
             "midrange"
           ]
@@ -1117,6 +1119,7 @@
         {
           "nameEn": "Hack squat",
           "videoUrl": "https://www.youtube.com/watch?v=rYgNArpwE7E&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW&index=4",
+          "pattern": "squat",
           "weakPoints": [
             "midrange"
           ]
@@ -1124,6 +1127,7 @@
         {
           "nameEn": "Front squat",
           "videoUrl": "https://www.youtube.com/watch?v=HHxNbhP16UE&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW&index=3",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -1131,6 +1135,7 @@
         {
           "nameEn": "High bar squat",
           "videoUrl": "https://www.youtube.com/watch?v=i7J5h7BJ07g&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW&index=5",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -1138,6 +1143,7 @@
         {
           "nameEn": "Smith machine squat forward",
           "videoUrl": "https://www.youtube.com/watch?v=-eO_VydErV0&list=PLyqKj7LwU2RuAg-us4mzap6izNcc1fuRW",
+          "pattern": "squat",
           "weakPoints": [
             "midrange"
           ]
@@ -1145,6 +1151,7 @@
         {
           "nameEn": "Sumo squat",
           "videoUrl": "https://www.youtube.com/watch?v=4eDJa5MnAmY&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=15",
+          "pattern": "squat",
           "weakPoints": [
             "lockout"
           ]
@@ -1152,6 +1159,7 @@
         {
           "nameEn": "Dumbbell split squats",
           "videoUrl": "https://www.youtube.com/watch?v=pjAewD4LxXs&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=18",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -1159,6 +1167,7 @@
         {
           "nameEn": "Bulgarian split squats",
           "videoUrl": "https://www.youtube.com/watch?v=jNihW0WDIL4&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=12",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -1166,6 +1175,7 @@
         {
           "nameEn": "V-Squat Machine",
           "videoUrl": "https://vimeo.com/423875765",
+          "pattern": "squat",
           "weakPoints": [
             "midrange"
           ]
@@ -1173,11 +1183,13 @@
         {
           "nameEn": "Dumbbell squat",
           "videoUrl": "https://vimeo.com/385305100",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Goblet squat",
           "videoUrl": "https://vimeo.com/388743371",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -1185,16 +1197,19 @@
         {
           "nameEn": "Chair squats",
           "videoUrl": "https://vimeo.com/34543298",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight assisted squat",
           "videoUrl": "https://vimeo.com/239687672",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight squat",
           "videoUrl": "https://vimeo.com/273765981",
+          "pattern": "squat",
           "weakPoints": []
         }
       ]
@@ -1209,6 +1224,7 @@
         {
           "nameEn": "Seated leg curl",
           "videoUrl": "https://www.youtube.com/watch?v=Orxowest56U&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=7",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1216,6 +1232,7 @@
         {
           "nameEn": "Lying leg curl",
           "videoUrl": "https://www.youtube.com/watch?v=n5WDXD_mpVY&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=6",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1223,6 +1240,7 @@
         {
           "nameEn": "Kneeling Hamstring Curl",
           "videoUrl": "https://www.youtube.com/watch?v=DhqqhpWaqCE",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -1237,6 +1255,7 @@
         {
           "nameEn": "Barbell Stiff leg deadlift",
           "videoUrl": "https://www.youtube.com/watch?v=CN_7cz3P-1U&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=9",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1244,6 +1263,7 @@
         {
           "nameEn": "High bar Good morning",
           "videoUrl": "https://www.youtube.com/watch?v=dEJ0FTm-CEk&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=4",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1251,6 +1271,7 @@
         {
           "nameEn": "45degree back raise",
           "videoUrl": "https://www.youtube.com/watch?v=5_ejbGfdAQE&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=1",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1258,6 +1279,7 @@
         {
           "nameEn": "Dumbbell stiff leg deadlift",
           "videoUrl": "https://www.youtube.com/watch?v=cYKYGwcg0U8&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=2",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1265,6 +1287,7 @@
         {
           "nameEn": "Low bar good morning",
           "videoUrl": "https://www.youtube.com/watch?v=mnxn-7SO9Ks&list=PLyqKj7LwU2Rvx_O313dzJNFKPiEqRMWiV&index=5",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -1281,16 +1304,19 @@
         {
           "nameEn": "Barbell walking lunge (wide)",
           "videoUrl": "https://www.youtube.com/watch?v=_meXEWq5MOQ&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=2",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell walking lunge (wide)",
           "videoUrl": "https://www.youtube.com/watch?v=eFWCn5iEbTU&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=7",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Sumo deadlift",
           "videoUrl": "https://www.youtube.com/watch?v=pfSMst14EFk&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=13",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1298,6 +1324,7 @@
         {
           "nameEn": "Barbell hip thrusts",
           "videoUrl": "https://www.youtube.com/watch?v=EF7jXP17DPE&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=1",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1305,6 +1332,7 @@
         {
           "nameEn": "Machine hip thrust",
           "videoUrl": "https://www.youtube.com/watch?v=ZSPmIyX9RZs&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=9",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1312,6 +1340,7 @@
         {
           "nameEn": "Machine glute kickback",
           "videoUrl": "https://www.youtube.com/watch?v=NLDBFtSNhqg&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=8",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1319,6 +1348,7 @@
         {
           "nameEn": "Single leg hip thrust",
           "videoUrl": "https://www.youtube.com/watch?v=lzDgRRuBdqY&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=11",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1326,6 +1356,7 @@
         {
           "nameEn": "Cable pull throughs",
           "videoUrl": "https://www.youtube.com/watch?v=pv8e6OSyETE&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=3",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1333,21 +1364,25 @@
         {
           "nameEn": "Barbell Reverse lunge",
           "videoUrl": "https://www.youtube.com/watch?v=TQfhY5oJ_Sc&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=10",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell reverse lunge",
           "videoUrl": "https://www.youtube.com/watch?v=D-c2CWwEweo&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=17",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg dumbbell glute bridges",
           "videoUrl": "https://www.youtube.com/watch?v=CSXVj047Ss4&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=19",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight hip thrust",
           "videoUrl": "https://www.youtube.com/watch?v=OAhvIWLC0rc",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -1355,16 +1390,19 @@
         {
           "nameEn": "Bodyweight walking lunges",
           "videoUrl": "https://www.youtube.com/watch?v=T9H-wtFekMw",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight glute bridges",
           "videoUrl": "https://vimeo.com/185964194",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg glute bridge",
           "videoUrl": "https://vimeo.com/486812211",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -1379,41 +1417,49 @@
         {
           "nameEn": "Calve on machine standing",
           "videoUrl": "https://www.youtube.com/watch?v=N3awlEyTY98&list=PLyqKj7LwU2RtQyn5wWMJbD0rCV-cSkiK3&index=1",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Stair calves (Bodyweight)",
           "videoUrl": "https://www.youtube.com/watch?v=__qfDhdByMY&list=PLyqKj7LwU2RtQyn5wWMJbD0rCV-cSkiK3&index=5",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Calves on leg press",
           "videoUrl": "https://www.youtube.com/watch?v=KxEYX_cuesM&list=PLyqKj7LwU2RtQyn5wWMJbD0rCV-cSkiK3&index=2",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Smith machine calves",
           "videoUrl": "https://www.youtube.com/watch?v=hh5516HCu4k&list=PLyqKj7LwU2RtQyn5wWMJbD0rCV-cSkiK3&index=4",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg stair calves",
           "videoUrl": "https://www.youtube.com/watch?v=_gEx2ijsmNM&list=PLyqKj7LwU2RtQyn5wWMJbD0rCV-cSkiK3&index=3",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Seated calve raises machine",
           "videoUrl": "https://vimeo.com/507808866",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Donkey machine calve raises",
           "videoUrl": "https://vimeo.com/132710870",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Donkey bodyweight calve raises",
           "videoUrl": "https://youtu.be/r30EoMPSNns",
+          "pattern": "calves",
           "weakPoints": []
         }
       ]
@@ -1428,6 +1474,7 @@
         {
           "nameEn": "Seated dumbbell shoulder press",
           "videoUrl": "https://www.youtube.com/watch?v=HzIiNhHhhtA&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=7",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -1435,6 +1482,7 @@
         {
           "nameEn": "Machine shoulder press",
           "videoUrl": "https://www.youtube.com/watch?v=WvLMauqrnK8&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=5",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -1442,6 +1490,7 @@
         {
           "nameEn": "Smith machine seated shoulder press",
           "videoUrl": "https://www.youtube.com/watch?v=OLqZDUUD2b0&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=8",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -1458,51 +1507,70 @@
         {
           "nameEn": "Dumbbell upright rows",
           "videoUrl": "https://www.youtube.com/watch?v=Ub6QruNKfbY&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=4",
-          "weakPoints": []
+          "pattern": "horizontal_pull",
+          "weakPoints": [
+            "contraction"
+          ]
         },
         {
           "nameEn": "Barbell upright rows",
           "videoUrl": "https://www.youtube.com/watch?v=um3VVzqunPU&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=1",
-          "weakPoints": []
+          "pattern": "horizontal_pull",
+          "weakPoints": [
+            "contraction"
+          ]
         },
         {
           "nameEn": "Cable upright rows",
           "videoUrl": "https://www.youtube.com/watch?v=qr3ziolhjvQ&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=3",
-          "weakPoints": []
+          "pattern": "horizontal_pull",
+          "weakPoints": [
+            "contraction"
+          ]
         },
         {
           "nameEn": "Leaning cable lateral raise",
           "videoUrl": "https://www.youtube.com/watch?v=lq7eLC30b9w&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=6",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Standing dumbbell lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=SKf8wHlIFX0&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=10",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Cable crossover lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=2OMbdPF7mz4&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=2",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Thumbs down lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=D1f7d1OcobY&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=9",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Machine lateral raise",
           "videoUrl": "https://www.youtube.com/watch?v=0o07iGKUarI&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=7",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Smith machine upright row",
           "videoUrl": "https://www.youtube.com/watch?v=QIpa-9dtkgA&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=8",
-          "weakPoints": []
+          "pattern": "horizontal_pull",
+          "weakPoints": [
+            "contraction",
+            "stretch"
+          ]
         },
         {
           "nameEn": "Dumbbell seated lateral raises",
           "videoUrl": "https://vimeo.com/378230956",
+          "pattern": "side_delts",
           "weakPoints": []
         }
       ]
@@ -1517,46 +1585,55 @@
         {
           "nameEn": "Barbell face pull",
           "videoUrl": "https://www.youtube.com/watch?v=hPWYuhJMUhU&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=10",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell face pull",
           "videoUrl": "https://www.youtube.com/watch?v=nzTY7j9ocR8&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=5",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Cable face pull",
           "videoUrl": "https://www.youtube.com/watch?v=-MODnZdnmAQ&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=3",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell standing bent over rear delt raises",
           "videoUrl": "https://www.youtube.com/watch?v=34gVHrkaiz0&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=1",
+          "pattern": "horizontal_pull",
           "weakPoints": []
         },
         {
           "nameEn": "Kneeling cable face pull",
           "videoUrl": "https://www.youtube.com/watch?v=8CGMuud1ANw&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=8",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Incline dumbbell face pull",
           "videoUrl": "https://www.youtube.com/watch?v=90cE3rCLtmo&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=6",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Cable body crossover bent lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=f0g5NkYiWUY&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=2",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Cable single arm rear delt raises",
           "videoUrl": "https://www.youtube.com/watch?v=qz1OLup4W_M&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=4",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Machine reverse fly",
           "videoUrl": "https://www.youtube.com/watch?v=5YK4bgzXDp0&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=9",
+          "pattern": "rear_delts",
           "weakPoints": []
         }
       ]
@@ -1571,6 +1648,7 @@
         {
           "nameEn": "Dumbbell incline chest press",
           "videoUrl": "https://www.youtube.com/watch?v=5CECBjd7HLQ&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=13",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1578,6 +1656,7 @@
         {
           "nameEn": "Barbell incline wide grip chest press",
           "videoUrl": "https://www.youtube.com/watch?v=FxQ0XEoFYQk&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=18",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1585,6 +1664,7 @@
         {
           "nameEn": "Barbell incline medium grip press",
           "videoUrl": "https://www.youtube.com/watch?v=lJ2o89kcnxY&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=16",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1592,6 +1672,7 @@
         {
           "nameEn": "Smith machine incline chest press",
           "videoUrl": "https://www.youtube.com/watch?v=8urE8Z8AMQ4&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=28",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1599,6 +1680,7 @@
         {
           "nameEn": "Machine incline chest press",
           "videoUrl": "https://www.youtube.com/watch?v=0Wa9CfRXUkA&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=10",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1606,6 +1688,7 @@
         {
           "nameEn": "Decline pushups",
           "videoUrl": "https://vimeo.com/326552551",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -1622,31 +1705,37 @@
         {
           "nameEn": "Wide grip Barbell bench press",
           "videoUrl": "https://www.youtube.com/watch?v=EeE3f4VWFDo&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=33",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell chest press",
           "videoUrl": "https://www.youtube.com/watch?v=YQ2s_Y7g5Qk&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=6",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Smith machine bench press",
           "videoUrl": "https://www.youtube.com/watch?v=O5viuEPDXKY&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=27",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Machine horizontal chest press",
           "videoUrl": "https://www.youtube.com/watch?v=aV1U_mK3XOs&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=9",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Pushups",
           "videoUrl": "https://www.youtube.com/watch?v=mm6_WcoCVTA&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=26",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Deficit pushups",
           "videoUrl": "https://www.youtube.com/watch?v=gmNlqsE3Onc&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=5",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1654,11 +1743,13 @@
         {
           "nameEn": "Medium grip bench press",
           "videoUrl": "https://www.youtube.com/watch?v=gMgvBspQ9lk&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=22",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Knee pushups",
           "videoUrl": "https://youtu.be/WcHtt6zT3Go",
+          "pattern": "horizontal_press",
           "weakPoints": []
         }
       ]
@@ -1673,21 +1764,25 @@
         {
           "nameEn": "Machine chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=FDay9wFe5uE&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=21",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Cable chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=4mfLHnFL0Uw&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=1",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=JFm8KbhjibM&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=7",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Incline Cable chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=GtHNC-5GtR0",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1695,6 +1790,7 @@
         {
           "nameEn": "Incline dumbbell chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=8oR5hBwbIBc&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=12",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -1702,16 +1798,19 @@
         {
           "nameEn": "Low cable chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=e_8HLu59-to&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=3",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "High cable chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=Cj6P91eFXkM&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=2",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Pec deck fly",
           "videoUrl": "https://www.youtube.com/watch?v=O-OBCfyh9Fw&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=25",
+          "pattern": "horizontal_press",
           "weakPoints": []
         }
       ]
@@ -1726,6 +1825,7 @@
         {
           "nameEn": "Underhand pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=9JC1EwqezGY&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=32",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1733,6 +1833,7 @@
         {
           "nameEn": "Wide grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=GRgWPT9XSQQ&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=31",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1740,6 +1841,7 @@
         {
           "nameEn": "Assisted normal grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=8ygapPMYK1I&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=1",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1747,6 +1849,7 @@
         {
           "nameEn": "Assisted Parallel pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=GdsRZAeeDUc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=2",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1754,6 +1857,7 @@
         {
           "nameEn": "Assisted underhand pullups",
           "videoUrl": "https://www.youtube.com/watch?v=L4ChTwrXTjc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=3",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1761,6 +1865,7 @@
         {
           "nameEn": "Assisted wide grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=0tiC6RUZL8Y&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=4",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1768,6 +1873,7 @@
         {
           "nameEn": "Hammer high row",
           "videoUrl": "https://www.youtube.com/watch?v=gg5hwJuv6KI&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=10",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1775,6 +1881,7 @@
         {
           "nameEn": "Wide grip lat pulldown",
           "videoUrl": "https://www.youtube.com/watch?v=YCKPD4BSD2E&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=30",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1782,6 +1889,7 @@
         {
           "nameEn": "Underhand pulldown",
           "videoUrl": "https://www.youtube.com/watch?v=VprlTxpB1rk&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=29",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1789,6 +1897,7 @@
         {
           "nameEn": "Straight arm pulldown",
           "videoUrl": "https://www.youtube.com/watch?v=G9uNaXGTJ4w&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=25",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1796,6 +1905,7 @@
         {
           "nameEn": "Parallel grip pullup",
           "videoUrl": "https://www.youtube.com/watch?v=XWt6FQAK5wM&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=19",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1803,6 +1913,7 @@
         {
           "nameEn": "Normal grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=iWpoegdfgtc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=17",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1810,6 +1921,7 @@
         {
           "nameEn": "Parallel lat pulldown",
           "videoUrl": "https://www.youtube.com/watch?v=--utaPT7XYQ&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=18",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1817,6 +1929,7 @@
         {
           "nameEn": "Normal grip pulldowns",
           "videoUrl": "https://www.youtube.com/watch?v=EUIri47Epcg&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=16",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1833,6 +1946,7 @@
         {
           "nameEn": "Barbell bent over row",
           "videoUrl": "https://www.youtube.com/watch?v=6FZHJGzMFEc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=5",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1840,6 +1954,7 @@
         {
           "nameEn": "Dumbbell bent over two arm row",
           "videoUrl": "https://www.youtube.com/watch?v=5PoEksoJNaw&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=22",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1847,6 +1962,7 @@
         {
           "nameEn": "Chest supported row",
           "videoUrl": "https://www.youtube.com/watch?v=0UBRfiO4zDs&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=8",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1854,6 +1970,7 @@
         {
           "nameEn": "Dumbbell one arm bent over row",
           "videoUrl": "https://www.youtube.com/watch?v=DMo3HJoawrU&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=23",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1861,6 +1978,7 @@
         {
           "nameEn": "Underhand EZ bar row",
           "videoUrl": "https://www.youtube.com/watch?v=H260SUUyJBM&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=28",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1868,6 +1986,7 @@
         {
           "nameEn": "Seated Cable row",
           "videoUrl": "https://www.youtube.com/watch?v=UCXxvVItLoM&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=21",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1875,6 +1994,7 @@
         {
           "nameEn": "Dumbbell pullover",
           "videoUrl": "https://www.youtube.com/watch?v=jQjWlIwG4sI&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=9",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1882,6 +2002,7 @@
         {
           "nameEn": "Machine pullover",
           "videoUrl": "https://www.youtube.com/watch?v=oxpAl14EYyc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=15",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -1889,6 +2010,7 @@
         {
           "nameEn": "Hammer low row",
           "videoUrl": "https://www.youtube.com/watch?v=opjbouBmUWg&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=11",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1896,6 +2018,7 @@
         {
           "nameEn": "Incline dumbbell row",
           "videoUrl": "https://www.youtube.com/watch?v=tZUYS7X50so&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=12",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1903,6 +2026,7 @@
         {
           "nameEn": "Inverted row",
           "videoUrl": "https://www.youtube.com/watch?v=KOaCM1HMwU0&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=13",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1910,6 +2034,7 @@
         {
           "nameEn": "Machine chest supported row",
           "videoUrl": "https://www.youtube.com/watch?v=_FrrYQxA6kc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=14",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction",
             "stretch"
@@ -1918,6 +2043,7 @@
         {
           "nameEn": "Seal row",
           "videoUrl": "https://www.youtube.com/watch?v=4H2ItXwUTp8&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=20",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1925,6 +2051,7 @@
         {
           "nameEn": "T-bar row",
           "videoUrl": "https://www.youtube.com/watch?v=yPis7nlbqdY&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=27",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -1941,91 +2068,109 @@
         {
           "nameEn": "Barbell narrow grip curl",
           "videoUrl": "https://www.youtube.com/watch?v=pUS6HBQjRmc&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=2",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Barbell normal grip curl",
           "videoUrl": "https://www.youtube.com/watch?v=JnLFSFurrqQ&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=3",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable EZ bar curl wide",
           "videoUrl": "https://www.youtube.com/watch?v=yuozln3CC94&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=4",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable EZ bar curl normal",
           "videoUrl": "https://www.youtube.com/watch?v=opFVuRi_3b8&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=5",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "EZ bar close grip curl",
           "videoUrl": "https://www.youtube.com/watch?v=cdmnvo3augg&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=9",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "EZ bar wide grip curl",
           "videoUrl": "https://www.youtube.com/watch?v=EK747VC37yE&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=10",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable biceps curl",
           "videoUrl": "https://www.youtube.com/watch?v=840rgLSw-84",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Incline dumbbell curl",
           "videoUrl": "https://www.youtube.com/watch?v=aTYlqC_JacQ&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=14",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell spider curl",
           "videoUrl": "https://www.youtube.com/watch?v=ke2shAeQ0O8&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=7",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Hammer curl",
           "videoUrl": "https://www.youtube.com/watch?v=XOEL4MgekYE&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=13",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate dumbbell curl",
           "videoUrl": "https://www.youtube.com/watch?v=iixND1P2lik&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=1",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell single arm preacher curl",
           "videoUrl": "https://www.youtube.com/watch?v=fuK3nFvwgXk&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=6",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell twist curl",
           "videoUrl": "https://www.youtube.com/watch?v=tRXw8HQ7-oA&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=8",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "EZ bar preacher curl",
           "videoUrl": "https://www.youtube.com/watch?v=sxA__DoLsgo&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=11",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "EZ bar spider curl",
           "videoUrl": "https://www.youtube.com/watch?v=WG3vdcq__I0&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=12",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Machine preacher curl",
           "videoUrl": "https://www.youtube.com/watch?v=Ja6ZlIDONac&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=15",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Rope twist curl",
           "videoUrl": "https://www.youtube.com/watch?v=2CDKTFFp5fA&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=16",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell seated biceps curl",
           "videoUrl": "https://vimeo.com/146713814",
+          "pattern": "biceps",
           "weakPoints": []
         }
       ]
@@ -2040,101 +2185,121 @@
         {
           "nameEn": "Seated EZ bar overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=gcRZqG8t44c&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=15",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Barbell skull crusher",
           "videoUrl": "https://www.youtube.com/watch?v=l3rHYPtMUo8&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=3",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Barbell overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=q5X9thiKofE&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=1",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "EZ bar overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=IdZ7HXnatko&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=9",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dips",
           "videoUrl": "https://www.youtube.com/watch?v=4LA1kF7yCGo&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=7",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Assisted dips",
           "videoUrl": "https://www.youtube.com/watch?v=yZ83t4mrPrI&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=2",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable rope pushdown",
           "videoUrl": "https://www.youtube.com/watch?v=-xa-6cQaZKY&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=14",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable triceps pushdown",
           "videoUrl": "https://www.youtube.com/watch?v=6Fzep104f0s&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=6",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell skull crusher",
           "videoUrl": "https://www.youtube.com/watch?v=jPjhQ2hsAds&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=8",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=1u18yJELsh0&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=4",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Machine triceps pushdown",
           "videoUrl": "https://www.youtube.com/watch?v=OChuGyCSC7U&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=12",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Inverted skull crusher",
           "videoUrl": "https://www.youtube.com/watch?v=1lrjpLuXH4w&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=10",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable single arm pushdown",
           "videoUrl": "https://www.youtube.com/watch?v=Cp_bShvMY4c&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=5",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Machine triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=Bx8ga1BLHLE&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=11",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Rope overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=kqidUIf1eJE&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=13",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "JM press",
           "videoUrl": "https://www.youtube.com/watch?v=Tih5iHyELsE&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=16",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Seated barbell overhead triceps extensions",
           "videoUrl": "https://www.youtube.com/watch?v=ktU2H0DDmwk&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=17",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell two arm triceps kickacks",
           "videoUrl": "https://www.youtube.com/watch?v=R291a-0hE9U",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight bench dips",
           "videoUrl": "https://vimeo.com/247695187",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Weighted bench dips",
           "videoUrl": "https://vimeo.com/324432093",
+          "pattern": "triceps",
           "weakPoints": []
         }
       ]
@@ -2149,56 +2314,67 @@
         {
           "nameEn": "Barbell shrug",
           "videoUrl": "https://www.youtube.com/watch?v=M_MjF5Nm_h4&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=2",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Smith machine shrug",
           "videoUrl": "https://www.youtube.com/watch?v=cT5_GyOXIgE",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell shrug",
           "videoUrl": "https://www.youtube.com/watch?v=_t3lrPI6Ns4&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=9",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell bent shrug",
           "videoUrl": "https://www.youtube.com/watch?v=5z7ZtboxbBY&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=7",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable shrug",
           "videoUrl": "https://www.youtube.com/watch?v=YykmcX2b-LY&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=4",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Seated dumbbell shrug",
           "videoUrl": "https://www.youtube.com/watch?v=zgToz5FiI-E&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=10",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell lean shrug",
           "videoUrl": "https://www.youtube.com/watch?v=5z7ZtboxbBY&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=7",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Barbell bent shrug",
           "videoUrl": "https://www.youtube.com/watch?v=d9daNDIXtK8&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=1",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable bent shrug",
           "videoUrl": "https://www.youtube.com/watch?v=nOn_Bz0zrwQ&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=3",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable side shrug",
           "videoUrl": "https://www.youtube.com/watch?v=2zaT3WAgZi0&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=5",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Cable single arm shrug",
           "videoUrl": "https://www.youtube.com/watch?v=BeIcUXQ3RDc&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=6",
+          "pattern": "traps",
           "weakPoints": []
         }
       ]
@@ -2213,81 +2389,97 @@
         {
           "nameEn": "Hanging knee raises",
           "videoUrl": "https://www.youtube.com/watch?v=RD_A-Z15ER4&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=1",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Hanging straight leg raises",
           "videoUrl": "https://www.youtube.com/watch?v=7FwGZ8qY5OU&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=2",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Machine slide crunch",
           "videoUrl": "https://www.youtube.com/watch?v=-OUSBPnHvsQ&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=3",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Modified candlestick",
           "videoUrl": "https://www.youtube.com/watch?v=T_X5rb3G5lk&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=4",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Machine full crunch",
           "videoUrl": "https://www.youtube.com/watch?v=V7p_DmkYLZw",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Reaching sit up",
           "videoUrl": "https://www.youtube.com/watch?v=pXg8qppif7I&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=5",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Rope crunch",
           "videoUrl": "https://www.youtube.com/watch?v=6GMKPQVERzw&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=6",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Slant board sit up",
           "videoUrl": "https://www.youtube.com/watch?v=DAnTf16NcT0&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=7",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "V-up",
           "videoUrl": "https://www.youtube.com/watch?v=BIOM5eSsJ_8&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=8",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate V-ups",
           "videoUrl": "https://youtu.be/u8lo0lGPC6k",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Leg Pull in",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate hell touches",
           "videoUrl": "https://youtu.be/2zhFTw2epoc",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Crossbody crunches",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Lying leg raises",
           "videoUrl": "https://youtu.be/l4kQd9eWclE",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Jackkinfe sit up",
           "videoUrl": "https://youtu.be/CWOZyf8kaH0",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Plank tap",
           "videoUrl": "https://youtu.be/QOCn3_iOAro",
+          "pattern": "abs",
           "weakPoints": []
         }
       ]
@@ -2302,26 +2494,31 @@
         {
           "nameEn": "Cable wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=WVAaKJvToe0&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=1",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell bench single wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=2wPpcJBe03o&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=2",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell standing wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=iQ4JjOK73PE&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=3",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Barbell standing wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=lfQR7oVS8eo&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=4",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Reverse grip cable curls",
           "videoUrl": "https://www.youtube.com/watch?v=HwB-DevuJjU",
+          "pattern": "forearms",
           "weakPoints": []
         }
       ]
@@ -2336,21 +2533,25 @@
         {
           "nameEn": "Seated dumbbell shrug",
           "videoUrl": "https://www.youtube.com/watch?v=zgToz5FiI-E&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=10",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell lean shrug",
           "videoUrl": "https://www.youtube.com/watch?v=5z7ZtboxbBY&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=7",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell shrug",
           "videoUrl": "https://www.youtube.com/watch?v=_t3lrPI6Ns4&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=9",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell bent shrug",
           "videoUrl": "https://www.youtube.com/watch?v=5z7ZtboxbBY&list=PLyqKj7LwU2RvynkwL93EcfuPUaDrWNOEc&index=7",
+          "pattern": "traps",
           "weakPoints": []
         }
       ]
@@ -2365,26 +2566,31 @@
         {
           "nameEn": "Bodyweight donkey calve raises",
           "videoUrl": "https://youtu.be/r30EoMPSNns",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight calve raises",
           "videoUrl": "https://youtu.be/fQiMiUHWubw",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight Single leg calve raises",
           "videoUrl": "https://youtu.be/JHRQUogqGbY",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Seated calve raises",
           "videoUrl": "https://youtu.be/YhiXK53vde0",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Standing dumbbell calve raises",
           "videoUrl": "https://youtu.be/wwy3BSUjlW4",
+          "pattern": "calves",
           "weakPoints": []
         }
       ]
@@ -2399,6 +2605,7 @@
         {
           "nameEn": "Dumbbell hip thrust",
           "videoUrl": "https://youtu.be/29OfN4ztW_g",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -2406,16 +2613,19 @@
         {
           "nameEn": "Dumbbell walking lunge (wide)",
           "videoUrl": "https://www.youtube.com/watch?v=eFWCn5iEbTU&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=7",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell reverse lunge",
           "videoUrl": "https://www.youtube.com/watch?v=D-c2CWwEweo&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=17",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg hip thrust",
           "videoUrl": "https://www.youtube.com/watch?v=lzDgRRuBdqY&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=11",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -2423,16 +2633,19 @@
         {
           "nameEn": "Single leg dumbbell glute bridges",
           "videoUrl": "https://www.youtube.com/watch?v=CSXVj047Ss4&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=19",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bulgarian split squats(Glutes)",
           "videoUrl": "https://www.youtube.com/watch?v=jNihW0WDIL4&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=12",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight hip thrust",
           "videoUrl": "https://www.youtube.com/watch?v=OAhvIWLC0rc",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -2440,16 +2653,19 @@
         {
           "nameEn": "Bodyweight walking lunges",
           "videoUrl": "https://www.youtube.com/watch?v=T9H-wtFekMw",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight glute bridges",
           "videoUrl": "https://vimeo.com/185964194",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg glute bridge",
           "videoUrl": "https://vimeo.com/486812211",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -2464,6 +2680,7 @@
         {
           "nameEn": "Dumbbell stiff leg deadlift",
           "videoUrl": "https://youtu.be/_5DEdWpKYj4",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -2471,6 +2688,7 @@
         {
           "nameEn": "Dumbbell hamstring curl",
           "videoUrl": "https://youtu.be/xSjmKTf4QbA",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -2485,21 +2703,25 @@
         {
           "nameEn": "Thumbs down lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=D1f7d1OcobY&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=9",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Standing dumbbell lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=SKf8wHlIFX0&list=PLyqKj7LwU2RuNVJBl0CtfZdxQ99IhKCcu&index=10",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Seated dumbbell lateral raises",
           "videoUrl": "https://vimeo.com/378230956",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Leaning dumbbell lateral raises",
           "videoUrl": "https://www.youtube.com/watch?v=FGQ07Sb_D5Y",
+          "pattern": "side_delts",
           "weakPoints": []
         }
       ]
@@ -2514,51 +2736,65 @@
         {
           "nameEn": "Standing dumbbell two arm overhead extensions",
           "videoUrl": "https://youtu.be/-Vyt2QdsR7E",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Seated dumbbell two overhead triceps extensions",
           "videoUrl": "https://youtu.be/YbX7Wd8jQ-Q",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Standing dumbbell single arm overhead triceps extensions",
           "videoUrl": "https://youtu.be/_gsUck-7M74",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Seated dumbbell single arm overhead triceps extensions",
           "videoUrl": "https://youtu.be/F3w6m0aENVQ",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell one arm triceps kickback",
           "videoUrl": "https://youtu.be/z3sm6YgpJho",
-          "weakPoints": []
+          "pattern": "hinge",
+          "weakPoints": [
+            "lockout"
+          ]
         },
         {
           "nameEn": "Dumbbell two arm triceps kickback",
           "videoUrl": "https://youtu.be/z3sm6YgpJho",
-          "weakPoints": []
+          "pattern": "hinge",
+          "weakPoints": [
+            "lockout"
+          ]
         },
         {
           "nameEn": "Tate press",
           "videoUrl": "https://youtu.be/9Lpwk3nLve8",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Diamond pushups",
           "videoUrl": "https://youtu.be/J0DnG1_S92I",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell skull crusher",
           "videoUrl": "https://www.youtube.com/watch?v=jPjhQ2hsAds&list=PLyqKj7LwU2RtMd8vP3NEoig1RPJQK78Ea&index=8",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight bench dips",
           "videoUrl": "https://vimeo.com/247695187",
+          "pattern": "triceps",
           "weakPoints": []
         }
       ]
@@ -2573,11 +2809,13 @@
         {
           "nameEn": "Dumbbell front raises",
           "videoUrl": "https://www.youtube.com/watch?v=hRJ6tR5-if0&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=3",
+          "pattern": "vertical_press",
           "weakPoints": []
         },
         {
           "nameEn": "Seated dumbbell arnold press",
           "videoUrl": "https://youtu.be/NVfNit_7Tuo",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -2585,6 +2823,7 @@
         {
           "nameEn": "Standing dumbbell shoulder press",
           "videoUrl": "https://www.youtube.com/watch?v=Raemd3qWgJc&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=10",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -2592,6 +2831,7 @@
         {
           "nameEn": "Seated dumbbell shoulder press",
           "videoUrl": "https://www.youtube.com/watch?v=HzIiNhHhhtA&list=PLyqKj7LwU2RtjiVutSXk5uC2h7KVMu1Az&index=7",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -2608,16 +2848,19 @@
         {
           "nameEn": "Incline dumbbell face pull",
           "videoUrl": "https://www.youtube.com/watch?v=90cE3rCLtmo&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=6",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell face pull",
           "videoUrl": "https://www.youtube.com/watch?v=nzTY7j9ocR8&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=5",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell standing bent over rear delt raises",
           "videoUrl": "https://www.youtube.com/watch?v=34gVHrkaiz0&list=PLyqKj7LwU2Rv-tzrJev2STMTIGt_JeugT&index=1",
+          "pattern": "horizontal_pull",
           "weakPoints": []
         }
       ]
@@ -2632,36 +2875,43 @@
         {
           "nameEn": "Dumbbell twist curl",
           "videoUrl": "https://www.youtube.com/watch?v=tRXw8HQ7-oA&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=8",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Incline dumbbell curl",
           "videoUrl": "https://www.youtube.com/watch?v=aTYlqC_JacQ&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=14",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell spider curl",
           "videoUrl": "https://www.youtube.com/watch?v=ke2shAeQ0O8&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=7",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Hammer curl",
           "videoUrl": "https://www.youtube.com/watch?v=XOEL4MgekYE&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=13",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate dumbbell curl",
           "videoUrl": "https://www.youtube.com/watch?v=iixND1P2lik&list=PLyqKj7LwU2Rt1cwOsHwdXa2TiRzjA6uoB&index=1",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell concentration curl",
           "videoUrl": "https://youtu.be/0AUGkch3tzc",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell seated biceps curl",
           "videoUrl": "https://vimeo.com/146713814",
+          "pattern": "biceps",
           "weakPoints": []
         }
       ]
@@ -2676,71 +2926,85 @@
         {
           "nameEn": "Hanging knee raises",
           "videoUrl": "https://www.youtube.com/watch?v=RD_A-Z15ER4&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=1",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Hanging straight leg raises",
           "videoUrl": "https://www.youtube.com/watch?v=7FwGZ8qY5OU&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=2",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Ab Crunch",
           "videoUrl": "https://youtu.be/MKmrqcoCZ-M",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Modified candlestick",
           "videoUrl": "https://www.youtube.com/watch?v=T_X5rb3G5lk&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=4",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Reaching sit up",
           "videoUrl": "https://www.youtube.com/watch?v=pXg8qppif7I&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=5",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate V-ups",
           "videoUrl": "https://youtu.be/u8lo0lGPC6k",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Weighted sit ups",
           "videoUrl": "https://youtu.be/kZvSaq192cg",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "V-up",
           "videoUrl": "https://www.youtube.com/watch?v=BIOM5eSsJ_8&list=PLyqKj7LwU2RvTgEW_QlCCjtIL5d_KP_-I&index=8",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Leg Pull in",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate hell touches",
           "videoUrl": "https://youtu.be/2zhFTw2epoc",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Crossbody crunches",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Lying leg raises",
           "videoUrl": "https://youtu.be/l4kQd9eWclE",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Jackkinfe sit up",
           "videoUrl": "https://youtu.be/CWOZyf8kaH0",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Plank tap",
           "videoUrl": "https://youtu.be/QOCn3_iOAro",
+          "pattern": "abs",
           "weakPoints": []
         }
       ]
@@ -2755,11 +3019,13 @@
         {
           "nameEn": "Dumbbell squat",
           "videoUrl": "https://vimeo.com/385305100",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Goblet squat",
           "videoUrl": "https://vimeo.com/388743371",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -2767,21 +3033,25 @@
         {
           "nameEn": "Chair squats",
           "videoUrl": "https://vimeo.com/34543298",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight assisted squat",
           "videoUrl": "https://vimeo.com/239687672",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight squat",
           "videoUrl": "https://vimeo.com/273765981",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell split squats",
           "videoUrl": "https://www.youtube.com/watch?v=pjAewD4LxXs&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=18",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -2789,6 +3059,7 @@
         {
           "nameEn": "Bulgarian split squats",
           "videoUrl": "https://www.youtube.com/watch?v=jNihW0WDIL4&list=PLyqKj7LwU2RtZnGDmtpyhDdvUHFvVyZnA&index=12",
+          "pattern": "squat",
           "weakPoints": [
             "bottom"
           ]
@@ -2796,6 +3067,7 @@
         {
           "nameEn": "Dumbbell sumo squat",
           "videoUrl": "https://www.youtube.com/watch?v=hxMHSb09mNk",
+          "pattern": "squat",
           "weakPoints": [
             "lockout"
           ]
@@ -2812,16 +3084,19 @@
         {
           "nameEn": "Dumbbell reverse grip curls",
           "videoUrl": "https://youtu.be/-brgostlPJ8",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell bench single wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=2wPpcJBe03o&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=2",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell standing wrist curl",
           "videoUrl": "https://www.youtube.com/watch?v=iQ4JjOK73PE&list=PLyqKj7LwU2RvQpfrgpWoyz-Jj2Xog_3Zx&index=3",
+          "pattern": "forearms",
           "weakPoints": []
         }
       ]
@@ -2836,6 +3111,7 @@
         {
           "nameEn": "Incline dumbbell chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=8oR5hBwbIBc&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=12",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -2843,6 +3119,7 @@
         {
           "nameEn": "Dumbbell chest fly",
           "videoUrl": "https://www.youtube.com/watch?v=JFm8KbhjibM&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=7",
+          "pattern": "horizontal_press",
           "weakPoints": []
         }
       ]
@@ -2857,6 +3134,7 @@
         {
           "nameEn": "Dumbbell incline chest press",
           "videoUrl": "https://www.youtube.com/watch?v=5CECBjd7HLQ&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=13",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -2864,6 +3142,7 @@
         {
           "nameEn": "Incline pushups",
           "videoUrl": "https://youtu.be/Me9bHFAxnCs",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -2871,26 +3150,31 @@
         {
           "nameEn": "Single arm dumbbell chest press",
           "videoUrl": "https://youtu.be/td-4lC0tXKA",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Knee pushups",
           "videoUrl": "https://youtu.be/WcHtt6zT3Go",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Pushups",
           "videoUrl": "https://www.youtube.com/watch?v=mm6_WcoCVTA&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=26",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell chest press",
           "videoUrl": "https://www.youtube.com/watch?v=YQ2s_Y7g5Qk&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=6",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Deficit pushups",
           "videoUrl": "https://www.youtube.com/watch?v=gmNlqsE3Onc&list=PLyqKj7LwU2RuyZwWCIiDHuFZGN11QW3Ff&index=5",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -2898,6 +3182,7 @@
         {
           "nameEn": "Decline pushups",
           "videoUrl": "https://youtu.be/5QFjmotLfW4",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -2914,6 +3199,7 @@
         {
           "nameEn": "Underhand pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=9JC1EwqezGY&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=32",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -2921,6 +3207,7 @@
         {
           "nameEn": "Wide grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=GRgWPT9XSQQ&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=31",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -2928,11 +3215,13 @@
         {
           "nameEn": "Dumbbell deadlift",
           "videoUrl": "https://youtu.be/gLogcYIvgRA",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell bent over two arm row",
           "videoUrl": "https://www.youtube.com/watch?v=5PoEksoJNaw&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=22",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -2940,6 +3229,7 @@
         {
           "nameEn": "Incline dumbbell row",
           "videoUrl": "https://www.youtube.com/watch?v=tZUYS7X50so&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=12",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -2947,6 +3237,7 @@
         {
           "nameEn": "Dumbbell one arm bent over row",
           "videoUrl": "https://www.youtube.com/watch?v=DMo3HJoawrU&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=23",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -2954,6 +3245,7 @@
         {
           "nameEn": "Dumbbell pullover",
           "videoUrl": "https://www.youtube.com/watch?v=jQjWlIwG4sI&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=9",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -2961,6 +3253,7 @@
         {
           "nameEn": "Normal grip pull ups",
           "videoUrl": "https://www.youtube.com/watch?v=iWpoegdfgtc&list=PLyqKj7LwU2RsCtKw3UlE85HYgPM3-xoO1&index=17",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -2977,16 +3270,19 @@
         {
           "nameEn": "Band side shrugs",
           "videoUrl": "https://youtu.be/DnTRsL2UHCU",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Single band shrugs",
           "videoUrl": "https://youtu.be/Z_cFkKqCiUE",
+          "pattern": "traps",
           "weakPoints": []
         },
         {
           "nameEn": "Dumbbell deadlift",
           "videoUrl": "https://youtu.be/gLogcYIvgRA",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -3001,16 +3297,19 @@
         {
           "nameEn": "Donkey calve raises",
           "videoUrl": "https://youtu.be/r30EoMPSNns",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight calve raises",
           "videoUrl": "https://youtu.be/fQiMiUHWubw",
+          "pattern": "calves",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight Single leg calve raises",
           "videoUrl": "https://youtu.be/JHRQUogqGbY",
+          "pattern": "calves",
           "weakPoints": []
         }
       ]
@@ -3025,41 +3324,49 @@
         {
           "nameEn": "Band calve raises",
           "videoUrl": "https://youtu.be/-c39P9V64tU",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight stable lunges",
           "videoUrl": "https://vimeo.com/427683800",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Walking lunges",
           "videoUrl": "https://vimeo.com/427681792",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight split squats",
           "videoUrl": "https://vimeo.com/8827508",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Band reverse lunge",
           "videoUrl": "https://youtu.be/Khgyyrd_ig0",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight Bulgarian split squats",
           "videoUrl": "https://youtu.be/aSJbKnDRIiQ",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bands Bulgarian split squats",
           "videoUrl": "https://youtu.be/qEJUrVrxlSo",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Single leg bodyweight hip thrust",
           "videoUrl": "https://youtu.be/3KKVWOATE-Q",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -3067,6 +3374,7 @@
         {
           "nameEn": "Bodyweight hip thrust",
           "videoUrl": "https://youtu.be/OAhvIWLC0rc",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -3074,6 +3382,7 @@
         {
           "nameEn": "Band glute kickback",
           "videoUrl": "https://youtu.be/rONpWaNIhE8",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -3081,16 +3390,19 @@
         {
           "nameEn": "Single let glute bridges",
           "videoUrl": "https://youtu.be/3NXv0Nany-Q",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bands stable lunge",
           "videoUrl": "https://youtu.be/C2VF9mcs7Vo",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Band pull through",
           "videoUrl": "https://youtu.be/a8f-c31u2GA",
+          "pattern": "hinge",
           "weakPoints": [
             "lockout"
           ]
@@ -3098,11 +3410,13 @@
         {
           "nameEn": "Band glute bridges",
           "videoUrl": "https://youtu.be/GdSolgmyW68",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight glute bridges",
           "videoUrl": "https://youtu.be/8bbE64NuDTU",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -3117,6 +3431,7 @@
         {
           "nameEn": "Dumbbell stiff leg deadlift",
           "videoUrl": "https://youtu.be/_5DEdWpKYj4",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -3124,11 +3439,13 @@
         {
           "nameEn": "Dumbbell hamstring curl",
           "videoUrl": "https://youtu.be/xSjmKTf4QbA",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Band stiff leg deadlift",
           "videoUrl": "https://youtu.be/wklohZsolc4",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -3136,6 +3453,7 @@
         {
           "nameEn": "Seated band leg curl",
           "videoUrl": "https://youtu.be/M_dUNslNjBU",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -3143,6 +3461,7 @@
         {
           "nameEn": "Lying band leg curl",
           "videoUrl": "https://youtu.be/LtTcXXgeRYo",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -3150,11 +3469,13 @@
         {
           "nameEn": "Single leg deadlift",
           "videoUrl": "https://youtu.be/XYs67yyC4GQ",
+          "pattern": "hinge",
           "weakPoints": []
         },
         {
           "nameEn": "Bands good morning",
           "videoUrl": "https://youtu.be/CDW-DyUr6nk",
+          "pattern": "hinge",
           "weakPoints": [
             "stretch"
           ]
@@ -3162,6 +3483,7 @@
         {
           "nameEn": "Band standing hamstring curl",
           "videoUrl": "https://youtu.be/-dwKh9QzoKc",
+          "pattern": "hinge",
           "weakPoints": []
         }
       ]
@@ -3176,26 +3498,31 @@
         {
           "nameEn": "Band single arm lateral raises",
           "videoUrl": "https://youtu.be/yfNg5sFndbw",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band lateral raises",
           "videoUrl": "https://youtu.be/QqyKKd3dXGk",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band leaning lateral raises",
           "videoUrl": "https://youtu.be/xz9q5DUiC3I",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band lying lateral raises",
           "videoUrl": "https://youtu.be/dKswaQc7EVY",
+          "pattern": "side_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band alternate lateral raises",
           "videoUrl": "https://youtu.be/DxdJmHo6opQ",
+          "pattern": "side_delts",
           "weakPoints": []
         }
       ]
@@ -3210,71 +3537,87 @@
         {
           "nameEn": "Band reverse grip two arm triceps pushdown",
           "videoUrl": "https://youtu.be/5V4qrxlVhLw",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band two arm triceps pushdown",
           "videoUrl": "https://youtu.be/WscHYo3_pPs",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band overhead two arm triceps extensions",
           "videoUrl": "https://youtu.be/dKRaKON0g3E",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band standing crossbody single arm triceps extensions",
           "videoUrl": "https://youtu.be/oOOqKURO0mU",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band single arm seated triceps extensions",
           "videoUrl": "https://youtu.be/FGcU1ufTxn0",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band two arm seated triceps extensions",
           "videoUrl": "https://youtu.be/xZ-L1DJbkho",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band seated two arm triceps kickbacks",
           "videoUrl": "https://youtu.be/B9uVa1PHGvM",
-          "weakPoints": []
+          "pattern": "hinge",
+          "weakPoints": [
+            "lockout"
+          ]
         },
         {
           "nameEn": "Band lying triceps extensions",
           "videoUrl": "https://youtu.be/7SLT2N8s3S0",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band incline triceps extensions",
           "videoUrl": "https://youtu.be/RAds7xQE8BE",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band seated crossbody single arm triceps extensions",
           "videoUrl": "https://youtu.be/WHX478thJHE",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band bent over two arm triceps pushdown",
           "videoUrl": "https://youtu.be/x-9S-B8l8Mc",
+          "pattern": "horizontal_pull",
           "weakPoints": []
         },
         {
           "nameEn": "Band bench lying triceps extensions",
           "videoUrl": "https://youtu.be/Mj1coommANU",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band alternate triceps pushdown",
           "videoUrl": "https://youtu.be/HaYPm8JE74I",
+          "pattern": "triceps",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight bench dips",
           "videoUrl": "https://youtu.be/VsE1PIF_59w",
+          "pattern": "triceps",
           "weakPoints": []
         }
       ]
@@ -3289,6 +3632,7 @@
         {
           "nameEn": "Band shoulder press",
           "videoUrl": "https://youtu.be/0rLjkQweIDg",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -3296,6 +3640,7 @@
         {
           "nameEn": "Looped band shoulder press",
           "videoUrl": "https://youtu.be/lKaUTcyXER0",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -3303,6 +3648,7 @@
         {
           "nameEn": "Band single arm shoulder press",
           "videoUrl": "https://youtu.be/ITf-9c78wdM",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -3310,21 +3656,25 @@
         {
           "nameEn": "Band two arm front raises",
           "videoUrl": "https://youtu.be/bcVKR_IPz4U",
+          "pattern": "vertical_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band single front raises",
           "videoUrl": "https://youtu.be/lsjonJduQfY",
+          "pattern": "vertical_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band lying front raises",
           "videoUrl": "https://youtu.be/7xHND8-Mrus",
+          "pattern": "vertical_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band incline front raises",
           "videoUrl": "https://youtu.be/MZ7hTLkxwGk",
+          "pattern": "vertical_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3332,6 +3682,7 @@
         {
           "nameEn": "Band arnold press",
           "videoUrl": "https://youtu.be/e7DJteoE66g",
+          "pattern": "vertical_press",
           "weakPoints": [
             "midrange"
           ]
@@ -3339,6 +3690,7 @@
         {
           "nameEn": "Band alternate front raises",
           "videoUrl": "https://youtu.be/UB1EqxpFY78",
+          "pattern": "vertical_press",
           "weakPoints": []
         }
       ]
@@ -3353,21 +3705,25 @@
         {
           "nameEn": "Band reverse fly",
           "videoUrl": "https://youtu.be/TVTP8Q1T3K8",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band bent reverse fly",
           "videoUrl": "https://youtu.be/8TS775tZvKQ",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band standing face pull",
           "videoUrl": "https://youtu.be/Wq-Td9UXRK8",
+          "pattern": "rear_delts",
           "weakPoints": []
         },
         {
           "nameEn": "Band half-kneeling face pull",
           "videoUrl": "https://youtu.be/KlTEgg1yv8M",
+          "pattern": "rear_delts",
           "weakPoints": []
         }
       ]
@@ -3382,36 +3738,43 @@
         {
           "nameEn": "Band seated concentration curl",
           "videoUrl": "https://youtu.be/RZG_4s7nlmA",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Biceps lying curl",
           "videoUrl": "https://youtu.be/MrcpvuS738s",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band high curl",
           "videoUrl": "https://youtu.be/G8dHuh08aJU",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band two arm biceps curl",
           "videoUrl": "https://youtu.be/YCL7vtpeTI4",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band alternate biceps curl",
           "videoUrl": "https://youtu.be/2x4Ob8WDMjk",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Band seated preacher curl",
           "videoUrl": "https://youtu.be/7PBGoEqcgc8",
+          "pattern": "biceps",
           "weakPoints": []
         },
         {
           "nameEn": "Short band single arm biceps curl",
           "videoUrl": "https://youtu.be/ybPm4clliqs",
+          "pattern": "biceps",
           "weakPoints": []
         }
       ]
@@ -3426,66 +3789,79 @@
         {
           "nameEn": "Band toe touches",
           "videoUrl": "https://youtu.be/vZY3NV-bZqo",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Band leg lift",
           "videoUrl": "https://youtu.be/AJwYT2gPLd0",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Band knee pull",
           "videoUrl": "https://youtu.be/dGwIGkmy-n0",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Band crunch",
           "videoUrl": "https://youtu.be/5f3Ff_XhiAc",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Band bench crunch",
           "videoUrl": "https://youtu.be/7s8-FEQm79I",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Ab Crunch",
           "videoUrl": "https://youtu.be/MKmrqcoCZ-M",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate V-ups",
           "videoUrl": "https://youtu.be/u8lo0lGPC6k",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Leg Pull in",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Alternate hell touches",
           "videoUrl": "https://youtu.be/2zhFTw2epoc",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Crossbody crunches",
           "videoUrl": "https://youtu.be/a2dNtC17WRU",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Lying leg raises",
           "videoUrl": "https://youtu.be/l4kQd9eWclE",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Jackkinfe sit up",
           "videoUrl": "https://youtu.be/CWOZyf8kaH0",
+          "pattern": "abs",
           "weakPoints": []
         },
         {
           "nameEn": "Plank tap",
           "videoUrl": "https://youtu.be/QOCn3_iOAro",
+          "pattern": "abs",
           "weakPoints": []
         }
       ]
@@ -3500,21 +3876,25 @@
         {
           "nameEn": "Looped band squats",
           "videoUrl": "https://vimeo.com/407092494",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight Squats",
           "videoUrl": "https://vimeo.com/172361603",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Band squats",
           "videoUrl": "https://vimeo.com/48989437",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Band Sumo squats",
           "videoUrl": "https://youtu.be/es2btc9aMv4",
+          "pattern": "squat",
           "weakPoints": [
             "lockout"
           ]
@@ -3522,6 +3902,7 @@
         {
           "nameEn": "Bodyweight sumo squats",
           "videoUrl": "https://youtu.be/BSLozN2vATI",
+          "pattern": "squat",
           "weakPoints": [
             "lockout"
           ]
@@ -3529,16 +3910,19 @@
         {
           "nameEn": "Band single leg squat",
           "videoUrl": "https://youtu.be/lplTnpym5jg",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Chair squats",
           "videoUrl": "https://vimeo.com/34543298",
+          "pattern": "squat",
           "weakPoints": []
         },
         {
           "nameEn": "Bodyweight assisted squat",
           "videoUrl": "https://vimeo.com/239687672",
+          "pattern": "squat",
           "weakPoints": []
         }
       ]
@@ -3553,26 +3937,31 @@
         {
           "nameEn": "Band seated single arm reverse forearm curl",
           "videoUrl": "https://youtu.be/FNlHyHYmYrc",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Band seated single arm forearm curl",
           "videoUrl": "https://youtu.be/0U2BFdqBQ58",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Band front wrist curls",
           "videoUrl": "https://youtu.be/TG7fR02Efqo",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Band behind wrist curls",
           "videoUrl": "https://youtu.be/9_fkz2Yvdd0",
+          "pattern": "forearms",
           "weakPoints": []
         },
         {
           "nameEn": "Band reverse curl",
           "videoUrl": "https://www.youtube.com/watch?v=JL--tgGVzMI",
+          "pattern": "forearms",
           "weakPoints": []
         }
       ]
@@ -3587,6 +3976,7 @@
         {
           "nameEn": "Band incline bench chest fly",
           "videoUrl": "https://vimeo.com/208383153",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3594,26 +3984,31 @@
         {
           "nameEn": "Band bench chest fly",
           "videoUrl": "https://vimeo.com/208383097",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Half-kneeling band chest fly",
           "videoUrl": "https://vimeo.com/366347958",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band single arm chest fly",
           "videoUrl": "https://vimeo.com/399848191",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Bands two arm chest fly",
           "videoUrl": "https://youtu.be/IWcyh3VlQ7I",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band incline two arm chest fly",
           "videoUrl": "https://vimeo.com/518376947",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3621,6 +4016,7 @@
         {
           "nameEn": "Band decline two arm chest fly",
           "videoUrl": "https://vimeo.com/518376070",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -3637,16 +4033,19 @@
         {
           "nameEn": "Single arm band chest press",
           "videoUrl": "https://vimeo.com/401738694",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Two arm band chest press",
           "videoUrl": "https://vimeo.com/27736922",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Two arm band incline chest press",
           "videoUrl": "https://vimeo.com/208383186",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3654,21 +4053,25 @@
         {
           "nameEn": "Single arm alternating band chest press",
           "videoUrl": "https://vimeo.com/208383171",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Bands chest press with bench",
           "videoUrl": "https://vimeo.com/208383079",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Bands single arm alternating chest press with bench",
           "videoUrl": "https://vimeo.com/208383117",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Deficit pushups",
           "videoUrl": "https://youtu.be/gmNlqsE3Onc",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3676,16 +4079,19 @@
         {
           "nameEn": "Pushups",
           "videoUrl": "https://youtu.be/mm6_WcoCVTA",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Knee pushups",
           "videoUrl": "https://youtu.be/WcHtt6zT3Go",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Incline pushups",
           "videoUrl": "https://youtu.be/Me9bHFAxnCs",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "off_chest"
           ]
@@ -3693,6 +4099,7 @@
         {
           "nameEn": "Decline pushups",
           "videoUrl": "https://youtu.be/O7dVvwEK9J4",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -3700,6 +4107,7 @@
         {
           "nameEn": "Band floor chest press",
           "videoUrl": "https://youtu.be/dnviBQFAphE",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -3707,11 +4115,13 @@
         {
           "nameEn": "Band pushups",
           "videoUrl": "https://youtu.be/Yrd6ZLwSbos",
+          "pattern": "horizontal_press",
           "weakPoints": []
         },
         {
           "nameEn": "Band decline chest press",
           "videoUrl": "https://vimeo.com/518376227",
+          "pattern": "horizontal_press",
           "weakPoints": [
             "lockout"
           ]
@@ -3728,6 +4138,7 @@
         {
           "nameEn": "Band kneeling straight arm pulldown",
           "videoUrl": "https://youtu.be/K4VAFznrNLk",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3735,6 +4146,7 @@
         {
           "nameEn": "Band wide grip lat pulldown",
           "videoUrl": "https://youtu.be/lJJEkmU_f3c",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3742,6 +4154,7 @@
         {
           "nameEn": "Lying lat pulldown",
           "videoUrl": "https://youtu.be/_1KvfgURbpE",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3749,6 +4162,7 @@
         {
           "nameEn": "Band standing straight arm lat pulldown",
           "videoUrl": "https://vimeo.com/518377374",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3756,6 +4170,7 @@
         {
           "nameEn": "Band half-kneeling lat pulldown",
           "videoUrl": "https://vimeo.com/518377228",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3763,6 +4178,7 @@
         {
           "nameEn": "Band seated back high row",
           "videoUrl": "https://youtu.be/yIF-3TG1wgM",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3770,6 +4186,7 @@
         {
           "nameEn": "Band lying pulldown",
           "videoUrl": "https://youtu.be/GwiTejyALwc",
+          "pattern": "vertical_pull",
           "weakPoints": [
             "stretch"
           ]
@@ -3786,6 +4203,7 @@
         {
           "nameEn": "Band standing one arm row",
           "videoUrl": "https://youtu.be/Tz-eIqfB-1Y",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3793,6 +4211,7 @@
         {
           "nameEn": "Band seated one arm row",
           "videoUrl": "https://youtu.be/bU6rYBZG42E",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3800,6 +4219,7 @@
         {
           "nameEn": "Band one arm bench row",
           "videoUrl": "https://youtu.be/6hpL2xoW08s",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3807,6 +4227,7 @@
         {
           "nameEn": "Band seated two arm rows",
           "videoUrl": "https://youtu.be/8NlYwPOJvHU",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3814,6 +4235,7 @@
         {
           "nameEn": "Bands Two arm crossover bent over row",
           "videoUrl": "https://youtu.be/nImVcz1_gio",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3821,6 +4243,7 @@
         {
           "nameEn": "Bands bent over row",
           "videoUrl": "https://youtu.be/hsHWPGOE4V0",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "contraction"
           ]
@@ -3828,6 +4251,7 @@
         {
           "nameEn": "Bands pullover",
           "videoUrl": "https://youtu.be/38z0Ic1zY7Q",
+          "pattern": "horizontal_pull",
           "weakPoints": [
             "stretch"
           ]

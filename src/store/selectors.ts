@@ -97,16 +97,37 @@ export function currentVolume(): Record<string, number> {
   return weeklyVolume(seed.program, getState().weekIndex);
 }
 
-/** Library variations for a pattern (flattened, deduped by name). */
+/** Library variations whose (refined, per-exercise) pattern matches, deduped. */
 export function libraryForPattern(pattern: Pattern): SeedVariation[] {
   const out: SeedVariation[] = [];
   const seen = new Set<string>();
   for (const g of seed.variationLibrary) {
-    if (g.pattern !== pattern) continue;
     for (const e of g.exercises) {
+      if ((e.pattern ?? g.pattern) !== pattern) continue;
       if (seen.has(e.nameEn)) continue;
       seen.add(e.nameEn);
       out.push(e);
+    }
+  }
+  return out;
+}
+
+export interface LibVariation extends SeedVariation {
+  categoryKey: string;
+  muscleKey: string;
+}
+
+/** Same as libraryForPattern but keeps each variation's category + muscle so the
+ *  Change-exercise screen can surface the closest matches first. */
+export function libraryForPatternDetailed(pattern: Pattern): LibVariation[] {
+  const out: LibVariation[] = [];
+  const seen = new Set<string>();
+  for (const g of seed.variationLibrary) {
+    for (const e of g.exercises) {
+      if ((e.pattern ?? g.pattern) !== pattern) continue;
+      if (seen.has(e.nameEn)) continue;
+      seen.add(e.nameEn);
+      out.push({ ...e, categoryKey: g.categoryKey, muscleKey: g.muscleKey });
     }
   }
   return out;

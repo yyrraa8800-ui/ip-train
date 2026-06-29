@@ -25,7 +25,7 @@ export function Library() {
         const key = e.nameEn.toLowerCase();
         if (seen.has(key)) continue;
         seen.add(key);
-        out.push({ name: e.nameEn, pattern: g.pattern, category: g.category, videoUrl: e.videoUrl });
+        out.push({ name: e.nameEn, pattern: e.pattern ?? g.pattern, category: g.category, videoUrl: e.videoUrl });
       }
     }
     return out.sort((a, b) => a.name.localeCompare(b.name));
