@@ -328,36 +328,45 @@ export const actions = {
     });
   },
 
-  /** Accept a swap: end the old variation's cycle (write a roster entry), point
-   *  the slot at the new variation, and seed its carry-forward starting load. */
+  /** Accept a swap: end the old variation's cycle (write a roster entry only if
+   *  it had logged data), point the slot at the new variation, and seed its
+   *  carry-forward starting load. */
   acceptSwap(slot: string, newName: string, carryWeight: number) {
     const [dayIndex, order] = slot.split('.').map(Number);
     const resolved = resolveExercise(dayIndex, order);
-    if (!resolved) return;
+    if (!resolved || newName === resolved.name) return;
+    const now = new Date().toISOString();
 
-    // Close the old cycle into the roster.
     const lc = lifecycleForSlot(slot);
-    if (lc) {
-      const entry = rosterEntryFromLifeCycle({ ...lc, status: 'ended', endDate: new Date().toISOString() });
-      const roster = [...state.roster.filter((r) => !(r.exerciseName === lc.exerciseName && r.active)), entry];
-      const swapLog: SwapLogEntry[] = [
-        ...state.swapLog,
-        { slot, from: resolved.name, to: newName, week: state.weekIndex, date: new Date().toISOString() },
-      ];
-      commit({
-        roster,
-        swapLog,
-        overrides: { ...state.overrides, [slot]: newName },
-        cycleStartWeek: { ...state.cycleStartWeek, [slot]: state.weekIndex },
-        carryWeights: { ...state.carryWeights, [slot]: carryWeight },
-      });
-    } else {
-      commit({
-        overrides: { ...state.overrides, [slot]: newName },
-        cycleStartWeek: { ...state.cycleStartWeek, [slot]: state.weekIndex },
-        carryWeights: { ...state.carryWeights, [slot]: carryWeight },
-      });
-    }
+    const roster =
+      lc && lc.series.length > 0
+        ? [
+            ...state.roster.filter((r) => !(r.exerciseName === lc.exerciseName && r.active)),
+            rosterEntryFromLifeCycle({ ...lc, status: 'ended', endDate: now }),
+          ]
+        : state.roster;
+    const swapLog: SwapLogEntry[] = [
+      ...state.swapLog,
+      { slot, from: resolved.name, to: newName, week: state.weekIndex, date: now },
+    ];
+    commit({
+      roster,
+      swapLog,
+      overrides: { ...state.overrides, [slot]: newName },
+      cycleStartWeek: { ...state.cycleStartWeek, [slot]: state.weekIndex },
+      carryWeights:
+        carryWeight > 0 ? { ...state.carryWeights, [slot]: carryWeight } : state.carryWeights,
+    });
+  },
+
+  /** Freely change a slot's exercise at any time (e.g. a machine isn't available
+   *  at your gym). Carries a sensible starting load from any prior data. */
+  changeExercise(slot: string, newName: string) {
+    const lc = lifecycleForSlot(slot);
+    const priorE1RM = lc?.currentTopSetE1RM || lc?.startTopSetE1RM || 0;
+    const carry =
+      priorE1RM > 0 ? carryForwardLoad(priorE1RM, state.settings.units).weight : 0;
+    actions.acceptSwap(slot, newName, carry);
   },
 
   /** End the ramp: archive cycles, then start a new block at week 1, rotating in

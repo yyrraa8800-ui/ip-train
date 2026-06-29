@@ -111,11 +111,20 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
                     {resolved.repRange[0]}–{resolved.repRange[1]} {t('reps')} · {state.settings.units}
                   </div>
                 </div>
-                {resolved.videoUrl && (
-                  <button className="chip" onClick={() => window.open(resolved.videoUrl!, '_blank')}>
-                    ▶ {t('watch')}
+                <div className="row gap6">
+                  {resolved.videoUrl && (
+                    <button className="chip" onClick={() => window.open(resolved.videoUrl!, '_blank')}>
+                      ▶ {t('watch')}
+                    </button>
+                  )}
+                  <button
+                    className="chip"
+                    title={t('change_exercise')}
+                    onClick={() => navActions.push({ name: 'change', slot })}
+                  >
+                    🔁
                   </button>
-                )}
+                </div>
               </div>
 
               {lc && lc.status === 'ended' && (

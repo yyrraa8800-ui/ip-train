@@ -9,6 +9,7 @@ export type Route =
   | { name: 'exercise'; slot: string }
   | { name: 'logger'; dayIndex: number }
   | { name: 'swap'; slot: string }
+  | { name: 'change'; slot: string }
   | { name: 'volume' }
   | { name: 'mesocycle' }
   | { name: 'about' }

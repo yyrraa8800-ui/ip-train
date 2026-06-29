@@ -31,11 +31,16 @@ export function ExerciseDetail({ slot }: { slot: string }) {
           <StatusPill status={status} label={t(`status_${status}`)} />
         </div>
 
-        {resolved.videoUrl && (
-          <button className="btn mt8 btn-block" onClick={() => window.open(resolved.videoUrl!, '_blank')}>
-            ▶ {t('watch')}
+        <div className="row gap12 mt8">
+          {resolved.videoUrl && (
+            <button className="btn grow" onClick={() => window.open(resolved.videoUrl!, '_blank')}>
+              ▶ {t('watch')}
+            </button>
+          )}
+          <button className="btn grow" onClick={() => navActions.push({ name: 'change', slot })}>
+            🔁 {t('change_exercise')}
           </button>
-        )}
+        </div>
 
         <div className="card mt16">
           <div className="row gap6" style={{ alignItems: 'center' }}>

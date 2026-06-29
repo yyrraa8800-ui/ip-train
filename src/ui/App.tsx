@@ -12,6 +12,7 @@ import { PatternDetail } from './screens/PatternDetail';
 import { ExerciseDetail } from './screens/ExerciseDetail';
 import { Logger } from './screens/Logger';
 import { SwapFlow } from './screens/Swap';
+import { ChangeExercise } from './screens/ChangeExercise';
 import { Volume } from './screens/Volume';
 import { Mesocycle } from './screens/Mesocycle';
 import { About } from './screens/About';
@@ -39,7 +40,7 @@ export function App() {
   if (!state.onboarded) return <Onboarding />;
 
   const top = nav.stack[nav.stack.length - 1];
-  const focusMode = top?.name === 'logger' || top?.name === 'swap';
+  const focusMode = top?.name === 'logger' || top?.name === 'swap' || top?.name === 'change';
 
   let content: React.ReactNode;
   if (top) {
@@ -55,6 +56,9 @@ export function App() {
         break;
       case 'swap':
         content = <SwapFlow slot={top.slot} />;
+        break;
+      case 'change':
+        content = <ChangeExercise slot={top.slot} />;
         break;
       case 'volume':
         content = <Volume />;
