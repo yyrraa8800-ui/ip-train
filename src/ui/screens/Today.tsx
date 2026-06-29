@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { seed } from '../../data/seed';
 import {
   useStore,
+  actions,
   resolveExercise,
   lifecycleForSlot,
   targetSetsForSlot,
   sessionId,
   slotKey,
+  TOTAL_WEEKS,
   DELOAD_WEEK,
 } from '../../store/store';
 import { useI18n } from '../../i18n';
@@ -25,20 +27,40 @@ export function Today() {
   const sid = sessionId(state.blockNumber, state.weekIndex, dayIndex);
   const session = state.sessions.find((s) => s.id === sid);
 
+  // Which training days of the CURRENT week are already done.
+  const isDayDone = (d: number) =>
+    state.sessions.some(
+      (s) => s.id === sessionId(state.blockNumber, state.weekIndex, d) && s.status === 'completed',
+    );
+  const trainingDays = seed.program.days.filter((d) => !d.isRest);
+  const weekDoneCount = trainingDays.filter((d) => isDayDone(d.index)).length;
+  const weekComplete = weekDoneCount >= trainingDays.length;
+  const nextWeek = state.weekIndex < TOTAL_WEEKS ? state.weekIndex + 1 : null;
+
   return (
     <div className="screen">
-      <div className="row-between">
-        <div className="h1">{t('today_title')}</div>
-        <span className="chip">
-          {isDeload ? t('deload') : `${t('week')} ${state.weekIndex}`}
-        </span>
+      <div className="h1">{t('today_title')}</div>
+
+      {/* Week selector — switch weeks here as you progress */}
+      <div className="label mt8">{t('pick_week')}</div>
+      <div className="row wrap gap6" style={{ marginTop: 4 }}>
+        {Array.from({ length: TOTAL_WEEKS }, (_, i) => i + 1).map((w) => (
+          <Chip
+            key={w}
+            label={w === DELOAD_WEEK ? t('deload') : `${w}`}
+            on={w === state.weekIndex}
+            onClick={() => actions.setWeek(w)}
+          />
+        ))}
       </div>
 
-      <div className="row wrap gap6 mt8">
+      {/* Day selector — ✓ marks days already logged this week */}
+      <div className="label mt16">{dn('Day', 'اليوم')}</div>
+      <div className="row wrap gap6" style={{ marginTop: 4 }}>
         {seed.program.days.map((d) => (
           <Chip
             key={d.index}
-            label={`${d.index}`}
+            label={`${d.index}${isDayDone(d.index) ? ' ✓' : ''}`}
             on={d.index === dayIndex}
             onClick={() => setDayIndex(d.index)}
           />
@@ -46,7 +68,30 @@ export function Today() {
       </div>
       <div className="dim mt8" style={{ fontWeight: 600 }}>
         {dn(`Day ${day.index} · ${day.nameEn}`, `اليوم ${day.index} · ${day.nameAr}`)}
+        {!day.isRest && isDayDone(dayIndex) ? ` · ${t('day_done')} ✓` : ''}
       </div>
+
+      {weekComplete && nextWeek && !isDeload && (
+        <button
+          className="tappable mt16"
+          style={{
+            width: '100%',
+            background: '#13240a',
+            border: `1px solid ${color.alive}`,
+            borderRadius: 14,
+            padding: 14,
+            color: color.alive,
+            fontWeight: 700,
+            textAlign: rtl ? 'right' : 'left',
+          }}
+          onClick={() => {
+            actions.setWeek(nextWeek);
+            setDayIndex(firstTraining);
+          }}
+        >
+          ✓ {t('week_complete', { n: state.weekIndex, m: nextWeek })}
+        </button>
+      )}
 
       {day.isRest ? (
         <div className="card mt16 center" style={{ padding: 28 }}>
