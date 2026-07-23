@@ -14,6 +14,7 @@ import { Logger } from './screens/Logger';
 import { SwapFlow } from './screens/Swap';
 import { ChangeExercise } from './screens/ChangeExercise';
 import { Volume } from './screens/Volume';
+import { History } from './screens/History';
 import { Mesocycle } from './screens/Mesocycle';
 import { About } from './screens/About';
 import { Guide } from './screens/Guide';
@@ -62,6 +63,9 @@ export function App() {
         break;
       case 'volume':
         content = <Volume />;
+        break;
+      case 'history':
+        content = <History />;
         break;
       case 'mesocycle':
         content = <Mesocycle />;

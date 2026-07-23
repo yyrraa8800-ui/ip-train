@@ -13,12 +13,12 @@ import type { SetEntry } from '../../data/types';
 import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
-import { Stepper, RestTimer, haptic, LifeCycleBar } from '../components';
+import { Stepper, RestTimer, haptic, LifeCycleBar, PlateSheet } from '../components';
 import { InfoButton } from '../InfoButton';
 import { Celebrate, type Celebration } from '../Celebrate';
 import { gameProgress } from '../../store/selectors';
 import { color, statusColor } from '../theme';
-import { Tuning } from '../../engine';
+import { Tuning, warmupWeights } from '../../engine';
 
 export function Logger({ dayIndex }: { dayIndex: number }) {
   const state = useStore();
@@ -28,6 +28,12 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   const [rest, setRest] = useState<{ seconds: number } | null>(null);
   const [rirOn, setRirOn] = useState<Set<number>>(new Set());
   const [celebrate, setCelebrate] = useState<Celebration | null>(null);
+  const [plate, setPlate] = useState<number | null>(null);
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((n) => n + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
   const toggleRir = (order: number) =>
     setRirOn((prev) => {
       const next = new Set(prev);
@@ -78,6 +84,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
       <div className="row-between" style={{ padding: '0 16px 8px' }}>
         <div className="dim">
           {t('week')} {state.weekIndex} · {session.exercises.length} {t('exercises')}
+          {session.startedAt && session.status !== 'completed' ? ` · ⏱ ${elapsed(session.startedAt)}` : ''}
         </div>
         <button
           className="chip"
@@ -99,7 +106,8 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
           const resolved = resolveExercise(dayIndex, ex.order)!;
           const lc = lifecycleForSlot(slot);
           const ghost = lastCompletedForSlot(slot);
-          const restSeconds = Math.round((resolved.restSeconds[0] + resolved.restSeconds[1]) / 2);
+          const restSeconds =
+            state.settings.restSeconds ?? Math.round((resolved.restSeconds[0] + resolved.restSeconds[1]) / 2);
           const wp = warmups[ex.order];
 
           return (
@@ -112,9 +120,19 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
                   </div>
                 </div>
                 <div className="row gap6">
+                  <button
+                    className="chip"
+                    title="plates"
+                    onClick={() => {
+                      const w = Math.max(0, ...ex.sets.filter((s) => !s.isWarmup).map((s) => s.weight));
+                      setPlate(w);
+                    }}
+                  >
+                    🏋
+                  </button>
                   {resolved.videoUrl && (
                     <button className="chip" onClick={() => window.open(resolved.videoUrl!, '_blank')}>
-                      ▶ {t('watch')}
+                      ▶
                     </button>
                   )}
                   <button
@@ -149,6 +167,11 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
               {wp && (
                 <div className="muted-banner mt8" style={{ fontSize: 12 }}>
                   🔥 {t('warmup_guidance')}: {wp}
+                  {(() => {
+                    const workingW = Math.max(0, ...ex.sets.filter((s) => !s.isWarmup).map((s) => s.weight));
+                    const ww = warmupWeights(workingW, state.settings.units);
+                    return ww.length ? ` → ${ww.map((w) => w.weight).join(' · ')} ${state.settings.units}` : '';
+                  })()}
                 </div>
               )}
 
@@ -291,8 +314,25 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
           onClose={() => setRest(null)}
         />
       )}
+
+      {plate !== null && (
+        <PlateSheet
+          weight={plate}
+          units={state.settings.units}
+          bar={state.settings.units === 'kg' ? state.settings.barKg : state.settings.barLb}
+          title={t('plates')}
+          onClose={() => setPlate(null)}
+        />
+      )}
     </div>
   );
+}
+
+function elapsed(startIso: string): string {
+  const secs = Math.max(0, Math.floor((Date.now() - new Date(startIso).getTime()) / 1000));
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
 }
 
 function RatingChip({ rating, onToggle }: { rating?: 0 | 1; onToggle: () => void }) {

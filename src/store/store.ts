@@ -4,6 +4,7 @@
 import { useSyncExternalStore } from 'react';
 import { seed } from '../data/seed';
 import type {
+  BodyWeightEntry,
   ExerciseLifeCycle,
   LifePoint,
   LoggedExercise,
@@ -87,6 +88,7 @@ export interface AppState {
   carryWeights: Record<string, number>; // slot -> prefill weight
   roster: VariationRosterEntry[];
   swapLog: SwapLogEntry[];
+  bodyWeights: BodyWeightEntry[];
 }
 
 const DEFAULT_SETTINGS: Settings = {
@@ -110,6 +112,7 @@ function freshState(): AppState {
     carryWeights: {},
     roster: [],
     swapLog: [],
+    bodyWeights: [],
   };
 }
 
@@ -258,12 +261,14 @@ export const actions = {
       };
     });
 
+    const now = new Date().toISOString();
     const session: WorkoutSession = {
       id,
-      date: new Date().toISOString(),
+      date: now,
       dayIndex,
       weekIndex: state.weekIndex,
       status: 'in_progress',
+      startedAt: now,
       exercises,
     };
     commit({ sessions: [...state.sessions, session] });
@@ -315,11 +320,27 @@ export const actions = {
   },
 
   completeSession(sessionIdStr: string) {
+    const now = new Date().toISOString();
     const sessions = state.sessions.map((s) =>
-      s.id === sessionIdStr ? { ...s, status: 'completed' as const } : s,
+      s.id === sessionIdStr ? { ...s, status: 'completed' as const, completedAt: now } : s,
     );
     commit({ sessions });
     recomputeRatings(sessionIdStr);
+  },
+
+  logBodyWeight(weight: number) {
+    if (!(weight > 0)) return;
+    const today = new Date().toISOString().slice(0, 10);
+    const rest = state.bodyWeights.filter((b) => b.date.slice(0, 10) !== today);
+    commit({
+      bodyWeights: [...rest, { date: new Date().toISOString(), weight }].sort((a, b) =>
+        a.date.localeCompare(b.date),
+      ),
+    });
+  },
+
+  deleteBodyWeight(dateIso: string) {
+    commit({ bodyWeights: state.bodyWeights.filter((b) => b.date !== dateIso) });
   },
 
   setSessionNotes(sessionIdStr: string, notes: string) {
@@ -434,9 +455,11 @@ export const actions = {
 export function slotSeries(slot: string): LifePoint[] {
   const [dayIndex] = slot.split('.').map(Number);
   const startWeek = state.cycleStartWeek[slot] ?? 1;
+  const blockPrefix = `b${state.blockNumber}-`;
   const sessions = state.sessions
     .filter(
       (s) =>
+        s.id.startsWith(blockPrefix) && // only the current block's sessions
         s.dayIndex === dayIndex &&
         s.weekIndex >= startWeek &&
         s.exercises.some((e) => `${dayIndex}.${e.order}` === slot),

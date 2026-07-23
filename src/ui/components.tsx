@@ -1,7 +1,8 @@
 // Shared presentational components: SVG rings, the signature life-cycle bar,
 // sparklines, steppers, sheets, chips, toggles.
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { LifeStatus } from '../data/types';
+import type { LifeStatus, Units } from '../data/types';
+import { platesFor, defaultBar } from '../engine';
 import { color, statusColor } from './theme';
 
 export function clamp(x: number, lo = 0, hi = 1): number {
@@ -152,12 +153,46 @@ export function Stepper({
   onChange: (v: number) => void;
   format?: (v: number) => string;
 }) {
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState('');
+  const commit = () => {
+    const n = parseFloat(text.replace(',', '.'));
+    if (Number.isFinite(n)) onChange(Math.max(min, round(n)));
+    setEditing(false);
+  };
   return (
     <div className="stepper">
       <button onClick={() => onChange(Math.max(min, round(value - step)))} aria-label="decrease">
         −
       </button>
-      <div className="val num">{format ? format(value) : value}</div>
+      {editing ? (
+        <input
+          className="val num"
+          style={{ background: 'transparent', border: 'none', textAlign: 'center', width: '100%', outline: 'none' }}
+          type="text"
+          inputMode="decimal"
+          autoFocus
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onFocus={(e) => e.target.select()}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
+          }}
+        />
+      ) : (
+        <div
+          className="val num"
+          role="button"
+          title="tap to type"
+          onClick={() => {
+            setText(String(value));
+            setEditing(true);
+          }}
+        >
+          {format ? format(value) : value}
+        </div>
+      )}
       <button onClick={() => onChange(round(value + step))} aria-label="increase">
         +
       </button>
@@ -292,6 +327,63 @@ export function playBeep() {
   } catch {
     /* ignore */
   }
+}
+
+// ---------------------------------------------------------------------------
+// Plate calculator sheet
+// ---------------------------------------------------------------------------
+export function PlateSheet({
+  weight,
+  units,
+  bar,
+  onClose,
+  title,
+}: {
+  weight: number;
+  units: Units;
+  bar?: number;
+  onClose: () => void;
+  title: string;
+}) {
+  const barW = bar ?? defaultBar(units);
+  const plan = platesFor(weight, units, barW);
+  return (
+    <Sheet onClose={onClose}>
+      <div className="center col" style={{ alignItems: 'center', gap: 6 }}>
+        <div className="label">{title}</div>
+        <div className="bignum" style={{ fontSize: 34 }}>
+          {weight}
+          <span className="faint" style={{ fontSize: 14 }}> {units}</span>
+        </div>
+        <div className="faint" style={{ fontSize: 12 }}>
+          bar {barW} {units} · per side:
+        </div>
+        {plan.perSide.length === 0 ? (
+          <div className="dim mt8">Just the bar.</div>
+        ) : (
+          <div className="row wrap gap6" style={{ justifyContent: 'center', marginTop: 6 }}>
+            {plan.perSide.map((p, i) => (
+              <span
+                key={i}
+                className="chip"
+                style={{ fontWeight: 800, background: color.surface3 }}
+              >
+                {p.count} × {p.plate}
+              </span>
+            ))}
+          </div>
+        )}
+        {plan.leftover > 0 && (
+          <div className="faint mt8" style={{ fontSize: 11, color: color.slowing }}>
+            +{plan.leftover} {units}/side not matchable — closest is {plan.achievable} {units}
+          </div>
+        )}
+        <button className="btn btn-primary btn-block" style={{ marginTop: 14 }} onClick={onClose}>
+          Close
+        </button>
+      </div>
+    </Sheet>
+  );
 }
 
 export function haptic() {

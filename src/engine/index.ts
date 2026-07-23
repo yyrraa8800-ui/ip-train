@@ -6,3 +6,4 @@ export * from './swap';
 export * from './roster';
 export * from './volume';
 export * from './game';
+export * from './plates';

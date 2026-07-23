@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { seed } from '../../data/seed';
 import {
   useStore,
+  getState,
   actions,
   resolveExercise,
   lifecycleForSlot,
@@ -20,7 +21,19 @@ export function Today() {
   const state = useStore();
   const { t, dn, pn, rtl } = useI18n();
   const firstTraining = seed.program.days.find((d) => !d.isRest)?.index ?? 1;
-  const [dayIndex, setDayIndex] = useState(firstTraining);
+  // Default to the first training day not yet completed this week.
+  const [dayIndex, setDayIndex] = useState(() => {
+    const st = getState();
+    const undone = seed.program.days
+      .filter((d) => !d.isRest)
+      .find(
+        (d) =>
+          !st.sessions.some(
+            (s) => s.id === sessionId(st.blockNumber, st.weekIndex, d.index) && s.status === 'completed',
+          ),
+      );
+    return undone?.index ?? firstTraining;
+  });
   const day = seed.program.days.find((d) => d.index === dayIndex)!;
   const isDeload = state.weekIndex === DELOAD_WEEK;
 

@@ -1,5 +1,5 @@
-import { useStore, getState } from '../../store/store';
-import { allMainSummaries, combinedRoster, activeCycles, gameProgress } from '../../store/selectors';
+import { useStore, getState, actions } from '../../store/store';
+import { allMainSummaries, combinedRoster, activeCycles, gameProgress, personalRecords } from '../../store/selectors';
 import { useI18n } from '../../i18n';
 import { navActions } from '../nav';
 import { Sparkline, Ring } from '../components';
@@ -61,11 +61,22 @@ export function Analytics() {
         })}
       </div>
 
-      <button className="btn btn-block mt16" onClick={() => navActions.push({ name: 'volume' })}>
-        📊 {t('volume_title')} ›
-      </button>
+      <div className="row gap12 mt16">
+        <button className="btn grow" onClick={() => navActions.push({ name: 'volume' })}>
+          📊 {t('volume_title')}
+        </button>
+        <button className="btn grow" onClick={() => navActions.push({ name: 'history' })}>
+          📅 {t('workout_history')}
+        </button>
+      </div>
 
-      <div className="h2">{t('pattern_progress')}</div>
+      {/* Body weight */}
+      <BodyWeightCard />
+
+      {/* Personal records */}
+      <PersonalRecords />
+
+      <div className="h2" style={{ marginTop: 22 }}>{t('pattern_progress')}</div>
       <div className="col gap12">
         {mains.map((s) => (
           <div key={s.pattern} className="card2">
@@ -119,5 +130,73 @@ export function Analytics() {
         </div>
       )}
     </div>
+  );
+}
+
+function BodyWeightCard() {
+  const state = useStore();
+  const { t } = useI18n();
+  const bw = state.bodyWeights;
+  const latest = bw[bw.length - 1];
+  return (
+    <>
+      <div className="row-between">
+        <div className="h2">{t('body_weight')}</div>
+        <button
+          className="chip"
+          onClick={() => {
+            const v = prompt(`${t('log_weight')} (${state.settings.units})`);
+            const n = v ? parseFloat(v.replace(',', '.')) : NaN;
+            if (Number.isFinite(n)) actions.logBodyWeight(n);
+          }}
+        >
+          ＋ {t('add')}
+        </button>
+      </div>
+      <div className="card2">
+        {bw.length === 0 ? (
+          <div className="dim">—</div>
+        ) : (
+          <div className="row-between">
+            <div>
+              <div className="bignum" style={{ fontSize: 26 }}>
+                {latest.weight}
+                <span className="faint" style={{ fontSize: 12 }}> {state.settings.units}</span>
+              </div>
+              <div className="faint" style={{ fontSize: 11 }}>{new Date(latest.date).toLocaleDateString()}</div>
+            </div>
+            <Sparkline values={bw.map((b) => b.weight)} width={150} height={40} stroke={color.alive} />
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+function PersonalRecords() {
+  useStore();
+  const { t, pn } = useI18n();
+  const prs = personalRecords().slice(0, 12);
+  if (!prs.length) return null;
+  return (
+    <>
+      <div className="h2">{t('records_title')}</div>
+      <div className="col gap6">
+        {prs.map((r) => (
+          <div key={r.exerciseName} className="card2 row-between">
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{r.exerciseName}</div>
+              <div className="faint" style={{ fontSize: 11 }}>
+                {pn(r.pattern)} · {new Date(r.date).toLocaleDateString()}
+              </div>
+            </div>
+            <div className="row gap12" style={{ alignItems: 'baseline' }}>
+              <span className="num" style={{ fontWeight: 700 }}>{r.weight}×{r.reps}</span>
+              <span className="num" style={{ color: color.alive, fontWeight: 700 }}>{r.e1rm.toFixed(0)}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

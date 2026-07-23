@@ -11,6 +11,7 @@ export type Route =
   | { name: 'swap'; slot: string }
   | { name: 'change'; slot: string }
   | { name: 'volume' }
+  | { name: 'history' }
   | { name: 'mesocycle' }
   | { name: 'about' }
   | { name: 'guide' };

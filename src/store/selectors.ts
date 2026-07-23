@@ -15,6 +15,8 @@ import {
   rosterEntryFromLifeCycle,
   weeklyVolume,
   topSetE1RM,
+  workingVolume,
+  e1rm,
   levelFromXp,
   rankTitle,
   XP,
@@ -232,6 +234,94 @@ function computeStreak(datesIso: string[]): number {
     else break;
   }
   return streak;
+}
+
+// ---------------------------------------------------------------------------
+// Personal records + workout history
+// ---------------------------------------------------------------------------
+
+export interface PR {
+  exerciseName: string;
+  pattern: Pattern;
+  e1rm: number;
+  weight: number;
+  reps: number;
+  date: string;
+}
+
+/** Best estimated-strength set ever logged per exercise. */
+export function personalRecords(): PR[] {
+  const best = new Map<string, PR>();
+  for (const s of getState().sessions) {
+    if (s.status !== 'completed') continue;
+    for (const ex of s.exercises) {
+      for (const set of ex.sets) {
+        if (set.isWarmup || set.weight <= 0 || set.reps <= 0) continue;
+        const score = e1rm(set.weight, set.reps);
+        const cur = best.get(ex.exerciseName);
+        if (!cur || score > cur.e1rm) {
+          best.set(ex.exerciseName, {
+            exerciseName: ex.exerciseName,
+            pattern: ex.pattern,
+            e1rm: score,
+            weight: set.weight,
+            reps: set.reps,
+            date: s.date,
+          });
+        }
+      }
+    }
+  }
+  return [...best.values()].sort((a, b) => b.e1rm - a.e1rm);
+}
+
+export interface HistoryItem {
+  id: string;
+  date: string;
+  dayIndex: number;
+  nameEn: string;
+  nameAr: string;
+  weekIndex: number;
+  sets: number;
+  volume: number;
+  durationMin: number | null;
+  exercises: { name: string; top: string }[];
+}
+
+/** Completed workouts, newest first, with a summary for each. */
+export function workoutHistory(): HistoryItem[] {
+  const days = seed.program.days;
+  return getState()
+    .sessions.filter((s) => s.status === 'completed')
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((s) => {
+      const day = days.find((d) => d.index === s.dayIndex);
+      const working = s.exercises.flatMap((e) => e.sets.filter((x) => !x.isWarmup && x.weight > 0 && x.reps > 0));
+      const volume = s.exercises.reduce((sum, e) => sum + workingVolume(e.sets), 0);
+      const durationMin =
+        s.startedAt && s.completedAt
+          ? Math.max(0, Math.round((new Date(s.completedAt).getTime() - new Date(s.startedAt).getTime()) / 60000))
+          : null;
+      return {
+        id: s.id,
+        date: s.date,
+        dayIndex: s.dayIndex,
+        nameEn: day?.nameEn ?? `Day ${s.dayIndex}`,
+        nameAr: day?.nameAr ?? '',
+        weekIndex: s.weekIndex,
+        sets: working.length,
+        volume: Math.round(volume),
+        durationMin,
+        exercises: s.exercises
+          .filter((e) => e.sets.some((x) => !x.isWarmup && x.weight > 0))
+          .map((e) => {
+            const w = e.sets.filter((x) => !x.isWarmup && x.weight > 0);
+            const topW = Math.max(...w.map((x) => x.weight));
+            const reps = w.map((x) => x.reps).join(',');
+            return { name: e.exerciseName, top: `${topW} × ${reps}` };
+          }),
+      };
+    });
 }
 
 /** Slots whose current variation has an ended life cycle (swap suggested). */

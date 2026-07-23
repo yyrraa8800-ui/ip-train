@@ -131,7 +131,14 @@ export interface WorkoutSession {
   weekIndex: number; // 1-based
   status: 'in_progress' | 'completed';
   notes?: string;
+  startedAt?: string; // ISO — when logging began
+  completedAt?: string; // ISO — when finished (for duration)
   exercises: LoggedExercise[];
+}
+
+export interface BodyWeightEntry {
+  date: string; // ISO
+  weight: number;
 }
 
 /** A point in an exercise's life-cycle sparkline. */
@@ -172,4 +179,7 @@ export interface Settings {
   language: Language;
   notifications: boolean;
   startWeekday: number;
+  restSeconds?: number; // default rest-timer length
+  barKg?: number; // barbell weight for the plate calculator (kg)
+  barLb?: number; // barbell weight for the plate calculator (lb)
 }

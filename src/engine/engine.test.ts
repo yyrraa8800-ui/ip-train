@@ -16,6 +16,7 @@ import {
 } from './index';
 import { levelFromXp, cumXpToReach, rankTitle, BADGES, earnedBadges } from './game';
 import type { GameStats } from './game';
+import { platesFor, warmupWeights, defaultBar } from './plates';
 import type { LifePoint, SeedProgram, SeedVariation, VariationRosterEntry } from '../data/types';
 import { seed } from '../data/seed';
 
@@ -287,6 +288,47 @@ describe('levels & xp', () => {
     expect(ids.has('level_5')).toBe(true);
     expect(ids.has('level_10')).toBe(false);
     expect(BADGES.length).toBeGreaterThan(8);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Plates & warm-up
+// ---------------------------------------------------------------------------
+describe('plate calculator', () => {
+  it('breaks 100kg (20kg bar) into 25+15 per side', () => {
+    const plan = platesFor(100, 'kg', 20);
+    expect(plan.leftover).toBe(0);
+    expect(plan.perSide).toEqual([
+      { plate: 25, count: 1 },
+      { plate: 15, count: 1 },
+    ]);
+  });
+  it('handles microplates (102.5kg -> +1.25)', () => {
+    const plan = platesFor(102.5, 'kg', 20);
+    expect(plan.leftover).toBe(0);
+    expect(plan.perSide.some((p) => p.plate === 1.25)).toBe(true);
+  });
+  it('just the bar when target <= bar', () => {
+    expect(platesFor(20, 'kg', 20).perSide.length).toBe(0);
+  });
+  it('flags an unmatchable remainder', () => {
+    const plan = platesFor(101, 'kg', 20); // 40.5/side; 40 matchable, 0.5 leftover
+    expect(plan.leftover).toBeCloseTo(0.5, 5);
+  });
+  it('lb bar defaults to 45', () => {
+    expect(defaultBar('lb')).toBe(45);
+    const plan = platesFor(135, 'lb', 45); // 45/side -> one 45
+    expect(plan.perSide).toEqual([{ plate: 45, count: 1 }]);
+  });
+});
+
+describe('warm-up weights', () => {
+  it('gives 50% and 75% rounded to a plate step', () => {
+    const w = warmupWeights(100, 'kg');
+    expect(w.map((x) => x.weight)).toEqual([50, 75]);
+  });
+  it('empty for zero working weight', () => {
+    expect(warmupWeights(0, 'kg')).toEqual([]);
   });
 });
 

@@ -35,6 +35,35 @@ export function Settings() {
         <Row label={t('notifications')}>
           <Toggle on={state.settings.notifications} onChange={(v) => actions.setSettings({ notifications: v })} />
         </Row>
+        <div className="divider" />
+        <Row label={t('rest_length')}>
+          <button
+            className="chip"
+            onClick={() => {
+              const v = prompt(t('rest_length'), String(state.settings.restSeconds ?? 90));
+              const n = v ? parseInt(v, 10) : NaN;
+              if (Number.isFinite(n) && n > 0) actions.setSettings({ restSeconds: n });
+            }}
+          >
+            {state.settings.restSeconds ?? 90}s
+          </button>
+        </Row>
+        <div className="divider" />
+        <Row label={t('bar_weight')}>
+          <button
+            className="chip"
+            onClick={() => {
+              const isKg = state.settings.units === 'kg';
+              const cur = isKg ? state.settings.barKg ?? 20 : state.settings.barLb ?? 45;
+              const v = prompt(t('bar_weight'), String(cur));
+              const n = v ? parseFloat(v.replace(',', '.')) : NaN;
+              if (Number.isFinite(n) && n > 0) actions.setSettings(isKg ? { barKg: n } : { barLb: n });
+            }}
+          >
+            {(state.settings.units === 'kg' ? state.settings.barKg ?? 20 : state.settings.barLb ?? 45)}{' '}
+            {state.settings.units}
+          </button>
+        </Row>
       </div>
 
       <div className="h2">{t('backup')}</div>

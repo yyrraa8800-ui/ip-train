@@ -94,6 +94,25 @@ Running log of how Infinite was built, in phases.
 - **Attribution**: app credited to **Yaqoub Alhadad**; program stays credited to
   Mohammad Almarzouq. Tests now **37 passing**.
 
+## Phase 8 — Polish, efficiency & fitness-app features ✅
+
+All additive and **data-safe** (storage key unchanged; old saves load untouched
+— verified by loading a pre-upgrade state in a headless browser).
+
+- **Bug fix:** `slotSeries` mixed sessions across training blocks after
+  "generate next block," corrupting life cycles — now scoped to the current block.
+- **Efficiency:** steppers are **tap-to-type** (enter a number directly);
+  **Today opens the next unfinished day**; **warm-up guidance shows actual
+  weights** (50%/75%), not just percentages.
+- **Plate calculator** — per-side plate breakdown for any barbell weight
+  (configurable bar weight).
+- **Workout history** — every completed session with date/week/sets/duration,
+  expandable to the logged sets.
+- **Personal records** — best estimated-strength set per exercise.
+- **Body-weight tracking** — log it, see the trend sparkline.
+- **Session duration** timer + configurable default rest length.
+- 44 engine unit tests pass (added plate + warm-up coverage).
+
 ## Possible next steps
 
 - Per-set RIR entry UI; richer next-block rotation (auto-pick highest-effectiveness
