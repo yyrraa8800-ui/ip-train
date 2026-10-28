@@ -156,7 +156,24 @@ async function buildOnce() {
     loader: { '.json': 'json' },
   });
   const js = result.outputFiles[0].text;
-  const css = readFileSync(join(ROOT, 'src', 'ui', 'global.css'), 'utf8');
+  let css = readFileSync(join(ROOT, 'src', 'ui', 'global.css'), 'utf8');
+
+  // Embed the display font (Space Grotesk variable, latin) as a data URI so the
+  // single-file app keeps its typographic identity fully offline.
+  try {
+    const fontPath = join(
+      ROOT,
+      'node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2',
+    );
+    const font = readFileSync(fontPath).toString('base64');
+    const face =
+      `@font-face{font-family:'Space Grotesk';font-style:normal;` +
+      `font-weight:300 700;font-display:swap;` +
+      `src:url(data:font/woff2;base64,${font}) format('woff2');}\n`;
+    css = face + css;
+  } catch (e) {
+    console.warn('font embed skipped:', e.message);
+  }
 
   const iconPng = makeIconPNG(180);
   const iconDataUri = `data:image/png;base64,${iconPng.toString('base64')}`;

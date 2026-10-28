@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useStore } from '../store/store';
 import { useI18n } from '../i18n';
 import { useNav, navActions, type Tab } from './nav';
+import { ToastHost } from './toast';
 import { Onboarding } from './screens/Onboarding';
 import { Hub } from './screens/Hub';
 import { Today } from './screens/Today';
@@ -13,6 +14,7 @@ import { ExerciseDetail } from './screens/ExerciseDetail';
 import { Logger } from './screens/Logger';
 import { SwapFlow } from './screens/Swap';
 import { ChangeExercise } from './screens/ChangeExercise';
+import { AddExercise } from './screens/AddExercise';
 import { Volume } from './screens/Volume';
 import { History } from './screens/History';
 import { Mesocycle } from './screens/Mesocycle';
@@ -41,7 +43,8 @@ export function App() {
   if (!state.onboarded) return <Onboarding />;
 
   const top = nav.stack[nav.stack.length - 1];
-  const focusMode = top?.name === 'logger' || top?.name === 'swap' || top?.name === 'change';
+  const focusMode =
+    top?.name === 'logger' || top?.name === 'swap' || top?.name === 'change' || top?.name === 'addExercise';
 
   let content: React.ReactNode;
   if (top) {
@@ -60,6 +63,9 @@ export function App() {
         break;
       case 'change':
         content = <ChangeExercise slot={top.slot} />;
+        break;
+      case 'addExercise':
+        content = <AddExercise dayIndex={top.dayIndex} />;
         break;
       case 'volume':
         content = <Volume />;
@@ -100,6 +106,7 @@ export function App() {
   return (
     <>
       {content}
+      <ToastHost />
       {!focusMode && (
         <nav className="tabbar">
           {TABS.map((tab) => (
@@ -124,7 +131,7 @@ export function Header({ title, onBack }: { title: string; onBack: () => void })
       <button className="backbtn" onClick={onBack} aria-label="back">
         ‹
       </button>
-      <div style={{ fontWeight: 700, fontSize: 18 }}>{title}</div>
+      <div className="htitle">{title}</div>
     </div>
   );
 }

@@ -1,19 +1,31 @@
-/* Infinite — global styles. Dark training-instrument aesthetic. */
+/* Infinite — global styles. Dark training-instrument aesthetic, v2 refresh. */
 
 :root {
-  --bg: #0b0b0e;
-  --surface: #15161b;
-  --surface2: #1d1f26;
-  --surface3: #23252e;
-  --line: #2a2c36;
-  --text: #f4f4f6;
+  --bg: #0a0a0d;
+  --bg2: #0f1014;
+  --surface: #16171d;
+  --surface2: #1d1f27;
+  --surface3: #262933;
+  --line: #2c2f3a;
+  --line2: #363a47;
+  --text: #f5f6f8;
   --dim: #9a9ca6;
-  --faint: #5a5c66;
-  --alive: #7cff3f;
+  --faint: #595c66;
+  --alive: #84ff45;
+  --alive-dim: #2a4a18;
   --slowing: #ffb020;
   --ended: #ff4d4d;
+  --ok-bg: #132312;
+  --ok-line: #2f5a1f;
+  --warn-bg: #241c0a;
+  --danger-bg: #241215;
+  --danger-line: #4a2630;
+  --accent-grad: linear-gradient(135deg, #9dff5c, #63e81f);
+  --radius: 18px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --disp: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
 }
 
 * {
@@ -26,22 +38,22 @@ body,
 #root {
   margin: 0;
   height: 100%;
-  background: var(--bg);
   color: var(--text);
   overscroll-behavior-y: none;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--body);
   font-size: 16px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #15171f 0%, rgba(21, 23, 31, 0) 55%),
+    radial-gradient(90% 60% at 110% 0%, rgba(124, 255, 63, 0.05) 0%, rgba(0, 0, 0, 0) 40%),
+    var(--bg);
 }
 
-/* Pin the whole app to the visual viewport. Using a fixed, inset:0 flex column
-   (instead of height:100% + a position:fixed tab bar) avoids the iOS standalone
-   PWA "gap at the bottom" where bottom:0 doesn't reach the true screen edge. */
 #root {
   position: fixed;
   inset: 0;
@@ -63,28 +75,29 @@ button {
   background: none;
   cursor: pointer;
 }
-
 a {
   color: var(--alive);
   text-decoration: none;
 }
-
 input,
 textarea {
   font: inherit;
   color: var(--text);
 }
 
-/* Numbers are the hero. */
+/* Numbers & display type are the hero. */
 .num {
+  font-family: var(--disp);
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1, 'lnum' 1;
   letter-spacing: -0.01em;
 }
 .bignum {
+  font-family: var(--disp);
   font-variant-numeric: tabular-nums;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-feature-settings: 'tnum' 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Layout */
@@ -93,28 +106,35 @@ textarea {
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: calc(var(--safe-top) + 12px) 16px calc(var(--safe-bottom) + 28px);
+  padding: calc(var(--safe-top) + 14px) 16px calc(var(--safe-bottom) + 28px);
+  animation: screenIn 0.26s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.screen-pad-sm {
-  padding-bottom: calc(var(--safe-bottom) + 24px);
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
 }
 
 .h1 {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 4px 0 2px;
+  font-family: var(--disp);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 2px 0 2px;
 }
 .h2 {
-  font-size: 20px;
-  font-weight: 700;
+  font-family: var(--disp);
+  font-size: 19px;
+  font-weight: 600;
   letter-spacing: -0.01em;
-  margin: 18px 0 10px;
+  margin: 20px 0 10px;
 }
 .label {
-  font-size: 12px;
+  font-family: var(--disp);
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--dim);
   font-weight: 600;
 }
@@ -163,40 +183,48 @@ textarea {
 
 /* Cards */
 .card {
-  background: var(--surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0)) , var(--surface);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 16px;
 }
 .card2 {
   background: var(--surface2);
+  border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 14px;
   padding: 14px;
 }
 .tappable {
-  transition: transform 0.08s ease, background 0.15s ease;
+  transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
 }
 .tappable:active {
-  transform: scale(0.98);
+  transform: scale(0.975);
 }
 
 /* Buttons */
 .btn {
+  font-family: var(--disp);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: 14px;
   padding: 14px 18px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   background: var(--surface2);
   border: 1px solid var(--line);
+  transition: transform 0.1s ease, filter 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.97);
 }
 .btn-primary {
-  background: var(--alive);
-  color: #0b1206;
-  border-color: var(--alive);
+  background: var(--accent-grad);
+  color: #08140a;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 6px 20px -8px rgba(124, 255, 63, 0.5);
 }
 .btn-ghost {
   background: transparent;
@@ -206,57 +234,66 @@ textarea {
 }
 .btn-danger {
   color: var(--ended);
-  border-color: #4a2630;
+  border-color: var(--danger-line);
 }
 .btn:disabled {
   opacity: 0.4;
+  box-shadow: none;
 }
 
 /* Pills / chips */
 .chip {
+  font-family: var(--disp);
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 7px 13px;
   border-radius: 999px;
   background: var(--surface2);
   border: 1px solid var(--line);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.chip:active {
+  transform: scale(0.95);
 }
 .chip-on {
-  background: var(--alive);
-  color: #0b1206;
-  border-color: var(--alive);
+  background: var(--accent-grad);
+  color: #08140a;
+  border-color: transparent;
 }
 .dot {
   width: 9px;
   height: 9px;
   border-radius: 999px;
   flex: none;
+  box-shadow: 0 0 8px -1px currentColor;
 }
 
 /* Tab bar */
 .tabbar {
   flex: none;
   display: flex;
-  background: rgba(17, 18, 24, 0.98);
-  backdrop-filter: blur(16px);
+  background: rgba(13, 14, 19, 0.96);
+  backdrop-filter: blur(18px);
   border-top: 1px solid var(--line);
   padding-bottom: var(--safe-bottom);
   z-index: 50;
 }
 .tabbtn {
+  font-family: var(--disp);
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  padding: 9px 0 7px;
+  padding: 10px 0 8px;
   color: var(--faint);
   font-size: 10px;
   font-weight: 600;
+  transition: color 0.15s ease;
 }
 .tabbtn.on {
   color: var(--alive);
@@ -283,12 +320,17 @@ textarea {
   color: var(--text);
   flex: none;
 }
+.stepper button:active {
+  background: var(--surface2);
+}
 .stepper .val {
+  font-family: var(--disp);
   flex: 1;
   text-align: center;
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 700;
   min-width: 40px;
+  font-variant-numeric: tabular-nums;
 }
 .field {
   background: var(--surface3);
@@ -297,6 +339,10 @@ textarea {
   padding: 12px 14px;
   width: 100%;
 }
+.field:focus {
+  outline: none;
+  border-color: var(--alive);
+}
 .toggle {
   width: 52px;
   height: 30px;
@@ -304,10 +350,11 @@ textarea {
   background: var(--surface3);
   border: 1px solid var(--line);
   position: relative;
-  transition: background 0.15s ease;
+  transition: background 0.18s ease;
 }
 .toggle.on {
-  background: var(--alive);
+  background: var(--accent-grad);
+  border-color: transparent;
 }
 .toggle .knob {
   position: absolute;
@@ -317,7 +364,7 @@ textarea {
   height: 22px;
   border-radius: 999px;
   background: #fff;
-  transition: left 0.15s ease;
+  transition: left 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .toggle.on .knob {
   left: 25px;
@@ -348,22 +395,38 @@ textarea {
 .sheet-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(2px);
   z-index: 100;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  animation: fade 0.2s ease;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
 }
 .sheet {
   width: 100%;
   max-width: 560px;
   background: var(--surface);
-  border-radius: 22px 22px 0 0;
-  border-top: 1px solid var(--line);
-  padding: 18px 16px calc(var(--safe-bottom) + 18px);
+  border-radius: 24px 24px 0 0;
+  border-top: 1px solid var(--line2);
+  padding: 20px 16px calc(var(--safe-bottom) + 18px);
   max-height: 88vh;
   overflow-y: auto;
-  animation: slideup 0.22s ease;
+  animation: slideup 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sheet::before {
+  content: '';
+  display: block;
+  width: 38px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line2);
+  margin: -8px auto 14px;
 }
 @keyframes slideup {
   from {
@@ -376,22 +439,61 @@ textarea {
   }
 }
 
+/* Toasts */
+.toast-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--safe-bottom) + 84px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 120;
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  max-width: 420px;
+  background: var(--surface3);
+  border: 1px solid var(--line2);
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  animation: toastIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
   gap: 10px;
-  /* The parent .screen already provides the top safe-area inset. */
   padding: 4px 16px 8px;
+}
+.header .htitle {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
 }
 .backbtn {
   font-size: 22px;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   background: var(--surface2);
+  border: 1px solid var(--line);
+  flex: none;
 }
 [dir='rtl'] .backbtn {
   transform: scaleX(-1);
@@ -408,22 +510,23 @@ textarea {
 .muted-banner {
   background: var(--surface2);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 12px 14px;
   color: var(--dim);
   font-size: 14px;
 }
 .tag {
+  font-family: var(--disp);
   font-size: 11px;
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: 7px;
   background: var(--surface3);
   color: var(--dim);
   font-weight: 600;
 }
 .fab {
   position: fixed;
-  bottom: calc(var(--safe-bottom) + 78px);
+  bottom: calc(var(--safe-bottom) + 90px);
   inset-inline-end: 16px;
   z-index: 40;
 }

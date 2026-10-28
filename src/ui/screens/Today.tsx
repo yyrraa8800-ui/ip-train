@@ -9,6 +9,7 @@ import {
   targetSetsForSlot,
   sessionId,
   slotKey,
+  allDayExercises,
   TOTAL_WEEKS,
   DELOAD_WEEK,
 } from '../../store/store';
@@ -117,7 +118,7 @@ export function Today() {
       ) : (
         <>
           <div className="col gap12 mt16">
-            {day.exercises.map((ex) => {
+            {allDayExercises(dayIndex).map((ex) => {
               const slot = slotKey(dayIndex, ex.order);
               const resolved = resolveExercise(dayIndex, ex.order)!;
               const lc = lifecycleForSlot(slot);
@@ -154,6 +155,14 @@ export function Today() {
               );
             })}
           </div>
+
+          <button
+            className="btn btn-ghost btn-block mt16"
+            style={{ borderStyle: 'dashed' }}
+            onClick={() => navActions.push({ name: 'addExercise', dayIndex })}
+          >
+            ＋ {t('add_exercise_day')}
+          </button>
 
           <button
             className="btn btn-primary btn-block mt16"

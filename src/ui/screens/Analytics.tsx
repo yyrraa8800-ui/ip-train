@@ -70,6 +70,9 @@ export function Analytics() {
         </button>
       </div>
 
+      {/* Consistency heatmap */}
+      <ConsistencyCard />
+
       {/* Body weight */}
       <BodyWeightCard />
 
@@ -196,6 +199,61 @@ function PersonalRecords() {
             </div>
           </div>
         ))}
+      </div>
+    </>
+  );
+}
+
+function ConsistencyCard() {
+  const { t } = useI18n();
+  useStore();
+  const done = new Set(
+    getState()
+      .sessions.filter((s) => s.status === 'completed')
+      .map((s) => s.date.slice(0, 10)),
+  );
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const start = new Date(today);
+  start.setDate(today.getDate() - 83);
+  start.setDate(start.getDate() - start.getDay()); // align to Sunday
+  const total = 7 * 12;
+  const cells: { key: string; on: boolean; future: boolean }[] = [];
+  for (let i = 0; i < total; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    cells.push({ key, on: done.has(key), future: d > today });
+  }
+  return (
+    <>
+      <div className="h2">{t('consistency')}</div>
+      <div className="card2">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateRows: 'repeat(7, 1fr)',
+            gridAutoFlow: 'column',
+            gap: 4,
+            justifyContent: 'start',
+          }}
+        >
+          {cells.map((c, i) => (
+            <div
+              key={i}
+              title={c.key}
+              style={{
+                width: 13,
+                height: 13,
+                borderRadius: 3,
+                background: c.future ? 'transparent' : c.on ? color.alive : color.surface3,
+              }}
+            />
+          ))}
+        </div>
+        <div className="faint" style={{ fontSize: 11, marginTop: 10 }}>
+          {done.size} {t('workouts').toLowerCase()} · 12 {t('weeks')}
+        </div>
       </div>
     </>
   );

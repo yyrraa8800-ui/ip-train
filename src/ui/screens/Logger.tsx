@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { seed } from '../../data/seed';
 import {
   useStore,
@@ -16,9 +16,10 @@ import { navActions } from '../nav';
 import { Stepper, RestTimer, haptic, LifeCycleBar, PlateSheet } from '../components';
 import { InfoButton } from '../InfoButton';
 import { Celebrate, type Celebration } from '../Celebrate';
-import { gameProgress } from '../../store/selectors';
+import { showToast } from '../toast';
+import { gameProgress, personalRecords } from '../../store/selectors';
 import { color, statusColor } from '../theme';
-import { Tuning, warmupWeights } from '../../engine';
+import { Tuning, warmupWeights, e1rm } from '../../engine';
 
 export function Logger({ dayIndex }: { dayIndex: number }) {
   const state = useStore();
@@ -29,6 +30,9 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   const [rirOn, setRirOn] = useState<Set<number>>(new Set());
   const [celebrate, setCelebrate] = useState<Celebration | null>(null);
   const [plate, setPlate] = useState<number | null>(null);
+  const prFlashed = useRef<Set<string>>(new Set());
+  // Best estimated-strength per exercise BEFORE this session (for PR flashes).
+  const priorBest = useMemo(() => new Map(personalRecords().map((r) => [r.exerciseName, r.e1rm])), []);
   const [, setTick] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setTick((n) => n + 1), 1000);
@@ -50,7 +54,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
   const session = state.sessions.find((s) => s.id === sid);
   if (!session) return null;
 
-  const warmups = computeWarmupPlan(day);
+  const warmups = computeWarmupPlan(session.exercises);
 
   function updateSet(order: number, i: number, patch: Partial<SetEntry>) {
     const ex = session!.exercises.find((e) => e.order === order);
@@ -71,7 +75,18 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
     const wasDone = ex.sets[i].done;
     updateSet(order, i, { done: !wasDone });
     haptic();
-    if (!wasDone && !ex.sets[i].isWarmup) setRest({ seconds: restSeconds });
+    if (!wasDone && !ex.sets[i].isWarmup) {
+      setRest({ seconds: restSeconds });
+      const set = ex.sets[i];
+      if (set.weight > 0 && set.reps > 0) {
+        const score = e1rm(set.weight, set.reps);
+        const prior = priorBest.get(ex.exerciseName) ?? 0;
+        if (prior > 0 && score > prior + 0.01 && !prFlashed.current.has(ex.exerciseName)) {
+          prFlashed.current.add(ex.exerciseName);
+          showToast(`🥇 ${t('new_record')} · ${ex.exerciseName}`);
+        }
+      }
+    }
   }
 
   const allLogged = session.exercises.every((e) =>
@@ -275,6 +290,23 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
         })}
       </div>
 
+      <div style={{ padding: '0 16px' }}>
+        <button
+          className="btn btn-ghost btn-block"
+          style={{ borderStyle: 'dashed' }}
+          onClick={() => navActions.push({ name: 'addExercise', dayIndex })}
+        >
+          ＋ {t('add_exercise_day')}
+        </button>
+        <textarea
+          className="field mt16"
+          style={{ minHeight: 60, resize: 'vertical' }}
+          placeholder={t('session_note')}
+          value={session.notes ?? ''}
+          onChange={(e) => actions.setSessionNotes(session.id, e.target.value)}
+        />
+      </div>
+
       <div style={{ padding: 16 }}>
         <button
           className="btn btn-primary btn-block"
@@ -362,10 +394,10 @@ function ghostSummary(sets: SetEntry[]): string {
 
 const SMALL_MUSCLES = new Set(['Forearms', 'Traps', 'Abs', 'Calves', 'Side delts', 'Rear delts']);
 
-function computeWarmupPlan(day: { exercises: { order: number; muscleKey: string }[] }): Record<number, string> {
+function computeWarmupPlan(exercises: { order: number; muscleKey: string }[]): Record<number, string> {
   const seen = new Set<string>();
   const plan: Record<number, string> = {};
-  for (const ex of day.exercises) {
+  for (const ex of exercises) {
     const small = SMALL_MUSCLES.has(ex.muscleKey);
     if (small) plan[ex.order] = '1 × ~75%';
     else if (!seen.has(ex.muscleKey)) plan[ex.order] = '2 × 50% · 75%';

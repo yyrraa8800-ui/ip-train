@@ -113,6 +113,23 @@ All additive and **data-safe** (storage key unchanged; old saves load untouched
 - **Session duration** timer + configurable default rest length.
 - 44 engine unit tests pass (added plate + warm-up coverage).
 
+## Phase 9 — v2: design overhaul + more features (data-safe) ✅
+
+Backward-compatible (storage key unchanged; verified a pre-v2 save loads with
+all workouts, swaps, PRs intact).
+
+- **Design system refresh:** embedded **Space Grotesk** display font (base64 in
+  the single file, fully offline), refined tokens/surfaces/gradients, glowing
+  gradient CTAs, depth on cards, polished steppers/toggles/sheets with a grabber.
+- **Motion & feedback:** screen-in transitions, press feedback everywhere, a
+  **toast** system, and a **PR flash** ("🥇 New record") the moment you beat an
+  all-time best mid-workout.
+- **Add exercise to any day** — pick any library movement (any pattern, e.g.
+  direct glutes/forearms), appears instantly in Today and the live session;
+  remove from the exercise's detail screen.
+- **Workout notes** per session; **consistency heatmap** (12-week grid) on Stats.
+- Font embedding added to the build; 44 unit tests pass.
+
 ## Possible next steps
 
 - Per-set RIR entry UI; richer next-block rotation (auto-pick highest-effectiveness

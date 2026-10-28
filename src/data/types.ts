@@ -141,6 +141,16 @@ export interface BodyWeightEntry {
   weight: number;
 }
 
+/** A user-added exercise appended to a program day (order >= 100). */
+export interface CustomExercise {
+  order: number;
+  nameEn: string;
+  pattern: Pattern;
+  muscleKey: string;
+  videoUrl?: string | null;
+  isIsolation: boolean;
+}
+
 /** A point in an exercise's life-cycle sparkline. */
 export interface LifePoint {
   date: string;

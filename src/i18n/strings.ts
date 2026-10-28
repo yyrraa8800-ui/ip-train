@@ -131,6 +131,11 @@ const en: Dict = {
   lb: 'lb',
   // features
   plates: 'Plates per side',
+  add_exercise_day: 'Add exercise',
+  remove_exercise: 'Remove exercise',
+  remove_exercise_confirm: 'Remove this added exercise from the day?',
+  consistency: 'Consistency',
+  session_note: 'Workout note',
   workout_history: 'Workout history',
   no_history_yet: 'No completed workouts yet.',
   records_title: 'Personal records',
@@ -287,6 +292,11 @@ const ar: Dict = {
   lb: 'رطل',
   // features
   plates: 'الأوزان لكل جانب',
+  add_exercise_day: 'إضافة تمرين',
+  remove_exercise: 'إزالة التمرين',
+  remove_exercise_confirm: 'إزالة هذا التمرين المضاف من اليوم؟',
+  consistency: 'الانتظام',
+  session_note: 'ملاحظة التمرين',
   workout_history: 'سجل التمارين',
   no_history_yet: 'لا توجد تمارين مكتملة بعد.',
   records_title: 'الأرقام القياسية',

@@ -27,6 +27,7 @@ import {
   lifecycleForSlot,
   resolveExercise,
   slotKey,
+  allDayExercises,
 } from './store';
 
 export interface SlotRef {
@@ -39,7 +40,8 @@ export function allSlots(): SlotRef[] {
   const out: SlotRef[] = [];
   for (const day of seed.program.days) {
     if (day.isRest) continue;
-    for (const ex of day.exercises) out.push({ dayIndex: day.index, order: ex.order, slot: slotKey(day.index, ex.order) });
+    for (const ex of allDayExercises(day.index))
+      out.push({ dayIndex: day.index, order: ex.order, slot: slotKey(day.index, ex.order) });
   }
   return out;
 }

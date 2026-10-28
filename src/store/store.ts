@@ -5,6 +5,7 @@ import { useSyncExternalStore } from 'react';
 import { seed } from '../data/seed';
 import type {
   BodyWeightEntry,
+  CustomExercise,
   ExerciseLifeCycle,
   LifePoint,
   LoggedExercise,
@@ -15,6 +16,7 @@ import type {
   VariationRosterEntry,
   WorkoutSession,
 } from '../data/types';
+import { ISOLATION_PATTERNS } from '../data/types';
 import {
   carryForwardLoad,
   evaluateLifeCycle,
@@ -38,7 +40,37 @@ for (const g of seed.variationLibrary)
     if (!variationByName.has(e.nameEn))
       variationByName.set(e.nameEn, { videoUrl: e.videoUrl, weakPoints: e.weakPoints });
 
+function customToSeed(c: CustomExercise): SeedExercise {
+  return {
+    order: c.order,
+    nameEn: c.nameEn,
+    muscleAr: '',
+    muscleKey: c.muscleKey,
+    category: '',
+    pattern: c.pattern,
+    isIsolation: c.isIsolation,
+    videoUrl: c.videoUrl ?? null,
+    repRange: [6, 12],
+    restSeconds: [60, 120],
+    setsByWeek: Array.from({ length: seed.program.weeks }, () => 3),
+    deloadSets: 2,
+    weakPoints: [],
+  };
+}
+
+/** A day's seeded exercises plus any user-added custom ones. */
+export function allDayExercises(dayIndex: number): SeedExercise[] {
+  const day = seed.program.days.find((d) => d.index === dayIndex);
+  const base = day?.exercises ?? [];
+  const custom = (state.customExercises[String(dayIndex)] ?? []).map(customToSeed);
+  return [...base, ...custom];
+}
+
 export function seedExerciseFor(dayIndex: number, order: number): SeedExercise | undefined {
+  if (order >= 100) {
+    const c = (state.customExercises[String(dayIndex)] ?? []).find((x) => x.order === order);
+    return c ? customToSeed(c) : undefined;
+  }
   const day = seed.program.days.find((d) => d.index === dayIndex);
   return day?.exercises.find((e) => e.order === order);
 }
@@ -89,6 +121,7 @@ export interface AppState {
   roster: VariationRosterEntry[];
   swapLog: SwapLogEntry[];
   bodyWeights: BodyWeightEntry[];
+  customExercises: Record<string, CustomExercise[]>; // dayIndex -> extra exercises
 }
 
 const DEFAULT_SETTINGS: Settings = {
@@ -113,6 +146,7 @@ function freshState(): AppState {
     roster: [],
     swapLog: [],
     bodyWeights: [],
+    customExercises: {},
   };
 }
 
@@ -237,8 +271,7 @@ export const actions = {
     const existing = state.sessions.find((s) => s.id === id);
     if (existing) return existing;
 
-    const day = seed.program.days.find((d) => d.index === dayIndex);
-    const exercises: LoggedExercise[] = (day?.exercises ?? []).map((base) => {
+    const exercises: LoggedExercise[] = allDayExercises(dayIndex).map((base) => {
       const resolved = resolveExercise(dayIndex, base.order)!;
       const slot = slotKey(dayIndex, base.order);
       const n = targetSetsForSlot(dayIndex, base.order, state.weekIndex);
@@ -343,6 +376,60 @@ export const actions = {
     commit({ bodyWeights: state.bodyWeights.filter((b) => b.date !== dateIso) });
   },
 
+  /** Append a user-chosen exercise to a day; also add it live to the current
+   *  in-progress session for that day if one exists. */
+  addCustomExercise(
+    dayIndex: number,
+    data: { nameEn: string; pattern: Pattern; muscleKey: string; videoUrl?: string | null },
+  ) {
+    const key = String(dayIndex);
+    const list = state.customExercises[key] ?? [];
+    if (list.some((c) => c.nameEn === data.nameEn)) return; // no dupes
+    const order = 100 + list.length;
+    const entry: CustomExercise = {
+      order,
+      nameEn: data.nameEn,
+      pattern: data.pattern,
+      muscleKey: data.muscleKey,
+      videoUrl: data.videoUrl ?? null,
+      isIsolation: ISOLATION_PATTERNS.includes(data.pattern),
+    };
+    const customExercises = { ...state.customExercises, [key]: [...list, entry] };
+
+    // Patch the current in-progress session so it shows up immediately.
+    const sid = sessionId(state.blockNumber, state.weekIndex, dayIndex);
+    const n = Math.max(1, setsForWeek(customToSeed(entry).setsByWeek, 2, state.weekIndex, seed.program.weeks));
+    const sessions = state.sessions.map((s) => {
+      if (s.id !== sid || s.status !== 'in_progress') return s;
+      if (s.exercises.some((e) => e.order === order)) return s;
+      const sets: SetEntry[] = Array.from({ length: n }, () => ({ weight: 0, reps: 0, isWarmup: false, done: false }));
+      return {
+        ...s,
+        exercises: [...s.exercises, { order, exerciseName: entry.nameEn, pattern: entry.pattern, muscleKey: entry.muscleKey, sets }],
+      };
+    });
+    commit({ customExercises, sessions });
+  },
+
+  removeCustomExercise(dayIndex: number, order: number) {
+    const key = String(dayIndex);
+    const list = (state.customExercises[key] ?? []).filter((c) => c.order !== order);
+    const slot = slotKey(dayIndex, order);
+    const overrides = { ...state.overrides };
+    const cycleStartWeek = { ...state.cycleStartWeek };
+    const carryWeights = { ...state.carryWeights };
+    delete overrides[slot];
+    delete cycleStartWeek[slot];
+    delete carryWeights[slot];
+    // Drop it from in-progress sessions for that day (keep completed history intact).
+    const sessions = state.sessions.map((s) =>
+      s.dayIndex === dayIndex && s.status === 'in_progress'
+        ? { ...s, exercises: s.exercises.filter((e) => e.order !== order) }
+        : s,
+    );
+    commit({ customExercises: { ...state.customExercises, [key]: list }, overrides, cycleStartWeek, carryWeights, sessions });
+  },
+
   setSessionNotes(sessionIdStr: string, notes: string) {
     commit({
       sessions: state.sessions.map((s) => (s.id === sessionIdStr ? { ...s, notes } : s)),
@@ -401,7 +488,7 @@ export const actions = {
 
     for (const day of seed.program.days) {
       if (day.isRest) continue;
-      for (const base of day.exercises) {
+      for (const base of allDayExercises(day.index)) {
         const slot = slotKey(day.index, base.order);
         const lc = lifecycleForSlot(slot);
         if (lc && lc.series.length > 0) archived.push(rosterEntryFromLifeCycle({ ...lc, endDate: now }));

@@ -2,11 +2,13 @@ import {
   lifecycleForSlot,
   resolveExercise,
   slotSeries,
+  actions,
 } from '../../store/store';
 import { useStore } from '../../store/store';
 import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
+import { showToast } from '../toast';
 import { LifeCycleBar, Sparkline, StatusPill } from '../components';
 import { InfoButton } from '../InfoButton';
 import { color, statusColor } from '../theme';
@@ -91,6 +93,21 @@ export function ExerciseDetail({ slot }: { slot: string }) {
                 </div>
               ))}
           </div>
+        )}
+
+        {order >= 100 && (
+          <button
+            className="btn btn-danger btn-block mt16"
+            onClick={() => {
+              if (confirm(t('remove_exercise_confirm'))) {
+                actions.removeCustomExercise(dayIndex, order);
+                showToast(`🗑 ${resolved.name}`);
+                navActions.pop();
+              }
+            }}
+          >
+            🗑 {t('remove_exercise')}
+          </button>
         )}
       </div>
     </div>
