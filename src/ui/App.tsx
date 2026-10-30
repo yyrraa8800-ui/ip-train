@@ -3,6 +3,7 @@ import { useStore } from '../store/store';
 import { useI18n } from '../i18n';
 import { useNav, navActions, type Tab } from './nav';
 import { ToastHost } from './toast';
+import { Icon } from './icons';
 import { Onboarding } from './screens/Onboarding';
 import { Hub } from './screens/Hub';
 import { Today } from './screens/Today';
@@ -21,12 +22,12 @@ import { Mesocycle } from './screens/Mesocycle';
 import { About } from './screens/About';
 import { Guide } from './screens/Guide';
 
-const TABS: { id: Tab; icon: string; key: string }[] = [
-  { id: 'hub', icon: '⬡', key: 'tab_hub' },
-  { id: 'today', icon: '▶', key: 'tab_today' },
-  { id: 'library', icon: '≣', key: 'tab_library' },
-  { id: 'analytics', icon: '📈', key: 'tab_analytics' },
-  { id: 'settings', icon: '⚙', key: 'tab_settings' },
+const TABS: { id: Tab; icon: 'patterns' | 'today' | 'library' | 'stats' | 'settings'; key: string }[] = [
+  { id: 'hub', icon: 'patterns', key: 'tab_hub' },
+  { id: 'today', icon: 'today', key: 'tab_today' },
+  { id: 'library', icon: 'library', key: 'tab_library' },
+  { id: 'analytics', icon: 'stats', key: 'tab_analytics' },
+  { id: 'settings', icon: 'settings', key: 'tab_settings' },
 ];
 
 export function App() {
@@ -38,6 +39,23 @@ export function App() {
     document.documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', state.settings.language);
   }, [rtl, state.settings.language]);
+
+  // Theme: auto (follow system) / dark / light.
+  const themePref = state.settings.theme ?? 'dark';
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const apply = () => {
+      const resolved = themePref === 'auto' ? (mq.matches ? 'light' : 'dark') : themePref;
+      document.documentElement.setAttribute('data-theme', resolved);
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', resolved === 'light' ? '#f4f6f8' : '#0a0a0d');
+    };
+    apply();
+    if (themePref === 'auto') {
+      mq.addEventListener('change', apply);
+      return () => mq.removeEventListener('change', apply);
+    }
+  }, [themePref]);
 
   if (!state.hydrated) return null;
   if (!state.onboarded) return <Onboarding />;
@@ -115,7 +133,9 @@ export function App() {
               className={`tabbtn ${!top && nav.tab === tab.id ? 'on' : ''}`}
               onClick={() => navActions.setTab(tab.id)}
             >
-              <span className="tabicon">{tab.icon}</span>
+              <span className="tabicon">
+                <Icon name={tab.icon} size={21} />
+              </span>
               {t(tab.key)}
             </button>
           ))}
@@ -129,7 +149,7 @@ export function Header({ title, onBack }: { title: string; onBack: () => void })
   return (
     <div className="header">
       <button className="backbtn" onClick={onBack} aria-label="back">
-        ‹
+        <Icon name="back" size={20} />
       </button>
       <div className="htitle">{title}</div>
     </div>

@@ -13,7 +13,8 @@ import type { SetEntry } from '../../data/types';
 import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
-import { Stepper, RestTimer, haptic, LifeCycleBar, PlateSheet } from '../components';
+import { Stepper, RestTimer, haptic, LifeCycleBar, PlateSheet, SwipeRow } from '../components';
+import { Icon } from '../icons';
 import { InfoButton } from '../InfoButton';
 import { Celebrate, type Celebration } from '../Celebrate';
 import { showToast } from '../toast';
@@ -103,7 +104,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
         </div>
         <button
           className="chip"
-          style={{ color: color.ended, borderColor: '#4a2630' }}
+          style={{ color: color.ended, borderColor: color.dangerLine }}
           onClick={() => {
             if (confirm(t('clear_workout_confirm'))) {
               actions.clearSession(session.id);
@@ -166,7 +167,7 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
                   style={{
                     width: '100%',
                     textAlign: rtl ? 'right' : 'left',
-                    background: '#241114',
+                    background: color.dangerBg,
                     border: `1px solid ${color.ended}`,
                     borderRadius: 12,
                     padding: '12px 14px',
@@ -199,44 +200,46 @@ export function Logger({ dayIndex }: { dayIndex: number }) {
               <div className="col gap6 mt8">
                 {ex.sets.map((s, i) => (
                   <div key={i}>
-                    <div className="row" style={{ gap: 8 }}>
-                      <button
-                        className="chip"
-                        style={{ width: 32, justifyContent: 'center', padding: '6px 0', flex: 'none' }}
-                        onClick={() => updateSet(ex.order, i, { isWarmup: !s.isWarmup })}
-                        title="toggle warm-up"
-                      >
-                        {s.isWarmup ? 'W' : i + 1 - ex.sets.slice(0, i).filter((x) => x.isWarmup).length}
-                      </button>
-                      <div className="col" style={{ flex: 1 }}>
-                        <div className="label" style={{ fontSize: 9 }}>
-                          {t('weight')}
+                    <SwipeRow onSwipe={(dir) => dir === 'right' && markDone(ex.order, i, restSeconds)}>
+                      <div className="row" style={{ gap: 8 }}>
+                        <button
+                          className="chip"
+                          style={{ width: 32, justifyContent: 'center', padding: '6px 0', flex: 'none' }}
+                          onClick={() => updateSet(ex.order, i, { isWarmup: !s.isWarmup })}
+                          title="toggle warm-up"
+                        >
+                          {s.isWarmup ? 'W' : i + 1 - ex.sets.slice(0, i).filter((x) => x.isWarmup).length}
+                        </button>
+                        <div className="col" style={{ flex: 1 }}>
+                          <div className="label" style={{ fontSize: 9 }}>
+                            {t('weight')}
+                          </div>
+                          <Stepper value={s.weight} step={inc} onChange={(v) => updateSet(ex.order, i, { weight: v })} />
                         </div>
-                        <Stepper value={s.weight} step={inc} onChange={(v) => updateSet(ex.order, i, { weight: v })} />
-                      </div>
-                      <div className="col" style={{ flex: 1 }}>
-                        <div className="label" style={{ fontSize: 9 }}>
-                          {t('reps')}
+                        <div className="col" style={{ flex: 1 }}>
+                          <div className="label" style={{ fontSize: 9 }}>
+                            {t('reps')}
+                          </div>
+                          <Stepper value={s.reps} step={1} onChange={(v) => updateSet(ex.order, i, { reps: v })} />
                         </div>
-                        <Stepper value={s.reps} step={1} onChange={(v) => updateSet(ex.order, i, { reps: v })} />
+                        <button
+                          className="chip"
+                          aria-label="complete set"
+                          style={{
+                            width: 42,
+                            height: 52,
+                            flex: 'none',
+                            justifyContent: 'center',
+                            background: s.done ? color.alive : undefined,
+                            color: s.done ? color.onAccent : undefined,
+                            borderColor: s.done ? color.alive : undefined,
+                          }}
+                          onClick={() => markDone(ex.order, i, restSeconds)}
+                        >
+                          <Icon name="check" size={20} />
+                        </button>
                       </div>
-                      <button
-                        className="chip"
-                        style={{
-                          width: 42,
-                          height: 52,
-                          flex: 'none',
-                          justifyContent: 'center',
-                          background: s.done ? color.alive : undefined,
-                          color: s.done ? '#0b1206' : undefined,
-                          borderColor: s.done ? color.alive : undefined,
-                          fontSize: 20,
-                        }}
-                        onClick={() => markDone(ex.order, i, restSeconds)}
-                      >
-                        ✓
-                      </button>
-                    </div>
+                    </SwipeRow>
                     {rirOn.has(ex.order) && !s.isWarmup && (
                       <div className="row gap6" style={{ marginTop: 4, paddingInlineStart: 40 }}>
                         <span className="label" style={{ fontSize: 9 }}>RIR</span>
@@ -374,7 +377,7 @@ function RatingChip({ rating, onToggle }: { rating?: 0 | 1; onToggle: () => void
       className="chip"
       onClick={onToggle}
       style={{
-        background: on ? '#13240a' : '#241114',
+        background: on ? color.okBg : color.dangerBg,
         borderColor: on ? statusColor.alive : statusColor.ended,
         color: on ? statusColor.alive : statusColor.ended,
       }}

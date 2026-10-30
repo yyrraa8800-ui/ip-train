@@ -1,29 +1,37 @@
-// Design tokens. Dark-primary "training instrument" palette; numbers are the
-// hero. Semantic life-cycle colours are used consistently everywhere.
+// Design tokens as CSS variables so light + dark themes both resolve at runtime.
+// The actual values live in global.css (:root and :root[data-theme="light"]).
 
 import type { LifeStatus } from '../data/types';
 
 export const color = {
-  bg: '#0B0B0E',
-  surface: '#15161B',
-  surface2: '#1D1F26',
-  surface3: '#23252E',
-  line: '#2A2C36',
-  text: '#F4F4F6',
-  textDim: '#9A9CA6',
-  textFaint: '#5A5C66',
-  // semantic life-cycle
-  alive: '#7CFF3F',
-  slowing: '#FFB020',
-  ended: '#FF4D4D',
-  accent: '#7CFF3F',
-  accentDim: '#3a5a26',
+  bg: 'var(--bg)',
+  surface: 'var(--surface)',
+  surface2: 'var(--surface2)',
+  surface3: 'var(--surface3)',
+  line: 'var(--line)',
+  line2: 'var(--line2)',
+  text: 'var(--text)',
+  textDim: 'var(--dim)',
+  textFaint: 'var(--faint)',
+  alive: 'var(--alive)',
+  slowing: 'var(--slowing)',
+  ended: 'var(--ended)',
+  accent: 'var(--alive)',
+  onAccent: 'var(--on-accent)',
+  okBg: 'var(--ok-bg)',
+  okLine: 'var(--ok-line)',
+  dangerBg: 'var(--danger-bg)',
+  dangerLine: 'var(--danger-line)',
+  warnBg: 'var(--warn-bg)',
+  aliveSoft: 'var(--alive-soft)',
+  slowingSoft: 'var(--slowing-soft)',
+  endedSoft: 'var(--ended-soft)',
 };
 
 export const statusColor: Record<LifeStatus, string> = {
-  alive: color.alive,
-  slowing: color.slowing,
-  ended: color.ended,
+  alive: 'var(--alive)',
+  slowing: 'var(--slowing)',
+  ended: 'var(--ended)',
 };
 
 export const statusKey: Record<LifeStatus, string> = {
@@ -36,7 +44,7 @@ export const radius = { sm: 8, md: 12, lg: 16, xl: 22, pill: 999 };
 export const space = (n: number) => n * 4;
 
 export const volumeColor = {
-  under: color.slowing,
-  optimal: color.alive,
-  over: color.ended,
+  under: 'var(--slowing)',
+  optimal: 'var(--alive)',
+  over: 'var(--ended)',
 };

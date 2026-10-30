@@ -32,6 +32,19 @@ export function Settings() {
           </div>
         </Row>
         <div className="divider" />
+        <Row label={t('theme')}>
+          <div className="row gap6">
+            {(['auto', 'dark', 'light'] as const).map((th) => (
+              <Chip
+                key={th}
+                label={t(`theme_${th}`)}
+                on={(state.settings.theme ?? 'dark') === th}
+                onClick={() => actions.setSettings({ theme: th })}
+              />
+            ))}
+          </div>
+        </Row>
+        <div className="divider" />
         <Row label={t('notifications')}>
           <Toggle on={state.settings.notifications} onChange={(v) => actions.setSettings({ notifications: v })} />
         </Row>

@@ -9,7 +9,7 @@ import { useI18n } from '../../i18n';
 import { Header } from '../App';
 import { navActions } from '../nav';
 import { showToast } from '../toast';
-import { LifeCycleBar, Sparkline, StatusPill } from '../components';
+import { LifeCycleBar, Sparkline, StatusPill, LineChart } from '../components';
 import { InfoButton } from '../InfoButton';
 import { color, statusColor } from '../theme';
 
@@ -69,6 +69,18 @@ export function ExerciseDetail({ slot }: { slot: string }) {
           <button className="btn btn-primary btn-block mt16" onClick={() => navActions.push({ name: 'swap', slot })}>
             🔁 {t('swap_title')}
           </button>
+        )}
+
+        {series.length >= 2 && (
+          <div className="card mt16">
+            <div className="row gap6" style={{ alignItems: 'center' }}>
+              <div className="label">{t('e1rm')}</div>
+              <InfoButton topic="strength_score" />
+            </div>
+            <div className="mt8">
+              <LineChart values={series.map((p) => p.e1rm)} width={330} height={110} stroke={statusColor[status]} />
+            </div>
+          </div>
         )}
 
         <div className="h2">{t('history')}</div>

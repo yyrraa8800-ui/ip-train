@@ -98,7 +98,7 @@ export function SwapFlow({ slot }: { slot: string }) {
               </div>
               <div className="row wrap gap6 mt8">
                 {r.targetsWeakPoint && (
-                  <span className="tag" style={{ color: color.alive, background: '#13240a' }}>
+                  <span className="tag" style={{ color: color.alive, background: color.okBg }}>
                     {t('targets')} {fl(failure)}
                   </span>
                 )}

@@ -90,7 +90,7 @@ export function Today() {
           className="tappable mt16"
           style={{
             width: '100%',
-            background: '#13240a',
+            background: color.okBg,
             border: `1px solid ${color.alive}`,
             borderRadius: 14,
             padding: 14,
@@ -141,7 +141,7 @@ export function Today() {
                       </div>
                     </div>
                     {status === 'ended' && (
-                      <span className="tag" style={{ color: color.ended, background: '#2a1418' }}>
+                      <span className="tag" style={{ color: color.ended, background: color.dangerBg }}>
                         {t('swap')}
                       </span>
                     )}

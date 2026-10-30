@@ -35,19 +35,22 @@ export function Ring({
   return (
     <div style={{ position: 'relative', width: size, height: size }}>
       <svg width={size} height={size} style={{ display: 'block' }}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={track} strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} style={{ stroke: track }} />
         <circle
           cx={size / 2}
           cy={size / 2}
           r={r}
           fill="none"
-          stroke={ringColor}
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={c}
           strokeDashoffset={off}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
-          style={animate ? ({ '--circ': `${c}`, animation: 'ringfill 0.8s ease' } as any) : undefined}
+          style={
+            animate
+              ? ({ stroke: ringColor, '--circ': `${c}`, animation: 'ringfill 0.8s ease' } as any)
+              : { stroke: ringColor }
+          }
         />
       </svg>
       {children != null && (
@@ -85,7 +88,7 @@ export function LifeCycleBar({
       {/* faint full gradient hint of the runway */}
       <span
         style={{
-          background: `linear-gradient(90deg, ${color.alive}22, ${color.slowing}22 60%, ${color.ended}33)`,
+          background: `linear-gradient(90deg, var(--alive-soft), var(--slowing-soft) 60%, var(--ended-soft))`,
         }}
       />
       <span
@@ -116,7 +119,7 @@ export function Sparkline({
   if (values.length < 2) {
     return (
       <svg width={width} height={height} className="spark">
-        <line x1={0} y1={height - 2} x2={width} y2={height - 2} stroke={color.line} strokeWidth={1} />
+        <line x1={0} y1={height - 2} x2={width} y2={height - 2} strokeWidth={1} style={{ stroke: color.line }} />
       </svg>
     );
   }
@@ -131,8 +134,8 @@ export function Sparkline({
   const d = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
   return (
     <svg width={width} height={height} className="spark">
-      <path d={d} fill="none" stroke={stroke} strokeWidth={1.8} strokeLinejoin="round" strokeLinecap="round" />
-      <circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r={2.4} fill={stroke} />
+      <path d={d} fill="none" strokeWidth={1.8} strokeLinejoin="round" strokeLinecap="round" style={{ stroke }} />
+      <circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r={2.4} style={{ fill: stroke }} />
     </svg>
   );
 }
@@ -425,7 +428,7 @@ export function VolumeBar({
           insetBlock: 0,
           insetInlineStart: `${clamp(mavFrac[0]) * 100}%`,
           width: `${clamp(mavFrac[1] - mavFrac[0]) * 100}%`,
-          background: `${color.alive}22`,
+          background: `var(--alive-soft)`,
         }}
       />
       {/* MEV line */}
@@ -450,6 +453,127 @@ export function VolumeBar({
           transition: 'width 0.4s ease',
         }}
       />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Animated line chart (strength trend) with gradient area + draw-on animation
+// ---------------------------------------------------------------------------
+export function LineChart({
+  values,
+  width = 300,
+  height = 92,
+  stroke = color.alive,
+}: {
+  values: number[];
+  width?: number;
+  height?: number;
+  stroke?: string;
+}) {
+  if (values.length < 2) {
+    return (
+      <div className="dim" style={{ height, display: 'flex', alignItems: 'center', fontSize: 12 }}>
+        —
+      </div>
+    );
+  }
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const span = max - min || 1;
+  const pts = values.map((v, i) => [
+    (i / (values.length - 1)) * (width - 8) + 4,
+    height - 8 - ((v - min) / span) * (height - 20),
+  ]);
+  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  const area = `${line} L${pts[pts.length - 1][0].toFixed(1)} ${height} L${pts[0][0].toFixed(1)} ${height} Z`;
+  const gid = 'lg' + Math.abs(values.length * 7 + Math.round(max)).toString(36);
+  const last = pts[pts.length - 1];
+  return (
+    <svg width={width} height={height} style={{ display: 'block', overflow: 'visible' }}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" style={{ stopColor: stroke }} stopOpacity={0.3} />
+          <stop offset="1" style={{ stopColor: stroke }} stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <path d={area} fill={`url(#${gid})`} />
+      <path
+        d={line}
+        fill="none"
+        pathLength={1}
+        style={{
+          stroke,
+          strokeWidth: 2.4,
+          strokeLinejoin: 'round',
+          strokeLinecap: 'round',
+          strokeDasharray: 1,
+          strokeDashoffset: 1,
+          animation: 'draw 0.9s cubic-bezier(.22,1,.36,1) forwards',
+        }}
+      />
+      <circle cx={last[0]} cy={last[1]} r={3.4} style={{ fill: stroke }} />
+    </svg>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Count-up animated number
+// ---------------------------------------------------------------------------
+export function CountUp({ value, duration = 650 }: { value: number; duration?: number }) {
+  const [n, setN] = useState(0);
+  const ref = useRef(0);
+  useEffect(() => {
+    const from = ref.current;
+    const t0 = performance.now();
+    let raf = 0;
+    const ease = (p: number) => 1 - Math.pow(1 - p, 3);
+    const step = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      const val = Math.round(from + (value - from) * ease(p));
+      setN(val);
+      ref.current = val;
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [value, duration]);
+  return <>{n}</>;
+}
+
+// ---------------------------------------------------------------------------
+// Swipe row — horizontal-swipe gesture wrapper (e.g. swipe to complete a set)
+// ---------------------------------------------------------------------------
+export function SwipeRow({
+  children,
+  onSwipe,
+  threshold = 64,
+}: {
+  children: ReactNode;
+  onSwipe: (dir: 'left' | 'right') => void;
+  threshold?: number;
+}) {
+  const start = useRef<{ x: number; y: number } | null>(null);
+  const [dx, setDx] = useState(0);
+  return (
+    <div
+      onTouchStart={(e) => {
+        start.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }}
+      onTouchMove={(e) => {
+        if (!start.current) return;
+        const d = e.touches[0].clientX - start.current.x;
+        const dy = Math.abs(e.touches[0].clientY - start.current.y);
+        if (Math.abs(d) > dy * 1.4) setDx(Math.max(-96, Math.min(96, d)));
+      }}
+      onTouchEnd={() => {
+        if (Math.abs(dx) > threshold) onSwipe(dx > 0 ? 'right' : 'left');
+        setDx(0);
+        start.current = null;
+      }}
+      style={{ transform: `translateX(${dx}px)`, transition: dx === 0 ? 'transform .2s ease' : 'none' }}
+    >
+      {children}
     </div>
   );
 }

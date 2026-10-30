@@ -164,7 +164,7 @@ export function gameProgress(): GameStats {
   const state = getState();
   const completed = state.sessions
     .filter((s) => s.status === 'completed')
-    .sort((a, b) => a.date.localeCompare(b.date));
+    .sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''));
 
   let xp = 0;
   let prs = 0;

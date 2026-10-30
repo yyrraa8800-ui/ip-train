@@ -1,20 +1,42 @@
-import { useStore, TOTAL_WEEKS, DELOAD_WEEK, lifecycleForSlot } from '../../store/store';
+import {
+  useStore,
+  getState,
+  sessionId,
+  allDayExercises,
+  TOTAL_WEEKS,
+  DELOAD_WEEK,
+  lifecycleForSlot,
+} from '../../store/store';
 import { allMainSummaries, patternSummary, gameProgress, endedSlots } from '../../store/selectors';
 import { slotsForPattern } from '../../store/selectors';
+import { seed } from '../../data/seed';
 import { ISOLATION_PATTERNS } from '../../data/types';
 import { useI18n } from '../../i18n';
 import { navActions } from '../nav';
-import { Ring, LifeCycleBar } from '../components';
+import { Ring, LifeCycleBar, CountUp } from '../components';
+import { Icon } from '../icons';
 import { InfoButton } from '../InfoButton';
 import { color, statusColor, statusKey } from '../theme';
 
 export function Hub() {
   const state = useStore();
-  const { t, pn, rtl } = useI18n();
+  const { t, pn, dn, rtl } = useI18n();
   const mains = allMainSummaries();
   const g = gameProgress();
   const ended = endedSlots();
   const isWeekDeload = state.weekIndex === DELOAD_WEEK;
+
+  // Today's focus = first unfinished training day of the current week.
+  const trainingDays = seed.program.days.filter((d) => !d.isRest);
+  const isDayDone = (d: number) =>
+    getState().sessions.some(
+      (s) => s.id === sessionId(state.blockNumber, state.weekIndex, d) && s.status === 'completed',
+    );
+  const todayDay = trainingDays.find((d) => !isDayDone(d.index)) ?? trainingDays[0];
+  const todaySession = state.sessions.find(
+    (s) => s.id === sessionId(state.blockNumber, state.weekIndex, todayDay.index),
+  );
+  const exCount = allDayExercises(todayDay.index).length;
 
   return (
     <div className="screen">
@@ -27,8 +49,45 @@ export function Hub() {
         </button>
       </div>
 
+      {/* Today hero */}
+      <button
+        className="card tappable mt8"
+        style={{ textAlign: rtl ? 'right' : 'left', width: '100%' }}
+        onClick={() => navActions.push({ name: 'logger', dayIndex: todayDay.index })}
+      >
+        <div className="row-between">
+          <div>
+            <div className="label" style={{ color: color.alive }}>
+              {t('today_title')}
+            </div>
+            <div style={{ fontFamily: 'var(--disp)', fontWeight: 700, fontSize: 24, letterSpacing: '-0.02em' }}>
+              {dn(todayDay.nameEn, todayDay.nameAr)}
+            </div>
+            <div className="dim" style={{ fontSize: 13 }}>
+              {isWeekDeload ? t('deload') : `${t('week')} ${state.weekIndex}`} · {exCount} {t('exercises')}
+              {todaySession?.status === 'completed' ? ' · ✓' : ''}
+            </div>
+          </div>
+          <div
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: 999,
+              background: 'var(--accent-grad)',
+              color: color.onAccent,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 6px 18px -8px var(--accent-glow)',
+            }}
+          >
+            <Icon name="play" size={24} />
+          </div>
+        </div>
+      </button>
+
       {/* Game header */}
-      <div className="card mt8">
+      <div className="card mt16">
         <div className="row" style={{ gap: 14 }}>
           <Ring size={72} stroke={8} progress={g.progress} ringColor={color.alive}>
             <div className="col" style={{ alignItems: 'center', lineHeight: 1 }}>
@@ -36,7 +95,7 @@ export function Hub() {
                 {t('level').toUpperCase()}
               </span>
               <span className="bignum" style={{ fontSize: 22 }}>
-                {g.level}
+                <CountUp value={g.level} />
               </span>
             </div>
           </Ring>
@@ -54,16 +113,11 @@ export function Hub() {
           </div>
         </div>
         <div className="row" style={{ gap: 8, marginTop: 14 }}>
-          <MiniStat icon="🔥" value={g.streak} label={t('streak')} />
-          <MiniStat icon="🏋️" value={g.workouts} label={t('workouts')} />
-          <MiniStat icon="🥇" value={g.prs} label={t('records')} />
+          <MiniStat icon="flame" value={g.streak} label={t('streak')} tint={color.slowing} />
+          <MiniStat icon="dumbbell" value={g.workouts} label={t('workouts')} tint={color.alive} />
+          <MiniStat icon="award" value={g.prs} label={t('records')} tint={color.alive} />
         </div>
       </div>
-
-      {/* Today's mission */}
-      <button className="btn btn-primary btn-block mt16" onClick={() => navActions.setTab('today')}>
-        ▶ {t('todays_mission')}
-      </button>
 
       {/* Needs your pick — ended cycles */}
       {ended.length > 0 && (
@@ -77,7 +131,7 @@ export function Hub() {
                 key={ref.slot}
                 className="tappable"
                 style={{
-                  background: '#241114',
+                  background: color.dangerBg,
                   border: `1px solid ${color.ended}`,
                   borderRadius: 14,
                   padding: 14,
@@ -155,12 +209,14 @@ export function Hub() {
   );
 }
 
-function MiniStat({ icon, value, label }: { icon: string; value: number; label: string }) {
+function MiniStat({ icon, value, label, tint }: { icon: 'flame' | 'dumbbell' | 'award'; value: number; label: string; tint: string }) {
   return (
-    <div className="card2 grow center" style={{ padding: '10px 6px' }}>
-      <div style={{ fontSize: 18 }}>{icon}</div>
-      <div className="bignum" style={{ fontSize: 20 }}>
-        {value}
+    <div className="card2 grow center" style={{ padding: '12px 6px' }}>
+      <div style={{ color: tint, display: 'flex', justifyContent: 'center' }}>
+        <Icon name={icon} size={18} />
+      </div>
+      <div className="bignum" style={{ fontSize: 20, marginTop: 4 }}>
+        <CountUp value={value} />
       </div>
       <div className="label" style={{ fontSize: 9 }}>
         {label}

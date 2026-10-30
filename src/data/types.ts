@@ -189,6 +189,7 @@ export interface Settings {
   language: Language;
   notifications: boolean;
   startWeekday: number;
+  theme?: 'auto' | 'dark' | 'light';
   restSeconds?: number; // default rest-timer length
   barKg?: number; // barbell weight for the plate calculator (kg)
   barLb?: number; // barbell weight for the plate calculator (lb)

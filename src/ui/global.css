@@ -2,7 +2,8 @@
 
 :root {
   --bg: #0a0a0d;
-  --bg2: #0f1014;
+  --bg-grad1: #15171f;
+  --bg-grad2: rgba(124, 255, 63, 0.05);
   --surface: #16171d;
   --surface2: #1d1f27;
   --surface3: #262933;
@@ -12,20 +13,57 @@
   --dim: #9a9ca6;
   --faint: #595c66;
   --alive: #84ff45;
-  --alive-dim: #2a4a18;
+  --alive-soft: rgba(132, 255, 69, 0.14);
   --slowing: #ffb020;
+  --slowing-soft: rgba(255, 176, 32, 0.14);
   --ended: #ff4d4d;
+  --ended-soft: rgba(255, 77, 77, 0.18);
+  --on-accent: #08140a;
   --ok-bg: #132312;
   --ok-line: #2f5a1f;
   --warn-bg: #241c0a;
   --danger-bg: #241215;
   --danger-line: #4a2630;
   --accent-grad: linear-gradient(135deg, #9dff5c, #63e81f);
+  --accent-glow: rgba(124, 255, 63, 0.5);
+  --tabbar-bg: rgba(13, 14, 19, 0.96);
+  --card-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0));
   --radius: 18px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --disp: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Light theme */
+:root[data-theme='light'] {
+  --bg: #f4f6f8;
+  --bg-grad1: #ffffff;
+  --bg-grad2: rgba(80, 200, 30, 0.07);
+  --surface: #ffffff;
+  --surface2: #f1f3f6;
+  --surface3: #e7eaef;
+  --line: #e0e4ea;
+  --line2: #d2d7df;
+  --text: #15171c;
+  --dim: #5b6372;
+  --faint: #9aa1ad;
+  --alive: #3aa90a;
+  --alive-soft: rgba(58, 169, 10, 0.14);
+  --slowing: #c17a00;
+  --slowing-soft: rgba(193, 122, 0, 0.14);
+  --ended: #e23b36;
+  --ended-soft: rgba(226, 59, 54, 0.14);
+  --on-accent: #06230a;
+  --ok-bg: #e4f6df;
+  --ok-line: #bfe3b0;
+  --warn-bg: #fbf0d6;
+  --danger-bg: #fbe4e3;
+  --danger-line: #f3c2c0;
+  --accent-grad: linear-gradient(135deg, #6ad23a, #3fb10f);
+  --accent-glow: rgba(58, 169, 10, 0.35);
+  --tabbar-bg: rgba(255, 255, 255, 0.92);
+  --card-sheen: linear-gradient(180deg, rgba(0, 0, 0, 0.012), rgba(0, 0, 0, 0));
 }
 
 * {
@@ -49,8 +87,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background:
-    radial-gradient(120% 80% at 50% -10%, #15171f 0%, rgba(21, 23, 31, 0) 55%),
-    radial-gradient(90% 60% at 110% 0%, rgba(124, 255, 63, 0.05) 0%, rgba(0, 0, 0, 0) 40%),
+    radial-gradient(120% 80% at 50% -10%, var(--bg-grad1) 0%, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(90% 60% at 110% 0%, var(--bg-grad2) 0%, rgba(0, 0, 0, 0) 40%),
     var(--bg);
 }
 
@@ -183,7 +221,7 @@ textarea {
 
 /* Cards */
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0)) , var(--surface);
+  background: var(--card-sheen), var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px;
@@ -224,7 +262,7 @@ textarea {
   color: #08140a;
   border-color: transparent;
   font-weight: 700;
-  box-shadow: 0 6px 20px -8px rgba(124, 255, 63, 0.5);
+  box-shadow: 0 6px 20px -8px var(--accent-glow);
 }
 .btn-ghost {
   background: transparent;
@@ -276,7 +314,7 @@ textarea {
 .tabbar {
   flex: none;
   display: flex;
-  background: rgba(13, 14, 19, 0.96);
+  background: var(--tabbar-bg);
   backdrop-filter: blur(18px);
   border-top: 1px solid var(--line);
   padding-bottom: var(--safe-bottom);
@@ -529,4 +567,10 @@ textarea {
   bottom: calc(var(--safe-bottom) + 90px);
   inset-inline-end: 16px;
   z-index: 40;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
